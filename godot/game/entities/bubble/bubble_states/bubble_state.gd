@@ -9,14 +9,14 @@ func _ready() -> void:
 
 func enter() -> void:
 	print("%s enter" % self.name)
-	onEnter()
+	on_enter()
 
 func exit() -> void:
 	print("%s exit" % self.name)
-	onExit()
+	on_exit()
 
-func onEnter() -> void:
+func on_enter() -> void:
 	pass
 
-func onExit() -> void:
+func on_exit() -> void:
 	pass

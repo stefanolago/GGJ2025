@@ -1,7 +1,5 @@
-extends BubbleState
+extends BubbleHumorState
 
 func update(_delta: float) -> void:
-	pass
-
-func physics_update(_delta: float) -> void:
-	pass
+	if bubble.corpses_seen > corpses_limit:
+		transition.emit("Scared")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://uqefphhchit1"]
+
+[ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_182ac"]
+
+[node name="ScenaEsempioBolle" type="Node2D"]
+
+[node name="Bubble" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(324, 223)
+
+[node name="Bubble2" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-718, 192)
+
+[node name="Bubble3" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(1146, -1016)
+
+[node name="Bubble4" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-2982, -1256)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.13, 0.13)

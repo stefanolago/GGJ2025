@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://deksu4y28s6gm"]
+
+[ext_resource type="Script" path="res://game/entities/bubble/eye.gd" id="1_epn50"]
+[ext_resource type="Texture2D" uid="uid://cmrsuyhjkndle" path="res://assets/art/circle_example.png" id="1_nxyky"]
+
+[node name="EyeLeft" type="Node2D"]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_epn50")
+
+[node name="Sclera" type="Sprite2D" parent="."]
+modulate = Color(0.791999, 0.791999, 0.791999, 1)
+texture = ExtResource("1_nxyky")
+
+[node name="Pupil" type="Sprite2D" parent="Sclera"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nxyky")
