@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=15 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -9,15 +9,22 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://b35bvvc60k71e" path="res://assets/art/circle_example.png" id="7_77vlm"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
-[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/touched_state.gd" id="10_if20k"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/pressed_state.gd" id="10_cmg8r"]
 [ext_resource type="Script" path="res://game/entities/bubble/popping_state.gd" id="11_03t2o"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rqjrq"]
+radius = 118.828
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 648.368
 
-[node name="Bubble" type="Node2D"]
+[node name="Bubble" type="StaticBody2D"]
+collision_mask = 2
 script = ExtResource("1_udmfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rqjrq")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
@@ -43,18 +50,20 @@ modulate = Color(1, 0.784314, 1, 1)
 texture = ExtResource("7_77vlm")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cbs37")
 
-[node name="PlayerInteractionStateMachine" type="Node" parent="."]
+[node name="PlayerInteractionStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
+initial_state = NodePath("UntouchedState")
 
 [node name="UntouchedState" type="Node" parent="PlayerInteractionStateMachine"]
 script = ExtResource("9_u1hra")
 
-[node name="TouchedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("10_if20k")
+[node name="PressedState" type="Node" parent="PlayerInteractionStateMachine"]
+script = ExtResource("10_cmg8r")
 
 [node name="PoppingState" type="Node" parent="PlayerInteractionStateMachine"]
 script = ExtResource("11_03t2o")
