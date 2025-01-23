@@ -29,4 +29,4 @@ position = Vector2(281, -95)
 shape = SubResource("CircleShape2D_l8mpm")
 
 [node name="BubblewrapTilemap" parent="." instance=ExtResource("1_tlpsv")]
-scale = Vector2(-0.13127, -0.13127)
+scale = Vector2(0.322842, 0.322842)
