@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=11 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/worried.gd" id="5_8kdti"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://b35bvvc60k71e" path="res://assets/art/circle_example.png" id="7_77vlm"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/bubble_state.gd" id="9_0wcmt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 648.368
@@ -42,3 +43,18 @@ texture = ExtResource("7_77vlm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cbs37")
+
+[node name="PlayerInteractionStateMachine" type="Node" parent="."]
+script = ExtResource("1_aabyq")
+
+[node name="UntouchedState" type="Node" parent="PlayerInteractionStateMachine"]
+script = ExtResource("9_0wcmt")
+
+[node name="TouchedState" type="Node" parent="PlayerInteractionStateMachine"]
+script = ExtResource("9_0wcmt")
+
+[node name="PoppingState" type="Node" parent="PlayerInteractionStateMachine"]
+script = ExtResource("9_0wcmt")
+
+[node name="PoppedState" type="Node" parent="PlayerInteractionStateMachine"]
+script = ExtResource("9_0wcmt")
