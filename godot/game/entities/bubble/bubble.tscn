@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=14 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -8,7 +8,10 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/worried.gd" id="5_8kdti"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://b35bvvc60k71e" path="res://assets/art/circle_example.png" id="7_77vlm"]
-[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/bubble_state.gd" id="9_0wcmt"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/touched_state.gd" id="10_if20k"]
+[ext_resource type="Script" path="res://game/entities/bubble/popping_state.gd" id="11_03t2o"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 648.368
@@ -48,13 +51,13 @@ shape = SubResource("CircleShape2D_cbs37")
 script = ExtResource("1_aabyq")
 
 [node name="UntouchedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("9_0wcmt")
+script = ExtResource("9_u1hra")
 
 [node name="TouchedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("9_0wcmt")
+script = ExtResource("10_if20k")
 
 [node name="PoppingState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("9_0wcmt")
+script = ExtResource("11_03t2o")
 
 [node name="PoppedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("9_0wcmt")
+script = ExtResource("12_0e84d")
