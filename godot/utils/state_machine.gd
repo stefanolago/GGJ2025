@@ -46,4 +46,3 @@ func _on_child_transition(new_state_name: String) -> void:
 
 # func force_transition_to_state(new_state_name: String) -> void:
 # 	_on_child_transition(new_state_name)
-
