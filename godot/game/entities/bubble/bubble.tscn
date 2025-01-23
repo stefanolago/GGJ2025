@@ -84,19 +84,21 @@ debug_color = Color(0.94287, 0.184477, 0.393776, 0.42)
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cbs37")
 debug_color = Color(0, 0.6, 0.701961, 0.113725)
 
-[node name="PlayerInteractionStateMachine" type="Node" parent="."]
+[node name="PlayerInteractionStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
+initial_state = NodePath("UntouchedState")
 
 [node name="UntouchedState" type="Node" parent="PlayerInteractionStateMachine"]
 script = ExtResource("9_u1hra")
 
-[node name="TouchedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("10_if20k")
+[node name="PressedState" type="Node" parent="PlayerInteractionStateMachine"]
+script = ExtResource("10_cmg8r")
 
 [node name="PoppingState" type="Node" parent="PlayerInteractionStateMachine"]
 script = ExtResource("11_03t2o")

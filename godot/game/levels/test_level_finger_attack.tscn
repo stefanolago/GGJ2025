@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4en56y3s25ri"]
+
+[ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_0gjrn"]
+[ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
+
+[node name="TestLevelFingerAttack" type="Node2D"]
+
+[node name="Bubble" parent="." instance=ExtResource("1_0gjrn")]
+position = Vector2(-7, 8)
+
+[node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
