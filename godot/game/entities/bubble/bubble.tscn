@@ -18,10 +18,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
 radius = 211.533
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_62skk"]
+radius = 113.018
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 1166.12
+radius = 396.001
 
 [node name="Bubble" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_udmfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
@@ -72,8 +77,12 @@ position = Vector2(-102, -28)
 [node name="EyeRight" parent="Sprite2D/Eyes" instance=ExtResource("10_0e553")]
 unique_name_in_owner = true
 position = Vector2(102, -28)
+[node name="BubbleCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_62skk")
+debug_color = Color(0.94287, 0.184477, 0.393776, 0.42)
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cbs37")

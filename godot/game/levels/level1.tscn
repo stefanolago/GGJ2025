@@ -1,14 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://borkwi8sak2ay"]
+[gd_scene load_steps=5 format=3 uid="uid://borkwi8sak2ay"]
 
-[ext_resource type="Texture2D" uid="uid://b2wh8kyf3m41s" path="res://icon.svg" id="1_w0euc"]
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_be34r"]
+[ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_tlpsv"]
 
-[node name="Level1" type="CanvasLayer"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ih37f"]
+vertices = PackedVector2Array(565.094, -315, 570.898, 315, 331.398, -95, 324.656, -120.203, 324.656, -69.7969, 306.203, -51.3438, -563.039, 315.992, 281, -44.6016, 255.797, -51.3438, -565.953, -315, 237.344, -69.7969, 230.602, -95, 237.344, -120.203, 306.203, -138.656, 255.797, -138.656, 281, -145.398)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 4, 1), PackedInt32Array(5, 1, 6, 7), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 9, 10), PackedInt32Array(11, 10, 9), PackedInt32Array(12, 11, 9), PackedInt32Array(0, 3, 13), PackedInt32Array(14, 12, 9), PackedInt32Array(14, 9, 0, 15), PackedInt32Array(15, 0, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-576, -325, 575, -325, 581, 325, -573, 326)])
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_w0euc")
-stretch_mode = 1
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8mpm"]
+radius = 40.05
+
+[node name="Level1" type="CanvasLayer" node_paths=PackedStringArray("tile_map")]
+follow_viewport_enabled = true
+script = ExtResource("1_be34r")
+tile_map = NodePath("BubblewrapTilemap")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ih37f")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
+position = Vector2(281, -95)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+shape = SubResource("CircleShape2D_l8mpm")
+
+[node name="BubblewrapTilemap" parent="." instance=ExtResource("1_tlpsv")]
+scale = Vector2(-0.13127, -0.13127)

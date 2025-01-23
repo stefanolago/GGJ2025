@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnn88lxptf1ng"]
+
+[ext_resource type="Texture2D" uid="uid://d2a4brukyo0ml" path="res://assets/placeholders/bubble_placeholder.png" id="1_adcua"]
+[ext_resource type="Script" path="res://game/levels/bubble_placeholder.gd" id="2_fn0wl"]
+
+[node name="BubblePlaceholder" type="Sprite2D"]
+scale = Vector2(0.172, 0.172)
+texture = ExtResource("1_adcua")
+script = ExtResource("2_fn0wl")

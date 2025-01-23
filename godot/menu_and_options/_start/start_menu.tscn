@@ -1,10 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8i4dav4givqf"]
+[gd_scene load_steps=14 format=4 uid="uid://b8i4dav4givqf"]
 
 [ext_resource type="Script" path="res://menu_and_options/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://menu_and_options/_options_menu/options_menu.tscn" id="1_q0fgv"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://menu_and_options/_credits/credits.tscn" id="3_drggk"]
 [ext_resource type="Script" path="res://menu_and_options/_utils/button_with_sound.gd" id="3_o8bey"]
+[ext_resource type="Texture2D" uid="uid://dvxsqq82jiq28" path="res://assets/placeholders/flatLight29.png" id="4_bje8e"]
+[ext_resource type="Texture2D" uid="uid://mrtrdeq57htr" path="res://assets/placeholders/flatLight31.png" id="5_0nt07"]
+[ext_resource type="Texture2D" uid="uid://d2a4brukyo0ml" path="res://assets/placeholders/bubble_placeholder.png" id="6_egls3"]
+[ext_resource type="Texture2D" uid="uid://c65v678xn074s" path="res://assets/placeholders/flatLight33.png" id="6_pwbps"]
 [ext_resource type="Texture2D" uid="uid://bt6bmv0xk7rub" path="res://assets/art/splash/controller_icon.png" id="6_r4t5b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1aee2"]
+texture = ExtResource("6_egls3")
+texture_region_size = Vector2i(500, 500)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_v8pn0"]
+tile_size = Vector2i(500, 500)
+sources/2 = SubResource("TileSetAtlasSource_1aee2")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fuesb"]
+texture = ExtResource("6_egls3")
+texture_region_size = Vector2i(500, 500)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xbypp"]
+tile_size = Vector2i(500, 500)
+sources/0 = SubResource("TileSetAtlasSource_fuesb")
 
 [node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
@@ -24,9 +46,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0941176, 0.298039, 0.592157, 1)
+color = Color(0.597056, 0.749569, 0.979078, 1)
 
 [node name="Controller" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -55,10 +78,10 @@ vertical_alignment = 1
 [node name="Buttons" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.725309
-anchor_right = 0.6
-anchor_bottom = 0.935185
+anchor_left = 0.934028
+anchor_top = 0.658951
+anchor_right = 0.982639
+anchor_bottom = 0.964506
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 15
@@ -66,23 +89,24 @@ alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="Control/Buttons"]
+visible = false
 layout_mode = 2
 text = "Play"
 script = ExtResource("3_o8bey")
 
 [node name="OptionsButton" type="Button" parent="Control/Buttons"]
 layout_mode = 2
-text = "Options"
+icon = ExtResource("4_bje8e")
 script = ExtResource("3_o8bey")
 
 [node name="CreditsButton" type="Button" parent="Control/Buttons"]
 layout_mode = 2
-text = "Credits"
+icon = ExtResource("5_0nt07")
 script = ExtResource("3_o8bey")
 
 [node name="QuitButton" type="Button" parent="Control/Buttons"]
 layout_mode = 2
-text = "Quit"
+icon = ExtResource("6_pwbps")
 script = ExtResource("3_o8bey")
 
 [node name="OptionsMenu" parent="Control" instance=ExtResource("1_q0fgv")]
@@ -97,6 +121,18 @@ anchor_bottom = 0.8
 [node name="Credits" parent="Control" instance=ExtResource("3_drggk")]
 visible = false
 layout_mode = 1
+
+[node name="TitleTilemap" type="TileMapLayer" parent="."]
+position = Vector2(-20, 209)
+scale = Vector2(0.0571842, 0.0571842)
+tile_map_data = PackedByteArray("AAAEAPz/AgAAAAAAAAAEAP3/AgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAFAPz/AgAAAAAAAAAGAPz/AgAAAAAAAAAHAP3/AgAAAAAAAAAFAP7/AgAAAAAAAAAGAP7/AgAAAAAAAAAHAP//AgAAAAAAAAAFAAAAAgAAAAAAAAAGAAAAAgAAAAAAAAAJAPz/AgAAAAAAAAAJAP3/AgAAAAAAAAAJAP7/AgAAAAAAAAAJAP//AgAAAAAAAAAKAAAAAgAAAAAAAAALAAAAAgAAAAAAAAAMAP//AgAAAAAAAAAMAP7/AgAAAAAAAAAMAP3/AgAAAAAAAAAMAPz/AgAAAAAAAAAOAPz/AgAAAAAAAAAOAP3/AgAAAAAAAAAOAP7/AgAAAAAAAAAOAP//AgAAAAAAAAAOAAAAAgAAAAAAAAAPAPz/AgAAAAAAAAAQAPz/AgAAAAAAAAAPAP7/AgAAAAAAAAAQAP7/AgAAAAAAAAAPAAAAAgAAAAAAAAAQAAAAAgAAAAAAAAARAP//AgAAAAAAAAARAP3/AgAAAAAAAAATAPz/AgAAAAAAAAATAP3/AgAAAAAAAAATAP7/AgAAAAAAAAATAP//AgAAAAAAAAATAAAAAgAAAAAAAAAUAAAAAgAAAAAAAAAVAAAAAgAAAAAAAAAUAP7/AgAAAAAAAAAVAP7/AgAAAAAAAAAUAPz/AgAAAAAAAAAVAPz/AgAAAAAAAAAWAP3/AgAAAAAAAAAWAP//AgAAAAAAAAAYAPz/AgAAAAAAAAAYAP3/AgAAAAAAAAAYAP7/AgAAAAAAAAAYAP//AgAAAAAAAAAYAAAAAgAAAAAAAAAZAAAAAgAAAAAAAAAaAAAAAgAAAAAAAAAbAAAAAgAAAAAAAAAdAAAAAgAAAAAAAAAdAP//AgAAAAAAAAAdAP7/AgAAAAAAAAAdAP3/AgAAAAAAAAAdAPz/AgAAAAAAAAAeAPz/AgAAAAAAAAAfAPz/AgAAAAAAAAAgAPz/AgAAAAAAAAAeAP7/AgAAAAAAAAAfAP7/AgAAAAAAAAAeAAAAAgAAAAAAAAAfAAAAAgAAAAAAAAAgAAAAAgAAAAAAAAAiAAAAAgAAAAAAAAAjAAAAAgAAAAAAAAAkAAAAAgAAAAAAAAAlAP//AgAAAAAAAAAkAP7/AgAAAAAAAAAjAP7/AgAAAAAAAAAiAP3/AgAAAAAAAAAjAPz/AgAAAAAAAAAkAPz/AgAAAAAAAAAlAPz/AgAAAAAAAAA=")
+tile_set = SubResource("TileSet_v8pn0")
+
+[node name="OptionsTilemap" type="TileMapLayer" parent="."]
+position = Vector2(328, 497)
+scale = Vector2(0.0571842, 0.0571842)
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AAAAAAAAAAACAPv/AAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAAJAP//AAAAAAAAAAAJAPz/AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAAMAPv/AAAAAAAAAAAMAPz/AAAAAAAAAAAMAP3/AAAAAAAAAAAMAP7/AAAAAAAAAAAMAP//AAAAAAAAAAAKAP7/AAAAAAAAAAALAP7/AAAAAAAAAAAOAPv/AAAAAAAAAAAOAPz/AAAAAAAAAAARAPv/AAAAAAAAAAARAPz/AAAAAAAAAAAPAP3/AAAAAAAAAAAQAP3/AAAAAAAAAAARAP3/AAAAAAAAAAARAP7/AAAAAAAAAAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_xbypp")
 
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
