@@ -21,5 +21,3 @@ script = ExtResource("3_ql0vy")
 [node name="Worried" type="Node" parent="StateMachine"]
 
 [node name="Scared" type="Node" parent="StateMachine"]
-
-[node name="State4" type="Node" parent="StateMachine"]
