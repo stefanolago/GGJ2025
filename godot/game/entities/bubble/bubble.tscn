@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
-[ext_resource type="Script" path="res://game/entities/calm.gd" id="2_cmhqn"]
-[ext_resource type="Script" path="res://game/entities/happy.gd" id="3_ql0vy"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/calm.gd" id="2_cmhqn"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/happy.gd" id="3_ql0vy"]
 
 [node name="Bubble" type="Node2D"]
 
@@ -15,3 +15,11 @@ script = ExtResource("2_cmhqn")
 
 [node name="Happy" type="Node" parent="StateMachine"]
 script = ExtResource("3_ql0vy")
+
+[node name="LessHappy" type="Node" parent="StateMachine"]
+
+[node name="Worried" type="Node" parent="StateMachine"]
+
+[node name="Scared" type="Node" parent="StateMachine"]
+
+[node name="State4" type="Node" parent="StateMachine"]
