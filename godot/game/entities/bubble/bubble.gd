@@ -2,19 +2,13 @@ extends CharacterBody2D
 class_name Bubble
 
 @export var max_health: float = 1.0
-var health: float = 1.0
-
-var pressed: bool = false
-
-func _ready() -> void:
-	health = max_health
-
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
 
 var is_detached: bool = false										# Indicates if the bubble is stationary
-var health: int = 1													# Health of the bubble
+var pressed: bool = false
+var health: float = 1													# Health of the bubble
 var speed: float = 10.00											# Speed of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
 var corpses_seen: int = 0: set = _set_corpses_seen					# Tracks the number of nearby bubbles that have popped
@@ -35,7 +29,7 @@ enum BubbleRoutine {
 #_________________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
 func _ready() -> void:
-	pass
+	health = max_health
 	
 
 func hit_bubble(weapon: Node2D, damage: float) -> void:
