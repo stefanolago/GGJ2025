@@ -27,6 +27,9 @@ radius = 396.001
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
+max_health = null
+min_wander_timer = 3
+max_wander_timer = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")
@@ -121,3 +124,5 @@ unique_name_in_owner = true
 wait_time = 5.0
 
 [connection signal="timeout" from="Timers/ChangeStateTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
+[connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
