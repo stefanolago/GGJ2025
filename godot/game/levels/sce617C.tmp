@@ -6,23 +6,15 @@
 
 [node name="Bubble" parent="." instance=ExtResource("1_182ac")]
 position = Vector2(324, 223)
-max_health = null
-max_wander_timer = null
 
 [node name="Bubble2" parent="." instance=ExtResource("1_182ac")]
 position = Vector2(-718, 192)
-max_health = null
-max_wander_timer = null
 
 [node name="Bubble3" parent="." instance=ExtResource("1_182ac")]
 position = Vector2(1146, -1016)
-max_health = null
-max_wander_timer = null
 
 [node name="Bubble4" parent="." instance=ExtResource("1_182ac")]
 position = Vector2(-2982, -1256)
-max_health = null
-max_wander_timer = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.13, 0.13)
