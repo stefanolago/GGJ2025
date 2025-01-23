@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=7 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_mt8gs"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/calm.gd" id="2_cmhqn"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/happy.gd" id="3_ql0vy"]
+[ext_resource type="Script" path="res://utils/state.gd" id="5_bwhus"]
+[ext_resource type="Texture2D" uid="uid://b2wh8kyf3m41s" path="res://icon.svg" id="6_g3d7l"]
 
 [node name="Bubble" type="Node2D"]
 script = ExtResource("1_mt8gs")
@@ -25,3 +27,18 @@ script = ExtResource("3_ql0vy")
 [node name="Scared" type="Node" parent="StateMachine"]
 
 [node name="State4" type="Node" parent="StateMachine"]
+
+[node name="PopStateMachine" type="Node" parent="."]
+script = ExtResource("1_aabyq")
+
+[node name="UntouchedState" type="Node" parent="PopStateMachine"]
+script = ExtResource("5_bwhus")
+
+[node name="PoppingState" type="Node" parent="PopStateMachine"]
+script = ExtResource("5_bwhus")
+
+[node name="PoppedState" type="Node" parent="PopStateMachine"]
+script = ExtResource("5_bwhus")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_g3d7l")
