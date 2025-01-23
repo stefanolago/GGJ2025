@@ -1,4 +1,6 @@
 extends Node2D
+class_name Bubble
+
 
 var corpses_seen = 0
 
