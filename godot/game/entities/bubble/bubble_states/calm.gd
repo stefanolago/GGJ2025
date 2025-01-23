@@ -1,4 +1,4 @@
-extends State
+extends BubbleState
 
 
 func update(_delta: float) -> void:
