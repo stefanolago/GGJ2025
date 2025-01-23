@@ -23,7 +23,6 @@ func reset_stats() -> void:
 	player_health = 10
 	cazzi_vari = "cazzi vari"
 
-
 # save the game settings into a config file, saved locally
 func save_stats() -> void:
 	print ("SAVING STATS")

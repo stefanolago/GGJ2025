@@ -5,7 +5,7 @@ class_name Bubble
 @export var min_wander_timer: int
 @export var max_wander_timer: int
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $BubbleSprite
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
 
