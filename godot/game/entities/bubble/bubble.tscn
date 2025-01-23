@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=17 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -16,13 +16,10 @@
 [ext_resource type="Script" path="res://game/entities/bubble/pressed_state.gd" id="12_vi2b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
-radius = 211.533
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_62skk"]
-radius = 113.018
+radius = 115.624
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 396.001
+radius = 764.079
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
@@ -30,10 +27,6 @@ script = ExtResource("1_udmfy")
 max_health = null
 min_wander_timer = 3
 max_wander_timer = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
-shape = SubResource("CircleShape2D_e0h07")
-debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
@@ -74,12 +67,11 @@ max_pupil_distance = 60.0
 unique_name_in_owner = true
 texture = ExtResource("10_00hlv")
 
-[node name="BubbleCollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_62skk")
-debug_color = Color(0.94287, 0.184477, 0.393776, 0.42)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
+shape = SubResource("CircleShape2D_e0h07")
+debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
