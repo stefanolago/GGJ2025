@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=11 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -9,10 +9,15 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://b35bvvc60k71e" path="res://assets/art/circle_example.png" id="7_77vlm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 648.368
+[sub_resource type="CircleShape2D" id="CircleShape2D_62skk"]
+radius = 113.018
 
-[node name="Bubble" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
+radius = 396.001
+
+[node name="Bubble" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_udmfy")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -38,7 +43,20 @@ script = ExtResource("6_8pe0x")
 modulate = Color(1, 0.784314, 1, 1)
 texture = ExtResource("7_77vlm")
 
+[node name="BubbleCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_62skk")
+debug_color = Color(0.94287, 0.184477, 0.393776, 0.42)
+
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cbs37")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
