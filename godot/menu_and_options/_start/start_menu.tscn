@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8i4dav4givqf"]
+
+[ext_resource type="Script" path="res://menu_and_options/_start/start_menu.gd" id="1_l8e1a"]
+[ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://menu_and_options/_options_menu/options_menu.tscn" id="1_q0fgv"]
+[ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://menu_and_options/_credits/credits.tscn" id="3_drggk"]
+[ext_resource type="Script" path="res://menu_and_options/_utils/button_with_sound.gd" id="3_o8bey"]
+[ext_resource type="Texture2D" uid="uid://bt6bmv0xk7rub" path="res://assets/art/splash/controller_icon.png" id="6_r4t5b"]
+
+[node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_l8e1a")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.298039, 0.592157, 1)
+
+[node name="Controller" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_left = -16.0
+offset_top = 445.0
+offset_right = -971.0
+offset_bottom = 153.6
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_r4t5b")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Controller"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 162.0
+offset_right = 144.0
+offset_bottom = 197.0
+text = "CONTROLLER
+SUPPORTED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.725309
+anchor_right = 0.6
+anchor_bottom = 0.935185
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 15
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+text = "Play"
+script = ExtResource("3_o8bey")
+
+[node name="OptionsButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+text = "Options"
+script = ExtResource("3_o8bey")
+
+[node name="CreditsButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+text = "Credits"
+script = ExtResource("3_o8bey")
+
+[node name="QuitButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("3_o8bey")
+
+[node name="OptionsMenu" parent="Control" instance=ExtResource("1_q0fgv")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.8
+
+[node name="Credits" parent="Control" instance=ExtResource("3_drggk")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Control/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="close_option_menu" from="Control/OptionsMenu" to="." method="_on_options_menu_close_option_menu"]
+[connection signal="back_button_pressed" from="Control/Credits" to="." method="_on_credits_back_button_pressed"]
