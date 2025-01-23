@@ -1,37 +1,14 @@
 extends CharacterBody2D
 class_name Bubble
 
-const speed: int = 300
-
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
-@onready var nav_timer: Timer = $NavigationTimer
-
-var is_detached: bool = false
-
-func _physics_process(_delta: float) -> void:
-	if is_detached:
-		var dir: Vector2 = to_local(nav_agent.get_next_path_position()).normalized()
-		velocity = dir * speed
-		move_and_slide()
-
-func _make_path() -> void:
-	nav_agent.target_position = get_local_mouse_position()
-
-func _on_navigation_timer_timeout() -> void:
-	if is_detached:
-		_make_path()
-
-func detach() -> void:
-	is_detached = true
-	nav_timer.start()
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var wander_timer: Timer = $WanderTimer						# Timer to handle wandering
-@onready var family_timer: Timer = $FamilyTimer						# Timer to handle family creation
+@onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
+@onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
 
-var is_detached: bool = true										# Indicates if the bubble is stationary
+var is_detached: bool = false										# Indicates if the bubble is stationary
 var health: int = 1													# Health of the bubble
-var speed: float = 100.00											# Speed of the bubble
+var speed: float = 10.00											# Speed of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
 var corpses_seen: int = 0: set = _set_corpses_seen					# Tracks the number of nearby bubbles that have popped
 # Atomic modification of corpses_seen
