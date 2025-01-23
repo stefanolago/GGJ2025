@@ -79,7 +79,8 @@ func detach() -> void:
 	if not is_detached:
 		is_detached = true
 		velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
-		assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]  # Choose a random routine
+		#assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]  # Choose a random routine
+		assigned_routine = BubbleRoutine.FAMILY_BUILDING
 		wander_timer.start()  # Start the wander timer
 
 

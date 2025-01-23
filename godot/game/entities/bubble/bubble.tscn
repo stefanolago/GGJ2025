@@ -27,7 +27,6 @@ radius = 396.001
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
-max_health = null
 min_wander_timer = 3
 max_wander_timer = 7
 
