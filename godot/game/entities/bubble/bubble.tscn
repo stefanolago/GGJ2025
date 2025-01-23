@@ -11,9 +11,9 @@
 [ext_resource type="Script" path="res://game/entities/bubble/eyes.gd" id="9_6kqpo"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
 [ext_resource type="PackedScene" uid="uid://deksu4y28s6gm" path="res://game/entities/bubble/eye.tscn" id="10_0e553"]
-[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/touched_state.gd" id="10_if20k"]
 [ext_resource type="Script" path="res://game/entities/bubble/popping_state.gd" id="11_03t2o"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
+[ext_resource type="Script" path="res://game/entities/bubble/pressed_state.gd" id="12_vi2b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
 radius = 211.533
@@ -25,8 +25,7 @@ radius = 113.018
 radius = 396.001
 
 [node name="Bubble" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
+collision_mask = 10
 script = ExtResource("1_udmfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
@@ -98,7 +97,7 @@ initial_state = NodePath("UntouchedState")
 script = ExtResource("9_u1hra")
 
 [node name="PressedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("10_cmg8r")
+script = ExtResource("12_vi2b8")
 
 [node name="PoppingState" type="Node" parent="PlayerInteractionStateMachine"]
 script = ExtResource("11_03t2o")

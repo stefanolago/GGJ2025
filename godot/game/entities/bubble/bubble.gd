@@ -35,6 +35,7 @@ func _ready() -> void:
 func hit_bubble(weapon: Node2D, damage: float) -> void:
 	print("HIT BY: " + weapon.name + " DAMAGE: " + str(damage))
 	health -= damage
+	print("HEALTH: " + str(health))
 	if weapon is Finger:
 		pressed = true
 

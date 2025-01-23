@@ -8,7 +8,7 @@
 script = ExtResource("1_xxdru")
 
 [node name="HitDetectArea" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectArea"]
 shape = SubResource("CircleShape2D_62owr")

@@ -16,7 +16,6 @@ func _physics_process(_delta: float) -> void:
 		# wait for the cooldown time before hitting again
 		if hit_cooldown_timer.is_stopped():
 			hit_cooldown_timer.start(hit_cooldown)
-			print("COOLDOWN TIMER IS STOPPED")
 			for body: Node2D in hit_detect_area.get_overlapping_bodies():
 				print(body.name)
 				if body is Bubble:

@@ -241,6 +241,7 @@ fire={
 2d_physics/layer_1="BubbleBody"
 2d_physics/layer_2="Obstacles"
 2d_physics/layer_3="BubbleDetect"
+2d_physics/layer_4="WeaponHit"
 
 [rendering]
 
