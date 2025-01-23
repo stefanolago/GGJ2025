@@ -1,7 +1,5 @@
 extends BubbleState
 
 func update(_delta: float) -> void:
-	pass
-
-func physics_update(_delta: float) -> void:
-	pass
+	if bubble.corpses_seen > 0:
+		bubble.change_state("LessHappy")
