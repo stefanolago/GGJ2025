@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=25 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -21,10 +21,155 @@ radius = 115.624
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 764.079
 
+[sub_resource type="Animation" id="Animation_de82r"]
+resource_name = "Idle_1"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.810202, 1.53309, 1.81393, 2.4637, 2.95271, 3.37066, 3.68201, 3.98564, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(57.5397, 31.746), Vector2(57.81, 32.061), Vector2(49.6032, 1.98413), Vector2(49.6032, 1.98413), Vector2(-19.8413, 45.6349), Vector2(-19.8413, 45.6349), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qwgnj"]
+resource_name = "Idle_2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.40106, 2.66675, 3.68201, 4.3579, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.98413, -31.746), Vector2(-31.746, -37.6984), Vector2(-21.8254, 5.95238), Vector2(-2.03, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pqu6g"]
+resource_name = "Idle_3"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.19124, 2.24711, 3.21499, 3.68201, 3.98564, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-17.8571, 85.3175), Vector2(39.6825, 101.19), Vector2(47.619, 39.6825), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rfgki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.504, 0.504)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q1api"]
+resource_name = "squash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.106454, 0.196507, 0.253644, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.504, 0.504), Vector2(0.504, 0.45), Vector2(0.504, 0.504), Vector2(0.504, 0.49), Vector2(0.504, 0.504)]
+}
+
+[sub_resource type="Animation" id="Animation_v0q52"]
+resource_name = "Idle_4"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 4.36667, 6.1, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.96, 1), Vector2(1.08, 1), Vector2(0.93, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjwc8"]
+resource_name = "Idle_5"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4.36667, 6.1, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.935), Vector2(1.08, 1.08), Vector2(0.93, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvy3c"]
+_data = {
+"Idle_1": SubResource("Animation_de82r"),
+"Idle_2": SubResource("Animation_qwgnj"),
+"Idle_3": SubResource("Animation_pqu6g"),
+"Idle_4": SubResource("Animation_v0q52"),
+"Idle_5": SubResource("Animation_hjwc8"),
+"RESET": SubResource("Animation_rfgki"),
+"squash": SubResource("Animation_q1api")
+}
+
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
-max_health = null
 min_wander_timer = 3
 max_wander_timer = 7
 
@@ -109,6 +254,12 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvy3c")
+}
+
 [connection signal="timeout" from="Timers/ChangeStateTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
