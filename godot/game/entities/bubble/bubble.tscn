@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=10 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/calm.gd" id="2_cmhqn"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/happy.gd" id="3_ql0vy"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/less_happy.gd" id="4_5o5i0"]
@@ -12,6 +13,7 @@
 radius = 648.368
 
 [node name="Bubble" type="Node2D"]
+script = ExtResource("1_udmfy")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")

@@ -4,18 +4,19 @@ class_name BubbleState
 var bubble: Bubble
 
 func _ready() -> void:
-    bubble = get_parent()
+	await owner.ready
+	bubble = owner
 
 func enter() -> void:
-    print("%s enter" % self.name)
-    onEnter()
+	print("%s enter" % self.name)
+	onEnter()
 
 func exit() -> void:
-    print("%s exit" % self.name)
-    onExit()
+	print("%s exit" % self.name)
+	onExit()
 
 func onEnter() -> void:
-    pass
+	pass
 
 func onExit() -> void:
-    pass
+	pass
