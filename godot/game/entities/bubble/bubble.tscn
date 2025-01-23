@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=17 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
@@ -7,32 +7,25 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/less_happy.gd" id="4_5o5i0"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/worried.gd" id="5_8kdti"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
-[ext_resource type="Texture2D" uid="uid://cmrsuyhjkndle" path="res://assets/art/circle_example.png" id="7_77vlm"]
+[ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="8_cxdc2"]
 [ext_resource type="Script" path="res://game/entities/bubble/eyes.gd" id="9_6kqpo"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
-[ext_resource type="PackedScene" uid="uid://deksu4y28s6gm" path="res://game/entities/bubble/eye.tscn" id="10_0e553"]
+[ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="10_00hlv"]
 [ext_resource type="Script" path="res://game/entities/bubble/popping_state.gd" id="11_03t2o"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 [ext_resource type="Script" path="res://game/entities/bubble/pressed_state.gd" id="12_vi2b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
-radius = 211.533
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_62skk"]
-radius = 113.018
+radius = 115.624
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 396.001
+radius = 764.079
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
 min_wander_timer = 3
 max_wander_timer = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
-shape = SubResource("CircleShape2D_e0h07")
-debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
@@ -62,29 +55,22 @@ corpses_limit = 5
 script = ExtResource("6_8pe0x")
 state_color = Color(0.741176, 0.176471, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
-texture = ExtResource("7_77vlm")
-
-[node name="Eyes" type="Node2D" parent="Sprite2D"]
-z_index = 1
-texture_filter = 1
+scale = Vector2(0.504, 0.504)
+texture = ExtResource("8_cxdc2")
 script = ExtResource("9_6kqpo")
+max_pupil_distance = 60.0
 
-[node name="EyeLeft" parent="Sprite2D/Eyes" instance=ExtResource("10_0e553")]
+[node name="BubbleFaceSprite" type="Sprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
-position = Vector2(-102, -28)
+texture = ExtResource("10_00hlv")
 
-[node name="EyeRight" parent="Sprite2D/Eyes" instance=ExtResource("10_0e553")]
-unique_name_in_owner = true
-position = Vector2(102, -28)
-
-[node name="BubbleCollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_62skk")
-debug_color = Color(0.94287, 0.184477, 0.393776, 0.42)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
+shape = SubResource("CircleShape2D_e0h07")
+debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

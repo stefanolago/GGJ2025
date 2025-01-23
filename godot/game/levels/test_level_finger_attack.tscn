@@ -5,7 +5,19 @@
 
 [node name="TestLevelFingerAttack" type="Node2D"]
 
+[node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
+
 [node name="Bubble" parent="." instance=ExtResource("1_0gjrn")]
 position = Vector2(-7, 8)
 
-[node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
+[node name="Bubble2" parent="." instance=ExtResource("1_0gjrn")]
+position = Vector2(460, 540)
+
+[node name="Bubble3" parent="." instance=ExtResource("1_0gjrn")]
+position = Vector2(-501, 612)
+
+[node name="Bubble4" parent="." instance=ExtResource("1_0gjrn")]
+position = Vector2(-42, 640)
+
+[node name="Bubble5" parent="." instance=ExtResource("1_0gjrn")]
+position = Vector2(-213, 1096)
