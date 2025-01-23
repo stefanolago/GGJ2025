@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/calm.gd" id="2_cmhqn"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/happy.gd" id="3_ql0vy"]
-[ext_resource type="Script" path="res://game/entities/bubble/less_happy.gd" id="4_5o5i0"]
-[ext_resource type="Script" path="res://game/entities/bubble/worried.gd" id="5_8kdti"]
-[ext_resource type="Script" path="res://game/entities/bubble/scared.gd" id="6_8pe0x"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/less_happy.gd" id="4_5o5i0"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/worried.gd" id="5_8kdti"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://b35bvvc60k71e" path="res://assets/art/circle_example.png" id="7_77vlm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
