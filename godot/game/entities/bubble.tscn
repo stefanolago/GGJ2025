@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy5b0e8fulwac"]
+
+[ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
+[ext_resource type="Script" path="res://game/entities/calm.gd" id="2_cmhqn"]
+[ext_resource type="Script" path="res://game/entities/happy.gd" id="3_ql0vy"]
+
+[node name="Bubble" type="Node2D"]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_aabyq")
+initial_state = NodePath("Calm")
+
+[node name="Calm" type="Node" parent="StateMachine"]
+script = ExtResource("2_cmhqn")
+
+[node name="Happy" type="Node" parent="StateMachine"]
+script = ExtResource("3_ql0vy")
