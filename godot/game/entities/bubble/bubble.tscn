@@ -103,10 +103,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
-radius = 115.624
+radius = 75.326
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 764.079
+radius = 815.383
 
 [sub_resource type="Animation" id="Animation_de82r"]
 resource_name = "Glance_1"
@@ -273,8 +273,6 @@ _data = {
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
-min_wander_timer = 3
-max_wander_timer = 7
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
@@ -358,6 +356,11 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
+[node name="DetachTestTimer" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
 [node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tvy3c")
@@ -370,7 +373,9 @@ libraries = {
 }
 autoplay = "Idle_0"
 
+[connection signal="body_entered" from="PopWarningArea" to="." method="_on_pop_warning_area_body_entered"]
 [connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="Timers/DetachTestTimer" to="." method="_on_detach_test_timer_timeout"]
 [connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
 [connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]

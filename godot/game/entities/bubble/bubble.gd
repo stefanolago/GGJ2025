@@ -5,8 +5,8 @@ signal nearby_popped
 
 @export var max_health: float = 0.5
 @export var min_health: float = 0.1
-@export var min_wander_timer: int
-@export var max_wander_timer: int
+@export var min_wander_timer: float = 2.0
+@export var max_wander_timer: float = 7.0
 
 @export_group("Bubble worry limit")
 @export var happy_limit: int = 2
@@ -25,24 +25,18 @@ var playing_idle_break: bool = false
 var glance_anims: Array = ["Glance_1", "Glance_2", "Glance_3"]	# Array of animations that can be played
 var is_detached: bool = false										# Indicates if the bubble is stationary
 var pressed: bool = false
-var health: float = 1													# Health of the bubble
-var speed: float = 10.00											# Speed of the bubble
+var health: float = 1												# Health of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
 var corpses_seen: int = 0: set = _set_corpses_seen					# Tracks the number of nearby bubbles that have popped
+var level:int = 1
 
 # Atomic modification of corpses_seen
 func _set_corpses_seen(value: int) -> void:
 	corpses_seen = value
 
-var assigned_routine: BubbleRoutine = BubbleRoutine.NONE
-# Bubble routines
-enum BubbleRoutine {
-	NONE,
-	ATTACK_WALL,
-	GROUP_UP,
-	FAMILY_BUILDING,
-	COMMUNITY_BUILDING
-}
+var assigned_routine: RoutineManager.BubbleRoutine = RoutineManager.BubbleRoutine.NONE
+
+var is_in_routine: bool = false
 
 
 #_________________________________________________________________________________________________________________________________________
@@ -57,16 +51,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if is_detached:
+	if is_detached and not is_in_routine:
 		# Move the bubble randomly
 		last_collision = move_and_collide(velocity)
-
-		# Handle collisions
-		if last_collision:
-			if last_collision.get_collider() is Bubble:
-				_handle_bubble_collision((last_collision.get_collider() as Bubble))
-			elif (last_collision.get_collider() as Node).is_in_group("walls"):
-				_handle_wall_collision()
 
 
 
@@ -109,8 +96,8 @@ func detach() -> void:
 	if not is_detached:
 		is_detached = true
 		z_index = 1
-		velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
-		assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]  # Choose a random routine
+		velocity = RoutineManager.get_roaming_velocity()
+		assigned_routine = RoutineManager.get_random_routine()
 		wander_timer.start()  # Start the wander timer
 
 
@@ -120,47 +107,9 @@ func glance() -> void:
 	face_anim_player.play(random_glance_anim)
 
 
-# ROUTINES _______________________________________________________________________________________________________________________________
-#_________________________________________________________________________________________________________________________________________
-# Routine 1: Bubble attacks the wall to create a breach
-func _start_routine_attack_wall() -> void:
-	var wall_direction: Vector2 = (get_viewport_rect().size / 2 - global_position).normalized()
-	move_and_collide(wall_direction * 100)  		# Adjust speed as needed
-
-
-# Routine 2: Bubble gathers with others to form a larger bubble
-func _start_routine_group_up() -> void:
-	var bubbles: Array = get_tree().get_nodes_in_group("bubbles")
-	for bubble: Bubble in bubbles:
-		if bubble != self:
-			pass
-			# TODO move_and_slide((bubble.global_position - global_position).normalized() * 50)  # Adjust speed
-
-	# When close enough, merge
-	if bubbles.size() > 0:
-		health += bubbles.size()
-
-
-# Routine 3: Bubble creates a family
-func _start_routine_create_family() -> void:
-	var partner: Bubble = _find_closest_bubble()
-	if partner:
-		# TODO move_and_slide((partner.global_position - global_position).normalized() * 30)  # Adjust speed
-
-		if position.distance_to(partner.global_position) < 10:
-			family_timer.start()
-
-
-# Routine 4: Bubble forms a community
-func _start_routine_form_community() -> void:
-	var bubbles: Array = get_tree().get_nodes_in_group("bubbles")
-	if bubbles.size() >= 5:
-		for bubble: Bubble in bubbles:
-			pass
-			# TODO move_and_slide((bubble.global_position - global_position).normalized() * 20)  # Adjust speed
-
-		# Boost stats for all bubbles in the community
-		health += 10 * bubbles.size()
+func exit_from_routine() -> void:
+	velocity = RoutineManager.get_roaming_velocity()
+	is_in_routine = false
 
 
 
@@ -170,19 +119,24 @@ func _set_wander_time() -> void:
 	wander_timer.wait_time = randf_range(min_wander_timer, max_wander_timer)
 
 
+# Handle collisions with an other bubbles that is in the same routine
 func _handle_bubble_collision(_other_bubble: Bubble) -> void:
 	match assigned_routine:
-		BubbleRoutine.GROUP_UP:
-			_start_routine_group_up()
-		BubbleRoutine.FAMILY_BUILDING:
-			_start_routine_create_family()
-		BubbleRoutine.COMMUNITY_BUILDING:
-			_start_routine_form_community()
+		RoutineManager.BubbleRoutine.GROUP_UP:
+			if not _other_bubble.is_in_routine:
+				RoutineManager.aggregate(self, _other_bubble)
+		RoutineManager.BubbleRoutine.FAMILY_BUILDING:
+			if not _other_bubble.is_in_routine:
+				RoutineManager.form_family(self, _other_bubble)
+		RoutineManager.BubbleRoutine.COMMUNITY_BUILDING:
+			#_start_routine_form_community()
+			pass
 
 
 func _handle_wall_collision() -> void:
-	if assigned_routine == BubbleRoutine.ATTACK_WALL:
-		_start_routine_attack_wall()
+	if assigned_routine == RoutineManager.BubbleRoutine.ATTACK_WALL:
+		#_start_routine_attack_wall()
+		pass
 
 
 func _find_closest_bubble() -> Bubble:
@@ -213,8 +167,13 @@ func _on_family_timer_timeout() -> void:
 
 
 func _on_wander_timer_timeout() -> void:
-	velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
-	_set_wander_time()
+	if not is_in_routine:
+		velocity = RoutineManager.get_roaming_velocity()
+		_set_wander_time()
+
+
+func _on_detach_test_timer_timeout() -> void:
+	detach()
 
 
 func _on_face_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -227,3 +186,18 @@ func _on_body_animation_player_animation_finished(anim_name: StringName) -> void
 	if anim_name == "Squash":
 		body_anim_player.play("Rotation")
 		body_anim_player.advance(randf_range(0.0, 7.9))
+
+		
+
+# COLLIDERS ______________________________________________________________________________________________________________________________
+#_________________________________________________________________________________________________________________________________________
+func _on_pop_warning_area_body_entered(body: Node2D) -> void:
+	if body == self or not is_detached:
+		return
+	print("Collisione con " + body.name)
+	if body is Bubble:
+		var other_bubble: Bubble = body as Bubble
+		if assigned_routine == other_bubble.assigned_routine:
+			_handle_bubble_collision(other_bubble)
+	elif body.is_in_group("walls"):
+		_handle_wall_collision()
