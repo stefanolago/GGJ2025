@@ -1,23 +1,68 @@
-[gd_scene load_steps=3 format=3 uid="uid://4en56y3s25ri"]
+[gd_scene load_steps=9 format=3 uid="uid://4en56y3s25ri"]
 
 [ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_0gjrn"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
+[ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="3_76pau"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_henax"]
+resource_local_to_scene = true
+shader = ExtResource("3_76pau")
+shader_parameter/shock_color = Color(1, 0, 0, 1)
+shader_parameter/amplitude = 10.0
+shader_parameter/frequecy = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i1k0u"]
+resource_local_to_scene = true
+shader = ExtResource("3_76pau")
+shader_parameter/shock_color = Color(1, 0, 0, 1)
+shader_parameter/amplitude = 10.0
+shader_parameter/frequecy = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugpka"]
+resource_local_to_scene = true
+shader = ExtResource("3_76pau")
+shader_parameter/shock_color = Color(1, 0, 0, 1)
+shader_parameter/amplitude = 10.0
+shader_parameter/frequecy = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yy4wo"]
+resource_local_to_scene = true
+shader = ExtResource("3_76pau")
+shader_parameter/shock_color = Color(1, 0, 0, 1)
+shader_parameter/amplitude = 10.0
+shader_parameter/frequecy = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_32tty"]
+resource_local_to_scene = true
+shader = ExtResource("3_76pau")
+shader_parameter/shock_color = Color(1, 0, 0, 1)
+shader_parameter/amplitude = 10.0
+shader_parameter/frequecy = 0.0
 
 [node name="TestLevelFingerAttack" type="Node2D"]
 
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 
 [node name="Bubble" parent="." instance=ExtResource("1_0gjrn")]
+material = SubResource("ShaderMaterial_henax")
 position = Vector2(-7, 8)
 
 [node name="Bubble2" parent="." instance=ExtResource("1_0gjrn")]
+material = SubResource("ShaderMaterial_i1k0u")
 position = Vector2(460, 540)
 
 [node name="Bubble3" parent="." instance=ExtResource("1_0gjrn")]
+material = SubResource("ShaderMaterial_ugpka")
 position = Vector2(-501, 612)
 
 [node name="Bubble4" parent="." instance=ExtResource("1_0gjrn")]
+material = SubResource("ShaderMaterial_yy4wo")
 position = Vector2(-42, 640)
 
 [node name="Bubble5" parent="." instance=ExtResource("1_0gjrn")]
+material = SubResource("ShaderMaterial_32tty")
 position = Vector2(-213, 1096)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-16, 488)
+zoom = Vector2(0.33, 0.33)

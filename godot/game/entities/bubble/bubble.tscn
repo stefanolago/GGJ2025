@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=19 format=3 uid="uid://dy5b0e8fulwac"]
 
+[ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/calm.gd" id="2_cmhqn"]
@@ -15,6 +16,13 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 [ext_resource type="Script" path="res://game/entities/bubble/pressed_state.gd" id="12_vi2b8"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
+resource_local_to_scene = true
+shader = ExtResource("1_3omog")
+shader_parameter/shock_color = Color(1, 0, 0, 1)
+shader_parameter/amplitude = 20.0
+shader_parameter/frequecy = 0.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
 radius = 115.624
 
@@ -24,7 +32,6 @@ radius = 764.079
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
-max_health = null
 min_wander_timer = 3
 max_wander_timer = 7
 
@@ -58,6 +65,7 @@ state_color = Color(0.741176, 0.176471, 0, 1)
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
+material = SubResource("ShaderMaterial_m81it")
 scale = Vector2(0.504, 0.504)
 texture = ExtResource("8_cxdc2")
 script = ExtResource("9_6kqpo")
@@ -96,10 +104,6 @@ script = ExtResource("12_0e84d")
 
 [node name="Timers" type="Node2D" parent="."]
 
-[node name="ChangeStateTimer" type="Timer" parent="Timers"]
-wait_time = 0.8
-autostart = true
-
 [node name="FamilyTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 wait_time = 10.0
@@ -109,6 +113,5 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
-[connection signal="timeout" from="Timers/ChangeStateTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]

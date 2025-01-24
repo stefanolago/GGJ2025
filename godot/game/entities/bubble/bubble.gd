@@ -44,16 +44,17 @@ func _physics_process(_delta: float) -> void:
 
 		# Handle collisions
 		if last_collision:
-			if last_collision.get_collider().is_in_group("bubbles"):
-				_handle_bubble_collision(last_collision.get_collider())
-			elif last_collision.get_collider().is_in_group("walls"):
+			if last_collision.get_collider() is Bubble:
+				_handle_bubble_collision((last_collision.get_collider() as Bubble))
+			elif (last_collision.get_collider() as Node).is_in_group("walls"):
 				_handle_wall_collision()
 
 
 
 # PUBLIC METHODS _________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
-func nearby_bubble_popped() -> void:
+func nearby_bubble_popped(bubble_position: Vector2) -> void:
+	print("Bubble exploded at distance: " + str(global_position.distance_squared_to(bubble_position)))
 	corpses_seen = corpses_seen + 1
 
 func change_color(color: Color) -> void:
@@ -134,7 +135,7 @@ func _set_wander_time() -> void:
 	wander_timer.wait_time = randf_range(min_wander_timer, max_wander_timer)
 
 
-func _handle_bubble_collision(other_bubble: Bubble) -> void:
+func _handle_bubble_collision(_other_bubble: Bubble) -> void:
 	match assigned_routine:
 		BubbleRoutine.GROUP_UP:
 			_start_routine_group_up()
@@ -166,8 +167,6 @@ func _find_closest_bubble() -> Bubble:
 
 # TIMERS _________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
-func _on_timer_timeout() -> void:
-	corpses_seen += 1
 
 # Bubble creates a family
 func _on_family_timer_timeout() -> void:
@@ -175,7 +174,7 @@ func _on_family_timer_timeout() -> void:
 	add_child(child_bubble)
 	child_bubble.global_position = global_position
 	child_bubble.is_detached = true
-	child_bubble.start_routine_attack_wall()  # Child starts its routine
+	(child_bubble as Bubble)._start_routine_attack_wall()  # Child starts its routine
 
 
 func _on_wander_timer_timeout() -> void:
