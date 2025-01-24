@@ -228,6 +228,7 @@ debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 [node name="PopWarningArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 4
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PopWarningArea"]
 shape = SubResource("CircleShape2D_cbs37")
