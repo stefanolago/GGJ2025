@@ -4,7 +4,7 @@ class_name bubble_sprite
 
 @export var max_pupil_distance: float = 40.0  # Max distance that the pupil can move from the origin
 
-@onready var face_sprite: Sprite2D = %BubbleFaceSprite
+@onready var face_sprite: AnimatedSprite2D = %BubbleFaceSprite
 @onready var start_face_position: Vector2 = face_sprite.position
 
 var lookat_position: Vector2
@@ -26,7 +26,4 @@ func reset_lookat() -> void:
 	lookat_position = start_face_position
 
 func update_lookat(target_position: Vector2) -> void:
-	lookat_position = target_position
-
-func glance(target_position: Vector2) -> void:
 	lookat_position = target_position

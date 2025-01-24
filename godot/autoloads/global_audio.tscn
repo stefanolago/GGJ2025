@@ -1,10 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=12 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://bxvstvsary0fk" path="res://assets/audio/music/cat music.wav" id="2_xdjur"]
-[ext_resource type="AudioStream" uid="uid://y1swyd7o3q7u" path="res://assets/audio/sfx/UI_Hover.wav" id="3_1winn"]
-[ext_resource type="AudioStream" uid="uid://cgccuyl5jkh6t" path="res://assets/audio/sfx/UI_Click.wav" id="4_niuvh"]
-[ext_resource type="AudioStream" uid="uid://c6pu0rjb3k2mf" path="res://assets/audio/sfx/UI_Back.wav" id="5_5pacj"]
+[ext_resource type="AudioStream" uid="uid://1brkdt5xfiha" path="res://assets/audio/sfx/Bubble_pop-001.wav" id="3_p5y7u"]
+[ext_resource type="AudioStream" uid="uid://b33b6rme60w6a" path="res://assets/audio/sfx/Bubble_pop-002.wav" id="4_6j807"]
+[ext_resource type="AudioStream" uid="uid://datby6y1x4csk" path="res://assets/audio/sfx/Bubble_pop-003.wav" id="5_05ymw"]
+[ext_resource type="AudioStream" uid="uid://c8dsuvr4jsri3" path="res://assets/audio/sfx/Bubble_pop-004.wav" id="6_lowrw"]
+[ext_resource type="AudioStream" uid="uid://tx56lhr5qrhv" path="res://assets/audio/sfx/Bubble_pop-005.wav" id="7_rwprd"]
+[ext_resource type="AudioStream" uid="uid://ydsxlcly4ln1" path="res://assets/audio/sfx/Bubble_pop-006.wav" id="8_3e23d"]
+[ext_resource type="AudioStream" uid="uid://byr3w7sdy3w8c" path="res://assets/audio/sfx/Bubble_pop-007.wav" id="9_l2r73"]
+[ext_resource type="AudioStream" uid="uid://cl4w01x7r74mg" path="res://assets/audio/sfx/Bubble_pop-008.wav" id="10_s1fpu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x57kt"]
+streams_count = 8
+stream_0/stream = ExtResource("3_p5y7u")
+stream_1/stream = ExtResource("4_6j807")
+stream_2/stream = ExtResource("5_05ymw")
+stream_3/stream = ExtResource("6_lowrw")
+stream_4/stream = ExtResource("7_rwprd")
+stream_5/stream = ExtResource("8_3e23d")
+stream_6/stream = ExtResource("9_l2r73")
+stream_7/stream = ExtResource("10_s1fpu")
 
 [node name="GlobalAudio" type="Node"]
 process_mode = 3
@@ -15,16 +31,6 @@ stream = ExtResource("2_xdjur")
 volume_db = -10.0
 bus = &"Music"
 
-[node name="sfx_UI_button_hover" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_1winn")
-volume_db = -10.0
-bus = &"SFX"
-
-[node name="sfx_UI_button_click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_niuvh")
-volume_db = 5.0
-bus = &"SFX"
-
-[node name="sfx_UI_button_back" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_5pacj")
+[node name="bubble_pop" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_x57kt")
 bus = &"SFX"

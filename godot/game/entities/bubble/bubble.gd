@@ -8,14 +8,21 @@ signal nearby_popped
 @export var min_wander_timer: float = 2.0
 @export var max_wander_timer: float = 7.0
 
-@onready var sprite: bubble_sprite = $BubbleSprite
+@export_group("Bubble worry limit")
+@export var happy_limit: int = 2
+@export var less_happy_limit: int = 4
+@export var worried_limit: int = 6
+
+
+@onready var sprite: BubbleSprite = $BubbleSprite
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var body_anim_player: AnimationPlayer = $BodyAnimationPlayer
+@onready var face_anim_player: AnimationPlayer = $FaceAnimationPlayer
 @onready var pop_warning_area: Area2D = %PopWarningArea
 
 var playing_idle_break: bool = false
-var idle_break_anims: Array = ["Idle_1", "Idle_2", "Idle_3", "Idle_4"]	# Array of animations that can be played
+var glance_anims: Array = ["Glance_1", "Glance_2", "Glance_3"]	# Array of animations that can be played
 var is_detached: bool = false										# Indicates if the bubble is stationary
 var pressed: bool = false
 var health: float = 1												# Health of the bubble
@@ -37,6 +44,10 @@ var is_in_routine: bool = false
 func _ready() -> void:
 	health = randf_range(min_health, max_health)
 	_set_wander_time()
+	face_anim_player.play("Idle_0")
+	face_anim_player.advance(randf_range(0.0, 5.9))
+	body_anim_player.play("Rotation")
+	body_anim_player.advance(randf_range(0.0, 7.9))
 
 
 func _physics_process(_delta: float) -> void:
@@ -53,7 +64,9 @@ func pop() -> void:
 	for bubble: Bubble in pop_warning_area.get_overlapping_bodies():
 		if bubble != self:
 			bubble.nearby_bubble_popped(global_position)
-	queue_free()
+	GlobalAudio.play_one_shot("bubble_pop")
+	sprite.set_face_mood("dead")
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func nearby_bubble_popped(bubble_position: Vector2) -> void:
@@ -74,7 +87,6 @@ func hit_bubble(weapon: Node2D, damage: float) -> void:
 func release_bubble(weapon: Node2D) -> void:
 	
 	health = randf_range(min_health, max_health)
-	
 	if weapon is Finger:
 		pressed = false
 
@@ -88,16 +100,10 @@ func detach() -> void:
 		wander_timer.start()  # Start the wander timer
 
 
-func glance(target_position: Vector2) -> void:
-	if not playing_idle_break:
-		anim_player.play("squash")
-		sprite.glance(target_position)
-
-
-func play_idle_break() -> void:
-	var anim_number: int = randi_range(0 ,4)
-	playing_idle_break = true
-	anim_player.play(idle_break_anims[anim_number])
+func glance() -> void:
+	body_anim_player.play("Squash")
+	var random_glance_anim: String = glance_anims.pick_random()
+	face_anim_player.play(random_glance_anim)
 
 
 func exit_from_routine() -> void:
@@ -205,6 +211,18 @@ func _on_detach_test_timer_timeout() -> void:
 	detach()
 
 
+func _on_face_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name in glance_anims:
+		face_anim_player.play("Idle_0")
+		face_anim_player.advance(randf_range(0.0, 3.9))
+
+
+func _on_body_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Squash":
+		body_anim_player.play("Rotation")
+		body_anim_player.advance(randf_range(0.0, 7.9))
+
+		
 
 # COLLIDERS ______________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
@@ -218,3 +236,4 @@ func _on_pop_warning_area_body_entered(body: Node2D) -> void:
 			_handle_bubble_collision(other_bubble)
 	elif body.is_in_group("walls"):
 		_handle_wall_collision()
+

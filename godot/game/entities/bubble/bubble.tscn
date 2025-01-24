@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=37 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
@@ -9,18 +9,112 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/worried.gd" id="5_8kdti"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="8_cxdc2"]
-[ext_resource type="Script" path="res://game/entities/bubble/eyes.gd" id="9_6kqpo"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_sprite.gd" id="9_6kqpo"]
+[ext_resource type="Texture2D" uid="uid://d3t6oyg37xs24" path="res://assets/art/bubble/bolla-rotta-1.png" id="9_ha83g"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
 [ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="10_00hlv"]
+[ext_resource type="Texture2D" uid="uid://dxbs0pqbp6wb3" path="res://assets/art/bubble/bolla-premuta.png" id="11_1jru2"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/pressed_state.gd" id="13_0pvk2"]
+[ext_resource type="Texture2D" uid="uid://8dry40gcj74g" path="res://assets/art/bubble/faccina-morta.png" id="14_5oeb3"]
+[ext_resource type="Texture2D" uid="uid://dop65axsyhd48" path="res://assets/art/bubble/faccina-felice.png" id="14_6oneh"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popping_state.gd" id="14_kxy2l"]
+[ext_resource type="Texture2D" uid="uid://bngnb5wt5814t" path="res://assets/art/bubble/faccina-bolla-premuta.png" id="15_pve6u"]
+[ext_resource type="Texture2D" uid="uid://dvw6ix2d0f48f" path="res://assets/art/bubble/faccina-spaventata.png" id="16_w77yh"]
+[ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
+[ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
 shader = ExtResource("1_3omog")
 shader_parameter/amplitude = 20.0
 shader_parameter/frequency = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4ptm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ha83g")
+}],
+"loop": true,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cxdc2")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_1jru2")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgi52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_00hlv")
+}],
+"loop": true,
+"name": &"calm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_5oeb3")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_6oneh")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_pve6u")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_w77yh")
+}],
+"loop": true,
+"name": &"scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_q3kfc")
+}],
+"loop": true,
+"name": &"super_happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_4iu74")
+}],
+"loop": true,
+"name": &"worried",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
 radius = 75.326
@@ -29,7 +123,7 @@ radius = 75.326
 radius = 815.383
 
 [sub_resource type="Animation" id="Animation_de82r"]
-resource_name = "Idle_1"
+resource_name = "Glance_1"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -45,7 +139,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_qwgnj"]
-resource_name = "Idle_2"
+resource_name = "Glance_2"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -61,7 +155,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_pqu6g"]
-resource_name = "Idle_3"
+resource_name = "Glance_3"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,9 +170,11 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-17.8571, 85.3175), Vector2(39.6825, 101.19), Vector2(47.619, 39.6825), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_v0q52"]
-resource_name = "Idle_4"
-length = 7.0
+[sub_resource type="Animation" id="Animation_wypww"]
+resource_name = "Idle_0"
+length = 4.0
+loop_mode = 1
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,26 +182,10 @@ tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 4.36667, 6.1, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(0.63728, 1, 1, 1, 0.965937),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.96, 1), Vector2(1.08, 1), Vector2(0.93, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_hjwc8"]
-resource_name = "Idle_5"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 4.36667, 6.1, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.935), Vector2(1.08, 1.08), Vector2(0.93, 1), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 0.94), Vector2(1.1, 0.9), Vector2(1.06, 0.95), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rfgki"]
@@ -146,9 +226,39 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BubbleSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4wwkk"]
+resource_name = "Rotation"
+length = 8.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.122173, 0.122173, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_q1api"]
-resource_name = "squash"
+resource_name = "Squash"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -165,13 +275,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tvy3c"]
 _data = {
-"Idle_1": SubResource("Animation_de82r"),
-"Idle_2": SubResource("Animation_qwgnj"),
-"Idle_3": SubResource("Animation_pqu6g"),
-"Idle_4": SubResource("Animation_v0q52"),
-"Idle_5": SubResource("Animation_hjwc8"),
+"Glance_1": SubResource("Animation_de82r"),
+"Glance_2": SubResource("Animation_qwgnj"),
+"Glance_3": SubResource("Animation_pqu6g"),
+"Idle_0": SubResource("Animation_wypww"),
 "RESET": SubResource("Animation_rfgki"),
-"squash": SubResource("Animation_q1api")
+"Rotation": SubResource("Animation_4wwkk"),
+"Squash": SubResource("Animation_q1api")
 }
 
 [node name="Bubble" type="CharacterBody2D"]
@@ -207,17 +317,19 @@ script = ExtResource("6_8pe0x")
 state_color = Color(0.741176, 0.176471, 0, 1)
 corpses_limit = null
 
-[node name="BubbleSprite" type="Sprite2D" parent="."]
+[node name="BubbleSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
 material = SubResource("ShaderMaterial_m81it")
 scale = Vector2(0.504, 0.504)
-texture = ExtResource("8_cxdc2")
+sprite_frames = SubResource("SpriteFrames_y4ptm")
+animation = &"normal"
 script = ExtResource("9_6kqpo")
 max_pupil_distance = 60.0
 
-[node name="BubbleFaceSprite" type="Sprite2D" parent="BubbleSprite"]
+[node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
-texture = ExtResource("10_00hlv")
+sprite_frames = SubResource("SpriteFrames_hgi52")
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")
@@ -226,6 +338,7 @@ debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 [node name="PopWarningArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 4
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PopWarningArea"]
 shape = SubResource("CircleShape2D_cbs37")
@@ -264,12 +377,22 @@ one_shot = true
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tvy3c")
 }
+autoplay = "Idle_0"
+
+[node name="FaceAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvy3c")
+}
+autoplay = "Idle_0"
 
 [connection signal="body_entered" from="PopWarningArea" to="." method="_on_pop_warning_area_body_entered"]
 [connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="timeout" from="Timers/DetachTestTimer" to="." method="_on_detach_test_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
+[connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]
