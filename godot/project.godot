@@ -42,7 +42,8 @@ gdscript/warnings/unsafe_call_argument=1
 directories/dch_directory={}
 directories/dtl_directory={
 "boss_dialogue_1": "res://dialogic/boss_dialogue_1.dtl",
-"bossfight": "res://dialogic/bossfight.dtl"
+"bossfight": "res://dialogic/bossfight.dtl",
+"ending": "res://dialogic/ending.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

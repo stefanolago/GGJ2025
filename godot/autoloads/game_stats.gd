@@ -2,6 +2,9 @@ extends Node
 
 signal player_damage_bossfight
 
+var ending_scene: PackedScene = preload("res://game/levels/ending.tscn")
+var game_over_playing: bool = false
+
 var player_health_bossfight: float:
 	set(value):
 		player_health_bossfight = value
@@ -21,9 +24,16 @@ var cazzi_vari: String
 
 func take_damage_bossfight(damage: float) -> void:
 	player_health_bossfight -= damage
+	if player_health_bossfight <= 0:
+		_game_over()
 
 func _ready() -> void:
 	reset_stats()
+
+func _game_over() -> void:
+	if not game_over_playing:
+		game_over_playing = true
+		TransitionLayer.change_scene(ending_scene)
 
 # settare qui i valori iniziali
 func reset_stats() -> void:

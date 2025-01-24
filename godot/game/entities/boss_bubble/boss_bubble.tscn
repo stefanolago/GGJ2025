@@ -1,13 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://ddstvahxhigau"]
+[gd_scene load_steps=22 format=3 uid="uid://ddstvahxhigau"]
 
 [ext_resource type="Script" path="res://scripts/boss_bubble.gd" id="1_5bua7"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="1_xax12"]
 [ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="2_fy3y1"]
 [ext_resource type="PackedScene" uid="uid://b30tid116mumg" path="res://game/entities/boss_bubble/bubble_mine.tscn" id="2_n041y"]
 [ext_resource type="Texture2D" uid="uid://bqtqo5gjodhdc" path="res://assets/art/tribunal/tribunal_background.png" id="3_62e6d"]
+[ext_resource type="PackedScene" uid="uid://dlbu3pfumok6b" path="res://game/levels/ending.tscn" id="3_uc6jx"]
 [ext_resource type="Texture2D" uid="uid://yvemr4l6awhj" path="res://assets/art/tribunal/tribunal_chair.png" id="4_ixiw2"]
+[ext_resource type="Texture2D" uid="uid://dc75xqaqn586w" path="res://assets/art/tribunal/hammer_1.png" id="5_n45tf"]
+[ext_resource type="Texture2D" uid="uid://cvwfqnghhkjeo" path="res://assets/art/tribunal/hammer_2.png" id="6_efey5"]
 [ext_resource type="Texture2D" uid="uid://wclt2j6lnkbv" path="res://assets/art/tribunal/bubble_wig.png" id="6_f1vc6"]
 [ext_resource type="Texture2D" uid="uid://b26p7xlsq7fob" path="res://assets/art/tribunal/tribunal_desk.png" id="7_fuxa4"]
+[ext_resource type="Texture2D" uid="uid://pl4dms2t7ro0" path="res://assets/art/bubble/bolla-rotta-1.png" id="8_7iv5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1d8u2"]
 radius = 159.531
@@ -85,6 +89,66 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 182)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hammer:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_n45tf")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hammer:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Path2D/PathFollow2D/Body:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_xax12")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Path2D/PathFollow2D/Body/Face:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Path2D/PathFollow2D/Body/BubbleWig:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jc2bl"]
@@ -208,12 +272,96 @@ tracks/1/keys = {
 "values": [Color(1, 0.533612, 0.468613, 1), Color(1, 1, 1, 1), Color(1, 0.533333, 0.466667, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_a8hdf"]
+resource_name = "hammer"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hammer:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_n45tf"), ExtResource("6_efey5"), ExtResource("5_n45tf"), ExtResource("6_efey5"), ExtResource("5_n45tf"), ExtResource("6_efey5"), ExtResource("5_n45tf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hammer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_q5kxa"]
+resource_name = "pop_boss"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_7iv5l")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Body/Face:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Path2D/PathFollow2D/Body/BubbleWig:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Path2D/PathFollow2D/Body:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jaxbi"]
 _data = {
 "RESET": SubResource("Animation_sdckh"),
 "begin_fight": SubResource("Animation_jc2bl"),
 "default": SubResource("Animation_h2a3b"),
-"hit": SubResource("Animation_lqyk3")
+"hammer": SubResource("Animation_a8hdf"),
+"hit": SubResource("Animation_lqyk3"),
+"pop_boss": SubResource("Animation_q5kxa")
 }
 
 [sub_resource type="Curve2D" id="Curve2D_n8cwd"]
@@ -225,6 +373,7 @@ point_count = 8
 [node name="BossBubble" type="StaticBody2D"]
 script = ExtResource("1_5bua7")
 attack_mine_scene = ExtResource("2_n041y")
+ending_scene = ExtResource("3_uc6jx")
 
 [node name="TribunalBackground" type="Sprite2D" parent="."]
 scale = Vector2(0.611111, 0.611111)
@@ -271,6 +420,12 @@ texture = ExtResource("7_fuxa4")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Hammer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(174, 177)
+scale = Vector2(0.4081, 0.4081)
+texture = ExtResource("5_n45tf")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

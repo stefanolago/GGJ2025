@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BossBubble
 
-const max_health: float = 10.0
+const max_health: float = 0.2
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
@@ -23,6 +23,7 @@ func _ready() -> void:
 	health = max_health
 	path_follow.progress = 0
 	Dialogic.timeline_ended.connect(_dialogue_ended)
+	Dialogic.signal_event.connect(_hammer_hit)
 	Dialogic.start("bossfight")
 
 func start_boss() -> void:
@@ -43,7 +44,6 @@ func hit_bubble(_weapon: Node2D, damage: float) -> void:
 		anim_player.play("hit")
 		if health <= 0:
 			_stop_bossfight()
-			pass
 
 func _dialogue_ended() -> void:
 	await get_tree().create_timer(1).timeout
@@ -56,16 +56,25 @@ func _start_bossfight() -> void:
 func _stop_bossfight() -> void:
 	boss_started = false
 	attack_timer.stop()
+	anim_player.play("pop_boss")
+
+func _load_ending() -> void:
+	TransitionLayer.change_scene(ending_scene)
 
 func _attack() -> void:
 	var boss_position: Vector2 = path_follow.global_position
 	var mine_instance: StaticBody2D = attack_mine_scene.instantiate()
 	mine_instance.global_position = boss_position
 	get_tree().root.add_child(mine_instance)
-	
+
+func _hammer_hit(_event:String) -> void:
+	anim_player.play("hammer")
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "begin_fight":
 		_start_bossfight()
+	if anim_name == "pop_boss":
+		_load_ending()
 
 func _on_attack_timer_timeout() -> void:
 	_attack()
