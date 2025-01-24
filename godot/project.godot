@@ -27,6 +27,7 @@ GlobalAudio="*res://autoloads/global_audio.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PreloadedMaterials="*res://autoloads/preloaded_materials.gd"
 DefaultCamera2d="*res://autoloads/default_camera_2D.gd"
+RoutineManager="*res://game/entities/bubble/bubble_routines/routine_manager.gd"
 
 [debug]
 

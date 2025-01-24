@@ -4,17 +4,29 @@
 
 [node name="ScenaEsempioBolle" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+
 [node name="Bubble" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(324, 223)
+position = Vector2(-241, -573)
 
 [node name="Bubble2" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(-718, 192)
+position = Vector2(-557, 535)
 
 [node name="Bubble3" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(1146, -1016)
+position = Vector2(924, -704)
 
 [node name="Bubble4" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(-2982, -1256)
+position = Vector2(-1430, -249)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.13, 0.13)
+[node name="Bubble5" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(1252, 647)
+
+[node name="Bubble6" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(230, 717)
+
+[node name="Bubble7" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(1912, -138)
+
+[node name="Bubble8" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-1611, 529)

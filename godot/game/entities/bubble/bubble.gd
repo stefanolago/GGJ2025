@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Bubble
 
+signal create_family(bubble1, bubble2)
+
 @export var max_health: float = 1.0
 @export var min_wander_timer: int
 @export var max_wander_timer: int
@@ -11,8 +13,8 @@ class_name Bubble
 
 var is_detached: bool = false										# Indicates if the bubble is stationary
 var pressed: bool = false
-var health: float = 1													# Health of the bubble
-var speed: float = 10.00											# Speed of the bubble
+var health: float = 1												# Health of the bubble
+var speed: float = 4.00												# Speed of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
 var corpses_seen: int = 0: set = _set_corpses_seen					# Tracks the number of nearby bubbles that have popped
 # Atomic modification of corpses_seen
@@ -20,14 +22,11 @@ func _set_corpses_seen(value: int) -> void:
 	corpses_seen = value
 
 var assigned_routine: BubbleRoutine = BubbleRoutine.NONE
-# Bubble routines
-enum BubbleRoutine {
-	NONE,
-	ATTACK_WALL,
-	GROUP_UP,
-	FAMILY_BUILDING,
-	COMMUNITY_BUILDING
-}
+
+
+# Family variables
+var family: Family = null
+var is_in_family: bool = false
 
 
 #_________________________________________________________________________________________________________________________________________
@@ -41,13 +40,6 @@ func _physics_process(_delta: float) -> void:
 	if is_detached:
 		# Move the bubble randomly
 		last_collision = move_and_collide(velocity)
-
-		# Handle collisions
-		if last_collision:
-			if last_collision.get_collider().is_in_group("bubbles"):
-				_handle_bubble_collision(last_collision.get_collider())
-			elif last_collision.get_collider().is_in_group("walls"):
-				_handle_wall_collision()
 
 
 
@@ -108,12 +100,8 @@ func _start_routine_group_up() -> void:
 
 # Routine 3: Bubble creates a family
 func _start_routine_create_family() -> void:
-	var partner: Bubble = _find_closest_bubble()
-	if partner:
-		# TODO move_and_slide((partner.global_position - global_position).normalized() * 30)  # Adjust speed
+	is_in_family = true
 
-		if position.distance_to(partner.global_position) < 10:
-			family_timer.start()
 
 
 # Routine 4: Bubble forms a community
@@ -182,3 +170,13 @@ func _on_family_timer_timeout() -> void:
 func _on_wander_timer_timeout() -> void:
 	velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
 	_set_wander_time()
+
+
+
+# COLLIDERS ______________________________________________________________________________________________________________________________
+#_________________________________________________________________________________________________________________________________________
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("bubbles"):
+		_handle_bubble_collision(body)
+	elif body.is_in_group("walls"):
+		_handle_wall_collision()
