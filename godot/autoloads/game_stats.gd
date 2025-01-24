@@ -1,6 +1,11 @@
 extends Node
 
-var player_health: int
+signal player_damage_bossfight
+
+var player_health_bossfight: float:
+	set(value):
+		player_health_bossfight = value
+		player_damage_bossfight.emit()
 var cazzi_vari: String
 
 
@@ -14,13 +19,15 @@ var cazzi_vari: String
 # if GameSettings.difficulty_setting = "Hard":
 #     boss_health = 75
 
+func take_damage_bossfight(damage: float) -> void:
+	player_health_bossfight -= damage
 
 func _ready() -> void:
 	reset_stats()
 
 # settare qui i valori iniziali
 func reset_stats() -> void:
-	player_health = 10
+	player_health_bossfight = 10
 	cazzi_vari = "cazzi vari"
 
 # save the game settings into a config file, saved locally
@@ -28,7 +35,7 @@ func save_stats() -> void:
 	print ("SAVING STATS")
 	var stats:ConfigFile = ConfigFile.new()
 	
-	stats.set_value("Stats", "player_health", player_health)
+	stats.set_value("Stats", "player_health", player_health_bossfight)
 	stats.set_value("Stats", "cazzi_vari", cazzi_vari)
 	
 	stats.save("user://stats_data.cfg")
@@ -45,5 +52,5 @@ func load_stats() -> void:
 		return
 
 	# set all the saved variables
-	player_health = stats.get_value("Stats", "player_health")
+	player_health_bossfight = stats.get_value("Stats", "player_health")
 	cazzi_vari = stats.get_value("Stats", "cazzi_vari")

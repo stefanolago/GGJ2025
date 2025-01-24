@@ -40,7 +40,10 @@ gdscript/warnings/unsafe_call_argument=1
 [dialogic]
 
 directories/dch_directory={}
-directories/dtl_directory={}
+directories/dtl_directory={
+"boss_dialogue_1": "res://dialogic/boss_dialogue_1.dtl",
+"bossfight": "res://dialogic/bossfight.dtl"
+}
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -62,8 +65,8 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={}
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://dialogic/style.tres"]
+layout/default_style="res://dialogic/style.tres"
 glossary/default_case_sensitive=true
 
 [display]

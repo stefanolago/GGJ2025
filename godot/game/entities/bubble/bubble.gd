@@ -113,9 +113,9 @@ func detach() -> void:
 
 
 func glance() -> void:
-	body_anim_player.play("Squash")
 	var random_glance_anim: String = glance_anims.pick_random()
 	face_anim_player.play(random_glance_anim)
+	# body_anim_player.play("Squash")
 
 
 # ROUTINES _______________________________________________________________________________________________________________________________
@@ -221,7 +221,8 @@ func _on_face_animation_player_animation_finished(anim_name: StringName) -> void
 		face_anim_player.advance(randf_range(0.0, 3.9))
 
 
-func _on_body_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Squash":
-		body_anim_player.play("Rotation")
-		body_anim_player.advance(randf_range(0.0, 7.9))
+func _on_body_animation_player_animation_finished(_anim_name: StringName) -> void:
+	pass
+	#if anim_name == "Squash":
+	#	body_anim_player.play("Rotation")
+	#	body_anim_player.advance(randf_range(0.0, 7.9))

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://ehufqxg7kt1l"]
+
+[ext_resource type="Script" path="res://scripts/healthbar.gd" id="1_bkq82"]
+
+[sub_resource type="Theme" id="Theme_ewarp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq7ec"]
+bg_color = Color(0.306923, 0.306923, 0.306923, 1)
+skew = Vector2(0.2, 0)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wq72"]
+bg_color = Color(0.360784, 0.67451, 0.282353, 1)
+skew = Vector2(0.2, 0)
+
+[node name="Healthbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bkq82")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -452.0
+offset_top = -42.0
+offset_right = 452.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ewarp")
+theme_override_styles/background = SubResource("StyleBoxFlat_vq7ec")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8wq72")
+max_value = 10.0
+value = 5.0
+rounded = true
+show_percentage = false
