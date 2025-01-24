@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d38s6r87kokgl"]
+
+[ext_resource type="Texture2D" uid="uid://bn20aa1pmopfk" path="res://assets/art/table/coffee.png" id="1_tjkfb"]
+
+[node name="CoffeeCup" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tjkfb")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-90, -167, 52, -226, 175, -190, 239, -93, 229, 26, 148, 100, -128, 243, -208, 180, -199, -51)

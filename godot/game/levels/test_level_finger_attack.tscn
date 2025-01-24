@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://4en56y3s25ri"]
+[gd_scene load_steps=6 format=3 uid="uid://4en56y3s25ri"]
 
 [ext_resource type="Script" path="res://game/levels/test_level_finger_attack.gd" id="1_7fwxd"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="2_s3iys"]
+[ext_resource type="Script" path="res://game/levels/camera_2d.gd" id="3_6y3wj"]
+[ext_resource type="PackedScene" uid="uid://ehufqxg7kt1l" path="res://game/entities/player/healthbar.tscn" id="4_gaccn"]
 
 [node name="TestLevelFingerAttack" type="Node2D"]
 script = ExtResource("1_7fwxd")
@@ -10,6 +12,13 @@ script = ExtResource("1_7fwxd")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-16, 488)
 zoom = Vector2(0.33, 0.33)
+script = ExtResource("3_6y3wj")
+
+[node name="Healthbar" parent="Camera2D" instance=ExtResource("4_gaccn")]
+offset_left = 24.0
+offset_top = 471.0
+offset_right = 24.0
+offset_bottom = 471.0
 
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 

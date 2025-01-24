@@ -7,6 +7,9 @@ const DEFAULT_MEETING_DISTANCE: float = 200.0      	# Default distance for bubbl
 const DEFAULT_DOING_WAITING_TIME: float = 5.0      	# Default waiting time for the routine
 const DEBUGGING_COLOR: bool = false
 
+const COLOR_DEBUGGING: bool = false					# Flag to enable color debugging
+
+
 var bubble1: Bubble
 var bubble2: Bubble
 var direction1: Vector2
@@ -78,6 +81,13 @@ func _start_doing() -> void:
 
 func _done() -> void:
 	pass
+
+func _end_relation() -> void:
+	if bubble1 != null:
+		bubble1.is_in_routine = false
+	if bubble2 != null:
+		bubble2.is_in_routine = false
+	self.queue_free()
 
 func _end_relation() -> void:
 	if bubble1 != null:

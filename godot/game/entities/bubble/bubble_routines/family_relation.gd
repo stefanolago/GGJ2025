@@ -77,6 +77,8 @@ func _on_task_timer_timeout() -> void:
 func _grow_child() -> void:
 	family_wandering_timer.stop()
 	# Assign a new routine to the child and detach it from the family
+	if child == null:
+		return
 	child.assigned_routine = RoutineManager.get_random_routine()
 	child.is_in_routine = false
 	child.scale = Vector2(1, 1)
