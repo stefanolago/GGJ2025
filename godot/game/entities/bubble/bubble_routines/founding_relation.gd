@@ -2,6 +2,8 @@ extends BubblesRelation
 class_name CityFounding
 
 
+var city_scene: PackedScene = preload("res://game/entities/city.tscn")
+
 
 #_________________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
@@ -14,6 +16,4 @@ func _start_doing() -> void:
 
 
 func _done() -> void:
-	bubble1.exit_from_routine()
-	self.queue_free()
-
+	city_scene.instantiate()

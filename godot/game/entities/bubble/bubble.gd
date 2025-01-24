@@ -111,39 +111,6 @@ func exit_from_routine() -> void:
 	is_in_routine = false
 
 
-# ROUTINES _______________________________________________________________________________________________________________________________
-#_________________________________________________________________________________________________________________________________________
-# Routine 1: Bubble attacks the wall to create a breach
-func _start_routine_attack_wall() -> void:
-	var wall_direction: Vector2 = (get_viewport_rect().size / 2 - global_position).normalized()
-	move_and_collide(wall_direction * 100)  		# Adjust speed as needed
-
-
-# Routine 2: Bubble gathers with others to form a larger bubble
-func _start_routine_group_up() -> void:
-	var bubbles: Array = get_tree().get_nodes_in_group("bubbles")
-	for bubble: Bubble in bubbles:
-		if bubble != self:
-			pass
-			# TODO move_and_slide((bubble.global_position - global_position).normalized() * 50)  # Adjust speed
-
-	# When close enough, merge
-	if bubbles.size() > 0:
-		health += bubbles.size()
-
-
-# Routine 4: Bubble forms a community
-func _start_routine_form_community() -> void:
-	var bubbles: Array = get_tree().get_nodes_in_group("bubbles")
-	if bubbles.size() >= 5:
-		for bubble: Bubble in bubbles:
-			pass
-			# TODO move_and_slide((bubble.global_position - global_position).normalized() * 20)  # Adjust speed
-
-		# Boost stats for all bubbles in the community
-		health += 10 * bubbles.size()
-
-
 
 # PRIVATE METHODS ________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
@@ -161,12 +128,14 @@ func _handle_bubble_collision(_other_bubble: Bubble) -> void:
 			if not _other_bubble.is_in_routine:
 				RoutineManager.form_family(self, _other_bubble)
 		RoutineManager.BubbleRoutine.COMMUNITY_BUILDING:
-			_start_routine_form_community()
+			#_start_routine_form_community()
+			pass
 
 
 func _handle_wall_collision() -> void:
 	if assigned_routine == RoutineManager.BubbleRoutine.ATTACK_WALL:
-		_start_routine_attack_wall()
+		#_start_routine_attack_wall()
+		pass
 
 
 func _find_closest_bubble() -> Bubble:
@@ -181,11 +150,6 @@ func _find_closest_bubble() -> Bubble:
 				closest_distance = distance
 				closest_bubble = bubble
 	return closest_bubble
-
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name in idle_break_anims:
-		playing_idle_break = false
 
 
 
@@ -236,4 +200,3 @@ func _on_pop_warning_area_body_entered(body: Node2D) -> void:
 			_handle_bubble_collision(other_bubble)
 	elif body.is_in_group("walls"):
 		_handle_wall_collision()
-

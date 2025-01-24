@@ -35,7 +35,7 @@ enum BubbleRoutine {
 # Returns a random routine
 func get_random_routine() -> BubbleRoutine:
 	#return BubbleRoutine.values()[randi() % BubbleRoutine.size()]
-	return BubbleRoutine.GROUP_UP
+	return BubbleRoutine.FAMILY_BUILDING
 
 
 func get_roaming_velocity() -> Vector2:
