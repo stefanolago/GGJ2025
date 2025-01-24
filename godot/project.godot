@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GameTemplate"
+config/name="GGJ 2025 - Bubbles"
 run/main_scene="res://menu_and_options/_start/start_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
@@ -73,7 +73,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 

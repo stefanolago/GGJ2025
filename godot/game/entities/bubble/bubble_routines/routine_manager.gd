@@ -1,6 +1,11 @@
 extends Node
 
 
+var roaming_speed_min: float = 3.0											# Min speed of the bubble when roaming
+var roaming_speed_max: float = 6.0											# Max speed of the bubble when roaming
+var walking_speed: float = 2.00												# Speed of the bubble when walking
+var families: Array = [] 													# Array to store families
+
 # Bubble routines
 enum BubbleRoutine {
 	NONE,
@@ -11,36 +16,33 @@ enum BubbleRoutine {
 }
 
 
-func _ready() -> void:
-	# Assign initial routines to all bubbles
-	assign_routines()
-
-func _process(delta: float) -> void:
-	# Check for bubbles that can form families
-	check_for_families()
+# Returns a random routine
+func get_random_routine() -> BubbleRoutine:
+	#return BubbleRoutine.values()[randi() % BubbleRoutine.size()]
+	return BubbleRoutine.GROUP_UP
 
 
+func get_roaming_velocity() -> Vector2:
+	return _get_random_velocity(randf_range(roaming_speed_min, roaming_speed_max))
 
-func assign_routines() -> void:
-	# Assign random routines to all bubbles
-	var bubbles = get_tree().get_nodes_in_group("bubbles")
-	for bubble in bubbles:
-		if bubble.assigned_routine == BubbleRoutine.NONE:
-			bubble.assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]
+func get_walking_velocity() -> Vector2:
+	return _get_random_velocity(walking_speed)
 
-
-func check_for_families() -> void:
-	# Check if two bubbles can form a family
-	var bubbles = get_tree().get_nodes_in_group("bubbles")
-	for bubble in bubbles:
-		if bubble.is_available_for_family():
-			for other_bubble in bubbles:
-				if other_bubble != bubble and other_bubble.is_available_for_family():
-					if bubble.global_position.distance_to(other_bubble.global_position) <= 50.0:
-						form_family(bubble, other_bubble)
+func _get_random_velocity(speed: float) -> Vector2:
+	return Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
 
 
-func form_family(bubble1: CharacterBody2D, bubble2: CharacterBody2D) -> void:
+func form_family(bubble1: Bubble, bubble2: Bubble) -> void:
 	# Create a family with two bubbles
-	var family = Family.new(bubble1, bubble2)
+	if bubble1.is_in_routine or bubble2.is_in_routine:
+		return
+	var family: Family = Family.new(bubble1, bubble2)
 	add_child(family)
+	families.append(family)
+
+
+func aggregate(bubble1: Bubble, bubble2: Bubble) -> void:
+	if bubble1.is_in_routine or bubble2.is_in_routine:
+		return
+	var aggregator: BubbleAggregator = BubbleAggregator.new(bubble1, bubble2)
+	add_child(aggregator)

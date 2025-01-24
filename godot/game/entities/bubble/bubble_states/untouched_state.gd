@@ -2,11 +2,11 @@ extends BubbleState
 
 
 func enter() -> void:
-	print("Untouched State enter")
+	pass
 
 
 func exit() -> void:
-	print("Untouched State exit")
+	pass
 
 
 func physics_update(_delta: float) -> void:

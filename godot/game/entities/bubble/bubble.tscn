@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=27 format=3 uid="uid://dy5b0e8fulwac"]
 
+[ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble.gd" id="1_udmfy"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/calm.gd" id="2_cmhqn"]
@@ -11,22 +12,171 @@
 [ext_resource type="Script" path="res://game/entities/bubble/eyes.gd" id="9_6kqpo"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
 [ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="10_00hlv"]
-[ext_resource type="Script" path="res://game/entities/bubble/popping_state.gd" id="11_03t2o"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
-[ext_resource type="Script" path="res://game/entities/bubble/pressed_state.gd" id="12_vi2b8"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/pressed_state.gd" id="13_0pvk2"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popping_state.gd" id="14_kxy2l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
+resource_local_to_scene = true
+shader = ExtResource("1_3omog")
+shader_parameter/amplitude = 20.0
+shader_parameter/frequency = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
-radius = 115.624
+radius = 75.326
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 764.079
+radius = 815.383
+
+[sub_resource type="Animation" id="Animation_de82r"]
+resource_name = "Idle_1"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.810202, 1.53309, 1.81393, 2.4637, 2.95271, 3.37066, 3.68201, 3.98564, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(57.5397, 31.746), Vector2(57.81, 32.061), Vector2(49.6032, 1.98413), Vector2(49.6032, 1.98413), Vector2(-19.8413, 45.6349), Vector2(-19.8413, 45.6349), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qwgnj"]
+resource_name = "Idle_2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.40106, 2.66675, 3.68201, 4.3579, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.98413, -31.746), Vector2(-31.746, -37.6984), Vector2(-21.8254, 5.95238), Vector2(-2.03, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pqu6g"]
+resource_name = "Idle_3"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.19124, 2.24711, 3.21499, 3.68201, 3.98564, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-17.8571, 85.3175), Vector2(39.6825, 101.19), Vector2(47.619, 39.6825), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v0q52"]
+resource_name = "Idle_4"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 4.36667, 6.1, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.96, 1), Vector2(1.08, 1), Vector2(0.93, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjwc8"]
+resource_name = "Idle_5"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4.36667, 6.1, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.935), Vector2(1.08, 1.08), Vector2(0.93, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rfgki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.504, 0.504)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q1api"]
+resource_name = "squash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.106454, 0.196507, 0.253644, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.504, 0.504), Vector2(0.504, 0.45), Vector2(0.504, 0.504), Vector2(0.504, 0.49), Vector2(0.504, 0.504)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvy3c"]
+_data = {
+"Idle_1": SubResource("Animation_de82r"),
+"Idle_2": SubResource("Animation_qwgnj"),
+"Idle_3": SubResource("Animation_pqu6g"),
+"Idle_4": SubResource("Animation_v0q52"),
+"Idle_5": SubResource("Animation_hjwc8"),
+"RESET": SubResource("Animation_rfgki"),
+"squash": SubResource("Animation_q1api")
+}
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_udmfy")
-max_health = null
-min_wander_timer = 3
-max_wander_timer = 7
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
@@ -55,9 +205,11 @@ corpses_limit = 5
 [node name="Scared" type="Node" parent="StateMachine"]
 script = ExtResource("6_8pe0x")
 state_color = Color(0.741176, 0.176471, 0, 1)
+corpses_limit = null
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
+material = SubResource("ShaderMaterial_m81it")
 scale = Vector2(0.504, 0.504)
 texture = ExtResource("8_cxdc2")
 script = ExtResource("9_6kqpo")
@@ -71,10 +223,11 @@ texture = ExtResource("10_00hlv")
 shape = SubResource("CircleShape2D_e0h07")
 debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PopWarningArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PopWarningArea"]
 shape = SubResource("CircleShape2D_cbs37")
 debug_color = Color(0, 0.6, 0.701961, 0.113725)
 
@@ -86,19 +239,15 @@ initial_state = NodePath("UntouchedState")
 script = ExtResource("9_u1hra")
 
 [node name="PressedState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("12_vi2b8")
+script = ExtResource("13_0pvk2")
 
 [node name="PoppingState" type="Node" parent="PlayerInteractionStateMachine"]
-script = ExtResource("11_03t2o")
+script = ExtResource("14_kxy2l")
 
 [node name="PoppedState" type="Node" parent="PlayerInteractionStateMachine"]
 script = ExtResource("12_0e84d")
 
 [node name="Timers" type="Node2D" parent="."]
-
-[node name="ChangeStateTimer" type="Timer" parent="Timers"]
-wait_time = 0.8
-autostart = true
 
 [node name="FamilyTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
@@ -109,7 +258,18 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Timers/ChangeStateTimer" to="." method="_on_timer_timeout"]
+[node name="DetachTestTimer" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvy3c")
+}
+
+[connection signal="body_entered" from="PopWarningArea" to="." method="_on_pop_warning_area_body_entered"]
 [connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="Timers/DetachTestTimer" to="." method="_on_detach_test_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

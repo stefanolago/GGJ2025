@@ -1,8 +1,8 @@
 extends BubbleHumorState
 
 
-func on_enter() -> void:
-	super.on_enter()
+func enter() -> void:
+	super.enter()
 	bubble.detach()
 
 func update(_delta: float) -> void:

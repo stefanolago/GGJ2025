@@ -8,25 +8,22 @@
 zoom = Vector2(0.2, 0.2)
 
 [node name="Bubble" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(-241, -573)
+position = Vector2(640, 1439)
 
 [node name="Bubble2" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(-557, 535)
+position = Vector2(-997, 1118)
 
 [node name="Bubble3" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(924, -704)
+position = Vector2(98, -151)
 
 [node name="Bubble4" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(-1430, -249)
+position = Vector2(2074, 579)
 
 [node name="Bubble5" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(1252, 647)
+position = Vector2(-1570, -445)
 
 [node name="Bubble6" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(230, 717)
+position = Vector2(1525, -1019)
 
 [node name="Bubble7" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(1912, -138)
-
-[node name="Bubble8" parent="." instance=ExtResource("1_182ac")]
-position = Vector2(-1611, 529)
+position = Vector2(-505, -1721)
