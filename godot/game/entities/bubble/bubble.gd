@@ -78,7 +78,8 @@ func pop() -> void:
 		if bubble != self:
 			bubble.nearby_bubble_popped(global_position)
 	GlobalAudio.play_one_shot("bubble_pop")
-	queue_free()
+	sprite.set_face_mood("dead")
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func nearby_bubble_popped(bubble_position: Vector2) -> void:

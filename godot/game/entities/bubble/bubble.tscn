@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=37 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbs0pqbp6wb3" path="res://assets/art/bubble/bolla-premuta.png" id="11_1jru2"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/pressed_state.gd" id="13_0pvk2"]
+[ext_resource type="Texture2D" uid="uid://8dry40gcj74g" path="res://assets/art/bubble/faccina-morta.png" id="14_5oeb3"]
 [ext_resource type="Texture2D" uid="uid://dop65axsyhd48" path="res://assets/art/bubble/faccina-felice.png" id="14_6oneh"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popping_state.gd" id="14_kxy2l"]
 [ext_resource type="Texture2D" uid="uid://bngnb5wt5814t" path="res://assets/art/bubble/faccina-bolla-premuta.png" id="15_pve6u"]
@@ -64,6 +65,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"calm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_5oeb3")
+}],
+"loop": true,
+"name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -322,7 +331,7 @@ max_pupil_distance = 60.0
 [node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hgi52")
-animation = &"calm"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")
