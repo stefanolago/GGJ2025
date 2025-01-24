@@ -17,11 +17,12 @@ signal nearby_popped
 @onready var sprite: bubble_sprite = $BubbleSprite
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var body_anim_player: AnimationPlayer = $BodyAnimationPlayer
+@onready var face_anim_player: AnimationPlayer = $FaceAnimationPlayer
 @onready var pop_warning_area: Area2D = %PopWarningArea
 
 var playing_idle_break: bool = false
-var idle_break_anims: Array = ["Idle_1", "Idle_2", "Idle_3", "Idle_4"]	# Array of animations that can be played
+var glance_anims: Array = ["Glance_1", "Glance_2", "Glance_3"]	# Array of animations that can be played
 var is_detached: bool = false										# Indicates if the bubble is stationary
 var pressed: bool = false
 var health: float = 1													# Health of the bubble
@@ -49,6 +50,10 @@ enum BubbleRoutine {
 func _ready() -> void:
 	health = randf_range(min_health, max_health)
 	_set_wander_time()
+	face_anim_player.play("Idle_0")
+	face_anim_player.advance(randf_range(0.0, 5.9))
+	body_anim_player.play("Rotation")
+	body_anim_player.advance(randf_range(0.0, 7.9))
 
 
 func _physics_process(_delta: float) -> void:
@@ -107,16 +112,10 @@ func detach() -> void:
 		wander_timer.start()  # Start the wander timer
 
 
-func glance(target_position: Vector2) -> void:
-	if not playing_idle_break:
-		anim_player.play("squash")
-		sprite.glance(target_position)
-
-
-func play_idle_break() -> void:
-	var anim_number: int = randi_range(0 ,4)
-	playing_idle_break = true
-	anim_player.play(idle_break_anims[anim_number])
+func glance() -> void:
+	body_anim_player.play("Squash")
+	var random_glance_anim: String = glance_anims.pick_random()
+	face_anim_player.play(random_glance_anim)
 
 
 # ROUTINES _______________________________________________________________________________________________________________________________
@@ -216,6 +215,13 @@ func _on_wander_timer_timeout() -> void:
 	_set_wander_time()
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name in idle_break_anims:
-		playing_idle_break = false
+func _on_face_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name in glance_anims:
+		face_anim_player.play("Idle_0")
+		face_anim_player.advance(randf_range(0.0, 3.9))
+
+
+func _on_body_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Squash":
+		body_anim_player.play("Rotation")
+		body_anim_player.advance(randf_range(0.0, 7.9))
