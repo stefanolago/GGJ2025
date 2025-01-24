@@ -4,25 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="3_76pau"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fsvee"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ort5w"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
 shader_parameter/frequency = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_02cit"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elkfi"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
 shader_parameter/frequency = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnbn8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2nx4"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
 shader_parameter/frequency = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhlc3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxvu0"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
@@ -33,19 +33,19 @@ shader_parameter/frequency = 10.0
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 
 [node name="Bubble2" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_fsvee")
+material = SubResource("ShaderMaterial_ort5w")
 position = Vector2(460, 540)
 
 [node name="Bubble3" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_02cit")
+material = SubResource("ShaderMaterial_elkfi")
 position = Vector2(-501, 612)
 
 [node name="Bubble4" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_wnbn8")
+material = SubResource("ShaderMaterial_c2nx4")
 position = Vector2(-42, 640)
 
 [node name="Bubble5" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_fhlc3")
+material = SubResource("ShaderMaterial_wxvu0")
 position = Vector2(-334, 1123)
 
 [node name="Camera2D" type="Camera2D" parent="."]

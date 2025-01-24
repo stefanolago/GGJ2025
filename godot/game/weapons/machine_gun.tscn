@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c54c1yo1d6dbw"]
+
+[ext_resource type="Script" path="res://game/weapons/machine_gun.gd" id="1_bvtna"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_er5jq"]
+
+[node name="MachineGun" type="Node2D"]
+script = ExtResource("1_bvtna")
+
+[node name="HitDetectArea" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectArea"]
+shape = SubResource("CircleShape2D_er5jq")
+
+[node name="HitCooldownTimer" type="Timer" parent="."]
+one_shot = true

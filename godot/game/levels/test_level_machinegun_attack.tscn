@@ -1,3 +1,56 @@
-[gd_scene format=3 uid="uid://ccyt2hm7muvb8"]
+[gd_scene load_steps=3 format=3 uid="uid://ccyt2hm7muvb8"]
+
+[ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_kkfbu"]
+[ext_resource type="PackedScene" uid="uid://c54c1yo1d6dbw" path="res://game/weapons/machine_gun.tscn" id="1_us1pd"]
 
 [node name="TestLevelMachinegunAttack" type="Node2D"]
+
+[node name="MachineGun" parent="." instance=ExtResource("1_us1pd")]
+
+[node name="Bubble" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(283, 255)
+
+[node name="Bubble2" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(-159, 232)
+
+[node name="Bubble3" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(98, -89)
+
+[node name="Bubble4" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(522, -63)
+
+[node name="Bubble5" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(-297, -239)
+
+[node name="Bubble6" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(-485, 229)
+
+[node name="Bubble7" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(17, 536)
+
+[node name="Bubble8" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(-308, 544)
+
+[node name="Bubble9" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(681, 236)
+
+[node name="Bubble10" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(450, 571)
+
+[node name="Bubble11" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(-327, 0)
+
+[node name="Bubble12" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(937, 51)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.375, 0.375)
+
+[node name="Bubble13" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(7, -380)
+
+[node name="Bubble14" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(369, -307)
+
+[node name="Bubble15" parent="." instance=ExtResource("1_kkfbu")]
+position = Vector2(788, -285)

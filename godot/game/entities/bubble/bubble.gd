@@ -98,7 +98,6 @@ func hit_bubble(weapon: Node2D, damage: float) -> void:
 func release_bubble(weapon: Node2D) -> void:
 	
 	health = randf_range(min_health, max_health)
-	
 	if weapon is Finger:
 		pressed = false
 

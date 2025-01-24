@@ -5,9 +5,8 @@ func enter() -> void:
 	(bubble.sprite.material as ShaderMaterial).set_shader_parameter("frequency", 300.0)
 	
 
-
 func exit() -> void:
-	pass
+	(bubble.sprite.material as ShaderMaterial).set_shader_parameter("frequency", 0.0)
 
 
 func physics_update(_delta: float) -> void:
