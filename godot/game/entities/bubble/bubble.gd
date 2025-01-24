@@ -77,6 +77,7 @@ func pop() -> void:
 	for bubble: Bubble in pop_warning_area.get_overlapping_bodies():
 		if bubble != self:
 			bubble.nearby_bubble_popped(global_position)
+	GlobalAudio.play_one_shot("bubble_pop")
 	queue_free()
 
 
