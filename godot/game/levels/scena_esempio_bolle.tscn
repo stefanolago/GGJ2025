@@ -27,3 +27,24 @@ position = Vector2(1525, -1019)
 
 [node name="Bubble7" parent="." instance=ExtResource("1_182ac")]
 position = Vector2(-505, -1721)
+
+[node name="Bubble8" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-613, 1462)
+
+[node name="Bubble9" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-2250, 1141)
+
+[node name="Bubble10" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-1155, -128)
+
+[node name="Bubble11" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(821, 602)
+
+[node name="Bubble12" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-2823, -422)
+
+[node name="Bubble13" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(272, -996)
+
+[node name="Bubble14" parent="." instance=ExtResource("1_182ac")]
+position = Vector2(-1758, -1698)
