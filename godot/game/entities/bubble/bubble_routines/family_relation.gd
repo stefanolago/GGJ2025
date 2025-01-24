@@ -98,4 +98,3 @@ func _set_family_velocity() -> void:
 	bubble2.velocity = family_wandering_velocity
 	if child != null:
 		child.velocity = family_wandering_velocity
-
