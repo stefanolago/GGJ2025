@@ -15,28 +15,42 @@ signal nearby_popped
 
 
 @onready var sprite: BubbleSprite = $BubbleSprite
-@onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
-@onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
+@onready var wandering_timer: Timer = %WanderingTimer				# Timer to handle wandering
+@onready var escaping_timer: Timer = %EscapingTimer					# Timer to handle the escaping
 @onready var body_anim_player: AnimationPlayer = $BodyAnimationPlayer
 @onready var face_anim_player: AnimationPlayer = $FaceAnimationPlayer
 @onready var pop_warning_area: Area2D = %PopWarningArea
 
+enum Behavior{
+	ATTACHED,
+	WANDERING,
+	ESCAPING
+}
+
+var behavior: Behavior = Behavior.ATTACHED: set = _set_behavior
 var playing_idle_break: bool = false
-var glance_anims: Array = ["Glance_1", "Glance_2", "Glance_3"]	# Array of animations that can be played
-var is_detached: bool = false										# Indicates if the bubble is stationary
+var glance_anims: Array = ["Glance_1", "Glance_2", "Glance_3"]		# Array of animations that can be played
 var pressed: bool = false
 var health: float = 1												# Health of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
 var corpses_seen: int = 0: set = _set_corpses_seen					# Tracks the number of nearby bubbles that have popped
 var level:int = 1
+var is_in_routine: bool = false
+var assigned_routine: RoutineManager.BubbleRoutine = RoutineManager.BubbleRoutine.NONE
 
-# Atomic modification of corpses_seen
 func _set_corpses_seen(value: int) -> void:
 	corpses_seen = value
 
-var assigned_routine: RoutineManager.BubbleRoutine = RoutineManager.BubbleRoutine.NONE
+func _set_behavior(value: Behavior) -> void:
+	behavior = value
+	match behavior:
+		Behavior.ATTACHED:
+			pass
+		Behavior.WANDERING:
+			_set_wandering_behavior()
+		Behavior.ESCAPING:
+			_set_escaping_behavior()
 
-var is_in_routine: bool = false
 
 
 #_________________________________________________________________________________________________________________________________________
@@ -51,9 +65,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if is_detached and not is_in_routine:
-		# Move the bubble randomly
-		last_collision = move_and_collide(velocity)
+	if behavior == Behavior.ATTACHED or is_in_routine:
+		return
+	last_collision = move_and_collide(velocity)
 
 
 
@@ -91,14 +105,12 @@ func release_bubble(weapon: Node2D) -> void:
 		pressed = false
 
 
-# Detach function: Makes the bubble mobile and starts its routine
-func detach() -> void:
-	if not is_detached:
-		is_detached = true
-		z_index = 1
-		velocity = RoutineManager.get_roaming_velocity()
-		assigned_routine = RoutineManager.get_random_routine()
-		wander_timer.start()  # Start the wander timer
+func manage_panic() -> void:
+	# Detach bubble: Makes the bubble mobile and starts its routine
+	if behavior == Behavior.ATTACHED:
+		behavior = Behavior.ESCAPING
+	else:
+		behavior = Behavior.ESCAPING
 
 
 func glance() -> void:
@@ -115,8 +127,19 @@ func exit_from_routine() -> void:
 
 # PRIVATE METHODS ________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
+func _set_specific_behavior(behavior_velocity: Vector2, routine: RoutineManager.BubbleRoutine, timer:Timer) -> void:
+	velocity = behavior_velocity
+	assigned_routine = routine
+	timer.start()
+
+func _set_escaping_behavior() -> void:
+	_set_specific_behavior(RoutineManager.get_escaping_velocity(), RoutineManager.BubbleRoutine.NONE, escaping_timer)
+
+func _set_wandering_behavior() -> void:
+	_set_specific_behavior(RoutineManager.get_roaming_velocity(), RoutineManager.get_random_routine(), wandering_timer)
+
 func _set_wander_time() -> void:
-	wander_timer.wait_time = randf_range(min_wander_timer, max_wander_timer)
+	wandering_timer.wait_time = randf_range(min_wander_timer, max_wander_timer)
 
 
 # Handle collisions with an other bubbles that is in the same routine
@@ -128,16 +151,9 @@ func _handle_bubble_collision(_other_bubble: Bubble) -> void:
 		RoutineManager.BubbleRoutine.FAMILY_BUILDING:
 			if not _other_bubble.is_in_routine:
 				RoutineManager.form_family(self, _other_bubble)
-		RoutineManager.BubbleRoutine.COMMUNITY_BUILDING:
+		#RoutineManager.BubbleRoutine.COMMUNITY_BUILDING:
 			#_start_routine_form_community()
-			pass
-
-
-func _handle_wall_collision() -> void:
-	if assigned_routine == RoutineManager.BubbleRoutine.ATTACK_WALL:
-		#_start_routine_attack_wall()
-		pass
-
+			
 
 func _find_closest_bubble() -> Bubble:
 	var closest_bubble: Bubble = null
@@ -156,24 +172,16 @@ func _find_closest_bubble() -> Bubble:
 
 # SIGNALS ________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
-
-# Bubble creates a family
-func _on_family_timer_timeout() -> void:
-	var child_bubble: Bubble = Bubble.new()
-	add_child(child_bubble)
-	child_bubble.global_position = global_position
-	child_bubble.is_detached = true
-	(child_bubble as Bubble)._start_routine_attack_wall()  # Child starts its routine
-
-
 func _on_wander_timer_timeout() -> void:
-	if not is_in_routine:
+	if behavior == Behavior.WANDERING and not is_in_routine:
 		velocity = RoutineManager.get_roaming_velocity()
 		_set_wander_time()
 
 
-func _on_detach_test_timer_timeout() -> void:
-	detach()
+func _on_escaping_timer_timeout() -> void:
+	if behavior == Behavior.ESCAPING:
+		behavior = Behavior.WANDERING
+		corpses_seen = 0
 
 
 func _on_face_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -192,12 +200,9 @@ func _on_body_animation_player_animation_finished(anim_name: StringName) -> void
 # COLLIDERS ______________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
 func _on_pop_warning_area_body_entered(body: Node2D) -> void:
-	if body == self or not is_detached:
+	if body == self or behavior == Behavior.ATTACHED:
 		return
-	print("Collisione con " + body.name)
 	if body is Bubble:
 		var other_bubble: Bubble = body as Bubble
 		if assigned_routine == other_bubble.assigned_routine:
 			_handle_bubble_collision(other_bubble)
-	elif body.is_in_group("walls"):
-		_handle_wall_collision()

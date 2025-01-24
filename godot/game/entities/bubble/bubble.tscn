@@ -301,7 +301,6 @@ corpses_limit = 5
 [node name="Scared" type="Node" parent="StateMachine"]
 script = ExtResource("6_8pe0x")
 state_color = Color(0.741176, 0.176471, 0, 1)
-corpses_limit = null
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
@@ -347,12 +346,12 @@ script = ExtResource("12_0e84d")
 
 [node name="Timers" type="Node2D" parent="."]
 
-[node name="FamilyTimer" type="Timer" parent="Timers"]
+[node name="EscapingTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
-wait_time = 10.0
+wait_time = 7.0
 one_shot = true
 
-[node name="WanderTimer" type="Timer" parent="Timers"]
+[node name="WanderingTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 wait_time = 5.0
 
@@ -369,7 +368,7 @@ libraries = {
 autoplay = "Idle_0"
 
 [connection signal="body_entered" from="PopWarningArea" to="." method="_on_pop_warning_area_body_entered"]
-[connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
-[connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="Timers/EscapingTimer" to="." method="_on_escaping_timer_timeout"]
+[connection signal="timeout" from="Timers/WanderingTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
 [connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]

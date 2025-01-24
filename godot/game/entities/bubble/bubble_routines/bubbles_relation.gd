@@ -6,6 +6,9 @@ const APPROCHING_SPEED: float = 200.0      			# Speed to approach the child
 const DEFAULT_MEETING_DISTANCE: float = 200.0      	# Default distance for bubbles to meet
 const DEFAULT_DOING_WAITING_TIME: float = 5.0      	# Default waiting time for the routine
 
+const COLOR_DEBUGGING: bool = false					# Flag to enable color debugging
+
+
 var bubble1: Bubble
 var bubble2: Bubble
 var direction1: Vector2
@@ -23,13 +26,14 @@ var current_state: RelationState = RelationState.APPROCHING: set = _set_relation
 
 func _set_relation_state(value: RelationState) -> void:
 	current_state = value
-	match current_state:
-		BubblesRelation.RelationState.APPROCHING:
-			_set_bubble_color(Color(1.0, 0.0, 0.0))
-		BubblesRelation.RelationState.DOING:
-			_set_bubble_color(Color(0.0, 1.0, 0.0))
-		BubblesRelation.RelationState.DONE:
-			_set_bubble_color(Color(0.0, 0.0, 1.0))
+	if COLOR_DEBUGGING:
+		match current_state:
+			BubblesRelation.RelationState.APPROCHING:
+				_set_bubble_color(Color(1.0, 0.0, 0.0))
+			BubblesRelation.RelationState.DOING:
+				_set_bubble_color(Color(0.0, 1.0, 0.0))
+			BubblesRelation.RelationState.DONE:
+				_set_bubble_color(Color(0.0, 0.0, 1.0))
 
 
 
@@ -46,6 +50,8 @@ func _init(first_bubble: Bubble, second_bubble: Bubble, bubbles_meeting_distance
 
 
 func _process(_delta: float) -> void:
+	if bubble1 == null or bubble2 == null:
+		_end_relation()
 	match current_state:
 		BubblesRelation.RelationState.APPROCHING:
 			if not _are_bubbles_distant(meeting_distance):
@@ -75,6 +81,13 @@ func _start_doing() -> void:
 func _done() -> void:
 	pass
 
+
+func _end_relation() -> void:
+	if bubble1 != null:
+		bubble1.is_in_routine = false
+	if bubble2 != null:
+		bubble2.is_in_routine = false
+	self.queue_free()
 
 
 #_________________________________________________________________________________________________________________________________________

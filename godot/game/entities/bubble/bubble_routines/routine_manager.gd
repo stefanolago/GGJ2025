@@ -8,13 +8,15 @@ const FAMILY_PROCREATING_TIME: float = 5.0      							# Time required to form a
 const AGGREGATION_MEETING_DISTANCE: float = 20.0
 const AGGREGATION_TIME: float = 3.0      									# Time required for the aggregation
 
-const FOUNDATION_MEETING_DISTANCE: float = 300.0
-const FOUNDING_TIME: float = 4.0      										# Time required for found a city
+#const FOUNDATION_MEETING_DISTANCE: float = 300.0
+#const FOUNDING_TIME: float = 4.0      										# Time required for found a city
 
 
 # Configurable variables
 var roaming_speed_min: float = 3.0											# Min speed of the bubble when roaming
 var roaming_speed_max: float = 6.0											# Max speed of the bubble when roaming
+var escaping_speed_min: float = 12.0											# Min speed of the bubble when escaping
+var escaping_speed_max: float = 18.0										# Max speed of the bubble when escaping
 var walking_speed: float = 2.00												# Speed of the bubble when walking
 var families: Array = [] 													# Array to store families
 
@@ -22,10 +24,11 @@ var families: Array = [] 													# Array to store families
 # Bubble routines
 enum BubbleRoutine {
 	NONE,
-	ATTACK_WALL,
+	#ATTACK_WALL,
+	#COMMUNITY_BUILDING,
+	ROAMING,
 	GROUP_UP,
-	FAMILY_BUILDING,
-	COMMUNITY_BUILDING
+	FAMILY_BUILDING
 }
 
 
@@ -35,12 +38,13 @@ enum BubbleRoutine {
 # Returns a random routine
 func get_random_routine() -> BubbleRoutine:
 	#return BubbleRoutine.values()[randi() % BubbleRoutine.size()]
-	return BubbleRoutine.GROUP_UP
-
+	return BubbleRoutine.FAMILY_BUILDING
 
 func get_roaming_velocity() -> Vector2:
 	return _get_random_velocity(randf_range(roaming_speed_min, roaming_speed_max))
 
+func get_escaping_velocity() -> Vector2:
+	return _get_random_velocity(randf_range(escaping_speed_min, escaping_speed_max))
 
 func get_walking_velocity() -> Vector2:
 	return _get_random_velocity(walking_speed)
