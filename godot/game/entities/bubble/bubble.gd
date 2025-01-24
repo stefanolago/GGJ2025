@@ -108,6 +108,7 @@ func release_bubble(weapon: Node2D) -> void:
 func detach() -> void:
 	if not is_detached:
 		is_detached = true
+		z_index = 1
 		velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
 		assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]  # Choose a random routine
 		wander_timer.start()  # Start the wander timer

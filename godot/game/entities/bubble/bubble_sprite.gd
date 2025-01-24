@@ -1,4 +1,4 @@
-extends Node2D
+extends Sprite2D
 
 class_name BubbleSprite
 
@@ -33,8 +33,18 @@ func update_lookat(target_position: Vector2) -> void:
 func set_face_mood(mood: String) -> void:
 	if mood == "previous_mood":
 		mood = last_mood_registered
-		
+
 	if mood != "pressed":
 		last_mood_registered = mood 
 	
 	face_sprite.play(mood)
+
+
+func set_body_status(status: String) -> void:
+	match status:
+		"untouched":
+			(texture as AnimatedTexture).current_frame = 0
+		"pressed":
+			(texture as AnimatedTexture).current_frame = 1
+		"popped":
+			(texture as AnimatedTexture).current_frame = randi_range(2, 3)

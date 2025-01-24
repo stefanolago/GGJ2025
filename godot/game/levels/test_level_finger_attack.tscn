@@ -1,77 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://4en56y3s25ri"]
+[gd_scene load_steps=4 format=3 uid="uid://4en56y3s25ri"]
 
-[ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_0gjrn"]
+[ext_resource type="Script" path="res://game/levels/test_level_finger_attack.gd" id="1_7fwxd"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
-[ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="3_76pau"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6208n"]
-resource_local_to_scene = true
-shader = ExtResource("3_76pau")
-shader_parameter/amplitude = 10.0
-shader_parameter/frequency = 10.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mypp5"]
-resource_local_to_scene = true
-shader = ExtResource("3_76pau")
-shader_parameter/amplitude = 10.0
-shader_parameter/frequency = 10.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_owy64"]
-resource_local_to_scene = true
-shader = ExtResource("3_76pau")
-shader_parameter/amplitude = 10.0
-shader_parameter/frequency = 10.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ko0q8"]
-resource_local_to_scene = true
-shader = ExtResource("3_76pau")
-shader_parameter/amplitude = 10.0
-shader_parameter/frequency = 10.0
+[ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="2_s3iys"]
 
 [node name="TestLevelFingerAttack" type="Node2D"]
+script = ExtResource("1_7fwxd")
 
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
-
-[node name="Bubble2" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_6208n")
-position = Vector2(460, 540)
-
-[node name="Bubble3" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_mypp5")
-position = Vector2(-501, 612)
-
-[node name="Bubble4" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_owy64")
-position = Vector2(-42, 640)
-
-[node name="Bubble5" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_ko0q8")
-position = Vector2(-334, 1123)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-16, 488)
 zoom = Vector2(0.33, 0.33)
 
-[node name="Bubble6" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(231, 980)
-
-[node name="Bubble7" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(-389, 108)
-
-[node name="Bubble8" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(219, 284)
-
-[node name="Bubble9" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(658, 1104)
-
-[node name="Bubble" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(-796, 417)
-
-[node name="Bubble10" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(-265, 832)
-
-[node name="Bubble11" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(-208, -291)
-
-[node name="Bubble12" parent="." instance=ExtResource("1_0gjrn")]
-position = Vector2(66, -39)
+[node name="BubblewrapTilemap" parent="." instance=ExtResource("2_s3iys")]
