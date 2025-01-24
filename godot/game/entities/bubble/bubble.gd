@@ -5,10 +5,13 @@ class_name Bubble
 @export var min_wander_timer: int
 @export var max_wander_timer: int
 
-@onready var sprite: Sprite2D = $BubbleSprite
+@onready var sprite: bubble_sprite = $BubbleSprite
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
+var playing_idle_break: bool = false
+var idle_break_anims: Array = ["Idle_1", "Idle_2", "Idle_3", "Idle_4"]	# Array of animations that can be played
 var is_detached: bool = false										# Indicates if the bubble is stationary
 var pressed: bool = false
 var health: float = 1													# Health of the bubble
@@ -83,7 +86,15 @@ func detach() -> void:
 		assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]  # Choose a random routine
 		wander_timer.start()  # Start the wander timer
 
+func glance(target_position: Vector2) -> void:
+	if not playing_idle_break:
+		anim_player.play("squash")
+		sprite.glance(target_position)
 
+func play_idle_break() -> void:
+	var anim_number: int = randi_range(0 ,4)
+	playing_idle_break = true
+	anim_player.play(idle_break_anims[anim_number])
 
 # ROUTINES _______________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
@@ -165,7 +176,7 @@ func _find_closest_bubble() -> Bubble:
 
 
 
-# TIMERS _________________________________________________________________________________________________________________________________
+# SIGNALS ________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
 
 # Bubble creates a family
@@ -180,3 +191,8 @@ func _on_family_timer_timeout() -> void:
 func _on_wander_timer_timeout() -> void:
 	velocity = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized() * speed
 	_set_wander_time()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name in idle_break_anims:
+		playing_idle_break = false
