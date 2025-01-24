@@ -27,6 +27,3 @@ func reset_lookat() -> void:
 
 func update_lookat(target_position: Vector2) -> void:
 	lookat_position = target_position
-
-func glance(target_position: Vector2) -> void:
-	lookat_position = target_position

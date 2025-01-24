@@ -28,86 +28,6 @@ radius = 115.624
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 764.079
 
-[sub_resource type="Animation" id="Animation_de82r"]
-resource_name = "Idle_1"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.810202, 1.53309, 1.81393, 2.4637, 2.95271, 3.37066, 3.68201, 3.98564, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(57.5397, 31.746), Vector2(57.81, 32.061), Vector2(49.6032, 1.98413), Vector2(49.6032, 1.98413), Vector2(-19.8413, 45.6349), Vector2(-19.8413, 45.6349), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qwgnj"]
-resource_name = "Idle_2"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.40106, 2.66675, 3.68201, 4.3579, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.98413, -31.746), Vector2(-31.746, -37.6984), Vector2(-21.8254, 5.95238), Vector2(-2.03, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pqu6g"]
-resource_name = "Idle_3"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.19124, 2.24711, 3.21499, 3.68201, 3.98564, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-17.8571, 85.3175), Vector2(39.6825, 101.19), Vector2(47.619, 39.6825), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_v0q52"]
-resource_name = "Idle_4"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 4.36667, 6.1, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.96, 1), Vector2(1.08, 1), Vector2(0.93, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_hjwc8"]
-resource_name = "Idle_5"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 4.36667, 6.1, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.935), Vector2(1.08, 1.08), Vector2(0.93, 1), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_rfgki"]
 length = 0.001
 tracks/0/type = "value"
@@ -146,9 +66,105 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BubbleSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wypww"]
+resource_name = "Idle_0"
+length = 4.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(0.63728, 1, 1, 1, 0.965937),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.94), Vector2(1.1, 0.9), Vector2(1.06, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_de82r"]
+resource_name = "Glance_1"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.810202, 1.53309, 1.81393, 2.4637, 2.95271, 3.37066, 3.68201, 3.98564, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(57.5397, 31.746), Vector2(57.81, 32.061), Vector2(49.6032, 1.98413), Vector2(49.6032, 1.98413), Vector2(-19.8413, 45.6349), Vector2(-19.8413, 45.6349), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qwgnj"]
+resource_name = "Glance_2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.40106, 2.66675, 3.68201, 4.3579, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.98413, -31.746), Vector2(-31.746, -37.6984), Vector2(-21.8254, 5.95238), Vector2(-2.03, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pqu6g"]
+resource_name = "Glance_3"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.19124, 2.24711, 3.21499, 3.68201, 3.98564, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-17.8571, 85.3175), Vector2(39.6825, 101.19), Vector2(47.619, 39.6825), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4wwkk"]
+resource_name = "Rotation"
+length = 8.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleSprite:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.122173, 0.122173, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_q1api"]
-resource_name = "squash"
+resource_name = "Squash"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -165,13 +181,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tvy3c"]
 _data = {
-"Idle_1": SubResource("Animation_de82r"),
-"Idle_2": SubResource("Animation_qwgnj"),
-"Idle_3": SubResource("Animation_pqu6g"),
-"Idle_4": SubResource("Animation_v0q52"),
-"Idle_5": SubResource("Animation_hjwc8"),
+"Glance_1": SubResource("Animation_de82r"),
+"Glance_2": SubResource("Animation_qwgnj"),
+"Glance_3": SubResource("Animation_pqu6g"),
+"Idle_0": SubResource("Animation_wypww"),
 "RESET": SubResource("Animation_rfgki"),
-"squash": SubResource("Animation_q1api")
+"Rotation": SubResource("Animation_4wwkk"),
+"Squash": SubResource("Animation_q1api")
 }
 
 [node name="Bubble" type="CharacterBody2D"]
@@ -261,11 +277,19 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tvy3c")
 }
+autoplay = "Idle_0"
+
+[node name="FaceAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvy3c")
+}
+autoplay = "Idle_0"
 
 [connection signal="timeout" from="Timers/FamilyTimer" to="." method="_on_family_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
+[connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]
