@@ -8,6 +8,12 @@ signal nearby_popped
 @export var min_wander_timer: int
 @export var max_wander_timer: int
 
+@export_group("Bubble worry limit")
+@export var happy_limit: int = 2
+@export var less_happy_limit: int = 4
+@export var worried_limit: int = 6
+
+
 @onready var sprite: bubble_sprite = $BubbleSprite
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation

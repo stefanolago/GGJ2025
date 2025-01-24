@@ -1,5 +1,17 @@
 extends BubbleHumorState
 
-func update(_delta: float) -> void:
-	if bubble.corpses_seen > corpses_limit:
+func enter() -> void:
+	super()
+	bubble.nearby_popped.connect(_on_nearby_popped)
+	await get_tree().create_timer(1.0).timeout
+	transition.emit("Calm")
+
+
+func exit() -> void:
+	super()
+	bubble.nearby_popped.disconnect(_on_nearby_popped)
+
+
+func _on_nearby_popped(_position: Vector2) -> void:
+	if bubble.corpses_seen > bubble.less_happy_limit:
 		transition.emit("Worried")

@@ -2,7 +2,7 @@ extends BubbleHumorState
 
 
 func enter() -> void:
-	super.enter()
+	super()
 	bubble.detach()
 
 func update(_delta: float) -> void:

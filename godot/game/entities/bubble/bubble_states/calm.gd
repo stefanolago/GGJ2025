@@ -13,9 +13,9 @@ func exit() -> void:
 
 
 func _on_nearby_popped(_position: Vector2) -> void:
-	if bubble.corpses_seen <= 2.0:
+	if bubble.corpses_seen <= bubble.happy_limit:
 		transition.emit("Happy")
-	elif bubble.corpses_seen <= 4.0:
+	elif bubble.corpses_seen <= bubble.less_happy_limit:
 		transition.emit("LessHappy")
 	else:
 		transition.emit("Worried")
