@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pl4dms2t7ro0"
-path="res://.godot/imported/bolla-rotta-1.png-5a1b65df4b37b368260aa5052023637d.ctex"
+uid="uid://cvwfqnghhkjeo"
+path="res://.godot/imported/hammer_2.png-f792a0b015e39ab9be24562b3b3fc8de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/bubble/bolla-rotta-1.png"
-dest_files=["res://.godot/imported/bolla-rotta-1.png-5a1b65df4b37b368260aa5052023637d.ctex"]
+source_file="res://assets/art/tribunal/hammer_2.png"
+dest_files=["res://.godot/imported/hammer_2.png-f792a0b015e39ab9be24562b3b3fc8de.ctex"]
 
 [params]
 

@@ -114,9 +114,9 @@ func manage_panic() -> void:
 
 
 func glance() -> void:
-	body_anim_player.play("Squash")
 	var random_glance_anim: String = glance_anims.pick_random()
 	face_anim_player.play(random_glance_anim)
+	# body_anim_player.play("Squash")
 
 
 func exit_from_routine() -> void:
