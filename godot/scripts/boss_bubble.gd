@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BossBubble
 
-const max_health: float = 0.2
+const max_health: float = 2.0
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D

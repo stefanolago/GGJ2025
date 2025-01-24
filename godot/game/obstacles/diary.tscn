@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://qdy5o0u0caw1"]
+
+[ext_resource type="Texture2D" uid="uid://q20ranax3bte" path="res://assets/art/table/diary.png" id="1_wmjnd"]
+
+[node name="Diary" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wmjnd")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-7, 1)
+polygon = PackedVector2Array(-278, -618, 446, -489, 257, 590, -431, 469, -475, 376)

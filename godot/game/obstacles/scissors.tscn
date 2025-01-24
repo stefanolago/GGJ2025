@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bksodfrlobk8y"]
+
+[ext_resource type="Texture2D" uid="uid://bimomx60gfnow" path="res://assets/art/table/scissors.png" id="1_n2hdc"]
+
+[node name="Scissors" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n2hdc")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-7, 1)
+polygon = PackedVector2Array(-139, -336, -12, -417, 213, -280, 223, -175, -145, 408, -201, 392, -179, -178)

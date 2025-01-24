@@ -4,6 +4,7 @@ signal player_damage_bossfight
 
 var ending_scene: PackedScene = preload("res://game/levels/ending.tscn")
 var game_over_playing: bool = false
+var all_bubbles: Array = []
 
 var player_health_bossfight: float:
 	set(value):

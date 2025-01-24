@@ -81,6 +81,10 @@ func pop() -> void:
 	GlobalAudio.play_one_shot("bubble_pop")
 	sprite.set_face_mood("dead")
 	process_mode = Node.PROCESS_MODE_DISABLED
+	# remove this bubble from the list of inital bubbles
+	if self in GameStats.all_bubbles:
+		var index_in_list: int = GameStats.all_bubbles.find(self)
+		GameStats.all_bubbles.pop_at(index_in_list)
 
 
 func nearby_bubble_popped(bubble_position: Vector2) -> void:
@@ -103,6 +107,10 @@ func release_bubble(weapon: Node2D) -> void:
 	health = randf_range(min_health, max_health)
 	if weapon is Finger:
 		pressed = false
+	# remove form the list of intial bubbles
+	if self in GameStats.all_bubbles:
+		var index_in_list: int = GameStats.all_bubbles.find(self)
+		GameStats.all_bubbles.pop_at(index_in_list)
 
 
 func manage_panic() -> void:
