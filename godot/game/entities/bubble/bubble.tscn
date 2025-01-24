@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=36 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
@@ -9,18 +9,103 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/worried.gd" id="5_8kdti"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="8_cxdc2"]
-[ext_resource type="Script" path="res://game/entities/bubble/eyes.gd" id="9_6kqpo"]
+[ext_resource type="Script" path="res://game/entities/bubble/bubble_sprite.gd" id="9_6kqpo"]
+[ext_resource type="Texture2D" uid="uid://d3t6oyg37xs24" path="res://assets/art/bubble/bolla-rotta-1.png" id="9_ha83g"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
 [ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="10_00hlv"]
+[ext_resource type="Texture2D" uid="uid://dxbs0pqbp6wb3" path="res://assets/art/bubble/bolla-premuta.png" id="11_1jru2"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/pressed_state.gd" id="13_0pvk2"]
+[ext_resource type="Texture2D" uid="uid://dop65axsyhd48" path="res://assets/art/bubble/faccina-felice.png" id="14_6oneh"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popping_state.gd" id="14_kxy2l"]
+[ext_resource type="Texture2D" uid="uid://bngnb5wt5814t" path="res://assets/art/bubble/faccina-bolla-premuta.png" id="15_pve6u"]
+[ext_resource type="Texture2D" uid="uid://dvw6ix2d0f48f" path="res://assets/art/bubble/faccina-spaventata.png" id="16_w77yh"]
+[ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
+[ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
 shader = ExtResource("1_3omog")
 shader_parameter/amplitude = 20.0
 shader_parameter/frequency = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4ptm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ha83g")
+}],
+"loop": true,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cxdc2")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_1jru2")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgi52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_00hlv")
+}],
+"loop": true,
+"name": &"calm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_6oneh")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_pve6u")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_w77yh")
+}],
+"loop": true,
+"name": &"scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_q3kfc")
+}],
+"loop": true,
+"name": &"super_happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_4iu74")
+}],
+"loop": true,
+"name": &"worried",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
 radius = 115.624
@@ -225,17 +310,19 @@ script = ExtResource("6_8pe0x")
 state_color = Color(0.741176, 0.176471, 0, 1)
 corpses_limit = null
 
-[node name="BubbleSprite" type="Sprite2D" parent="."]
+[node name="BubbleSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
 material = SubResource("ShaderMaterial_m81it")
 scale = Vector2(0.504, 0.504)
-texture = ExtResource("8_cxdc2")
+sprite_frames = SubResource("SpriteFrames_y4ptm")
+animation = &"normal"
 script = ExtResource("9_6kqpo")
 max_pupil_distance = 60.0
 
-[node name="BubbleFaceSprite" type="Sprite2D" parent="BubbleSprite"]
+[node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
-texture = ExtResource("10_00hlv")
+sprite_frames = SubResource("SpriteFrames_hgi52")
+animation = &"calm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")

@@ -14,7 +14,7 @@ signal nearby_popped
 @export var worried_limit: int = 6
 
 
-@onready var sprite: bubble_sprite = $BubbleSprite
+@onready var sprite: BubbleSprite = $BubbleSprite
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
 @onready var body_anim_player: AnimationPlayer = $BodyAnimationPlayer

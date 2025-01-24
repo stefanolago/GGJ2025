@@ -3,6 +3,7 @@ extends BubbleHumorState
 
 func enter() -> void:
 	super()
+	bubble.sprite.set_face_mood("calm")
 	bubble.nearby_popped.connect(_on_nearby_popped)
 
 

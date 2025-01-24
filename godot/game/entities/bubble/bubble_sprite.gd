@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name bubble_sprite
+class_name BubbleSprite
 
 @export var max_pupil_distance: float = 40.0  # Max distance that the pupil can move from the origin
 
@@ -8,6 +8,7 @@ class_name bubble_sprite
 @onready var start_face_position: Vector2 = face_sprite.position
 
 var lookat_position: Vector2
+var last_mood_registered: String = "calm"
 
 func _process(_delta: float) -> void:
 	var target: Vector2 = lookat_position
@@ -27,3 +28,13 @@ func reset_lookat() -> void:
 
 func update_lookat(target_position: Vector2) -> void:
 	lookat_position = target_position
+
+
+func set_face_mood(mood: String) -> void:
+	if mood == "previous_mood":
+		mood = last_mood_registered
+		
+	if mood != "pressed":
+		last_mood_registered = mood 
+	
+	face_sprite.play(mood)

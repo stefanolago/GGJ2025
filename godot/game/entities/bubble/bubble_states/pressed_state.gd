@@ -2,10 +2,12 @@ extends BubbleState
 
 
 func enter() -> void:
+	bubble.sprite.set_face_mood("pressed")
 	(bubble.sprite.material as ShaderMaterial).set_shader_parameter("frequency", 300.0)
 	
 
 func exit() -> void:
+	bubble.sprite.set_face_mood("previous_mood")
 	(bubble.sprite.material as ShaderMaterial).set_shader_parameter("frequency", 0.0)
 
 

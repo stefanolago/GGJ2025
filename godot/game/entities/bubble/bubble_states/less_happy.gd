@@ -2,6 +2,7 @@ extends BubbleHumorState
 
 func enter() -> void:
 	super()
+	bubble.sprite.set_face_mood("happy")
 	bubble.nearby_popped.connect(_on_nearby_popped)
 	await get_tree().create_timer(1.0).timeout
 	transition.emit("Calm")
