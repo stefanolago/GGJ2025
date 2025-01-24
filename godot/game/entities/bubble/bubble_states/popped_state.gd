@@ -2,9 +2,8 @@ extends BubbleState
 
 
 func enter() -> void:
-	print("Popped State enter")
-	bubble.queue_free()
+	bubble.pop()
 
 
 func exit() -> void:
-	print("Popping State exit")
+	pass

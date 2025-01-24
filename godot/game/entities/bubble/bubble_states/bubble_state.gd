@@ -8,11 +8,9 @@ func _ready() -> void:
 	bubble = owner
 
 func enter() -> void:
-	print("%s enter" % self.name)
 	on_enter()
 
 func exit() -> void:
-	print("%s exit" % self.name)
 	on_exit()
 
 func on_enter() -> void:

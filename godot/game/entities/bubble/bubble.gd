@@ -1,7 +1,9 @@
 extends CharacterBody2D
 class_name Bubble
 
-@export var max_health: float = 1.0
+
+@export var max_health: float = 0.5
+@export var min_health: float = 0.1
 @export var min_wander_timer: int
 @export var max_wander_timer: int
 
@@ -9,6 +11,7 @@ class_name Bubble
 @onready var wander_timer: Timer = %WanderTimer						# Timer to handle wandering
 @onready var family_timer: Timer = %FamilyTimer						# Timer to handle family creation
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var pop_warning_area: Area2D = %PopWarningArea
 
 var playing_idle_break: bool = false
 var idle_break_anims: Array = ["Idle_1", "Idle_2", "Idle_3", "Idle_4"]	# Array of animations that can be played
@@ -36,7 +39,7 @@ enum BubbleRoutine {
 #_________________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
 func _ready() -> void:
-	health = max_health
+	health = randf_range(min_health, max_health)
 	_set_wander_time()
 
 
@@ -56,27 +59,36 @@ func _physics_process(_delta: float) -> void:
 
 # PUBLIC METHODS _________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
+func pop() -> void:
+	# pop the bubble and warn the other bubbles nearby that it popped
+	for bubble: Bubble in pop_warning_area.get_overlapping_bodies():
+		if bubble != self:
+			bubble.nearby_bubble_popped(global_position)
+	queue_free()
+
+
 func nearby_bubble_popped(bubble_position: Vector2) -> void:
 	print("Bubble exploded at distance: " + str(global_position.distance_squared_to(bubble_position)))
 	corpses_seen = corpses_seen + 1
 
+
 func change_color(color: Color) -> void:
 	sprite.modulate = color
 
+
 func hit_bubble(weapon: Node2D, damage: float) -> void:
-	print("HIT BY: " + weapon.name + " DAMAGE: " + str(damage))
 	health -= damage
-	print("HEALTH: " + str(health))
 	if weapon is Finger:
 		pressed = true
 
-func release_bubble(weapon: Node2D) -> void:
-	print("RELEASED BY: " + weapon.name)
 
-	health = max_health
+func release_bubble(weapon: Node2D) -> void:
+	
+	health = randf_range(min_health, max_health)
 	
 	if weapon is Finger:
 		pressed = false
+
 
 # Detach function: Makes the bubble mobile and starts its routine
 func detach() -> void:
@@ -86,15 +98,18 @@ func detach() -> void:
 		assigned_routine = BubbleRoutine.values()[randi() % BubbleRoutine.size()]  # Choose a random routine
 		wander_timer.start()  # Start the wander timer
 
+
 func glance(target_position: Vector2) -> void:
 	if not playing_idle_break:
 		anim_player.play("squash")
 		sprite.glance(target_position)
 
+
 func play_idle_break() -> void:
 	var anim_number: int = randi_range(0 ,4)
 	playing_idle_break = true
 	anim_player.play(idle_break_anims[anim_number])
+
 
 # ROUTINES _______________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
