@@ -10,14 +10,14 @@
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/scared.gd" id="6_8pe0x"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="8_cxdc2"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_sprite.gd" id="9_6kqpo"]
-[ext_resource type="Texture2D" uid="uid://d3t6oyg37xs24" path="res://assets/art/bubble/bolla-rotta-1.png" id="9_ha83g"]
+[ext_resource type="Texture2D" uid="uid://pl4dms2t7ro0" path="res://assets/art/bubble/bolla-rotta-1.png" id="9_ha83g"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/untouched_state.gd" id="9_u1hra"]
 [ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="10_00hlv"]
-[ext_resource type="Texture2D" uid="uid://b7wnj2jogvobi" path="res://assets/art/bubble/bolla-rotta-2.png" id="10_8hyo1"]
+[ext_resource type="Texture2D" uid="uid://bli6npdlqm1jk" path="res://assets/art/bubble/bolla-rotta-2.png" id="10_8hyo1"]
 [ext_resource type="Texture2D" uid="uid://dxbs0pqbp6wb3" path="res://assets/art/bubble/bolla-premuta.png" id="11_1jru2"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popped_state.gd" id="12_0e84d"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/pressed_state.gd" id="13_0pvk2"]
-[ext_resource type="Texture2D" uid="uid://8dry40gcj74g" path="res://assets/art/bubble/faccina-morta.png" id="14_5oeb3"]
+[ext_resource type="Texture2D" uid="uid://bpt52hqpx2gi0" path="res://assets/art/bubble/faccina-morta.png" id="14_5oeb3"]
 [ext_resource type="Texture2D" uid="uid://dop65axsyhd48" path="res://assets/art/bubble/faccina-felice.png" id="14_6oneh"]
 [ext_resource type="Script" path="res://game/entities/bubble/bubble_states/popping_state.gd" id="14_kxy2l"]
 [ext_resource type="Texture2D" uid="uid://bngnb5wt5814t" path="res://assets/art/bubble/faccina-bolla-premuta.png" id="15_pve6u"]
@@ -107,72 +107,6 @@ radius = 75.326
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 815.383
-
-[sub_resource type="Animation" id="Animation_de82r"]
-resource_name = "Glance_1"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.810202, 1.53309, 1.81393, 2.4637, 2.95271, 3.37066, 3.68201, 3.98564, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(57.5397, 31.746), Vector2(57.81, 32.061), Vector2(49.6032, 1.98413), Vector2(49.6032, 1.98413), Vector2(-19.8413, 45.6349), Vector2(-19.8413, 45.6349), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qwgnj"]
-resource_name = "Glance_2"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.40106, 2.66675, 3.68201, 4.3579, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.98413, -31.746), Vector2(-31.746, -37.6984), Vector2(-21.8254, 5.95238), Vector2(-2.03, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pqu6g"]
-resource_name = "Glance_3"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.19124, 2.24711, 3.21499, 3.68201, 3.98564, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-17.8571, 85.3175), Vector2(39.6825, 101.19), Vector2(47.619, 39.6825), Vector2(-21.8254, 5.95238), Vector2(0, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_wypww"]
-resource_name = "Idle_0"
-length = 4.0
-loop_mode = 1
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(0.63728, 1, 1, 1, 0.965937),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.94), Vector2(1.1, 0.9), Vector2(1.06, 0.95), Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_de82r"]
 resource_name = "Glance_1"
