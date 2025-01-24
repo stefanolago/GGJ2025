@@ -31,10 +31,11 @@ func _start_doing() -> void:
 
 
 func _done() -> void:
+	if child == null:
+		return
 	bubble1.move_and_collide(family_wandering_velocity)
 	bubble2.move_and_collide(family_wandering_velocity)
-	if child != null:
-		child.move_and_collide(family_wandering_velocity)	
+	child.move_and_collide(family_wandering_velocity)	
 
 
 
