@@ -1,30 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://4en56y3s25ri"]
+[gd_scene load_steps=8 format=3 uid="uid://4en56y3s25ri"]
 
 [ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_0gjrn"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="3_76pau"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_dgho4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxm7e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jgejc"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
 shader_parameter/frequency = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0dcj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_848dw"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
 shader_parameter/frequency = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qetea"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_novea"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
 shader_parameter/frequency = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_su8bt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cifxd"]
 resource_local_to_scene = true
 shader = ExtResource("3_76pau")
 shader_parameter/amplitude = 10.0
@@ -34,28 +32,23 @@ shader_parameter/frequency = 10.0
 
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Finger"]
-position = Vector2(103, 435)
-scale = Vector2(2082, 1262)
-texture = SubResource("CanvasTexture_dgho4")
-
 [node name="Bubble" parent="." instance=ExtResource("1_0gjrn")]
 position = Vector2(-7, 8)
 
 [node name="Bubble2" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_nxm7e")
+material = SubResource("ShaderMaterial_jgejc")
 position = Vector2(460, 540)
 
 [node name="Bubble3" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_h0dcj")
+material = SubResource("ShaderMaterial_848dw")
 position = Vector2(-501, 612)
 
 [node name="Bubble4" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_qetea")
+material = SubResource("ShaderMaterial_novea")
 position = Vector2(-42, 640)
 
 [node name="Bubble5" parent="." instance=ExtResource("1_0gjrn")]
-material = SubResource("ShaderMaterial_su8bt")
+material = SubResource("ShaderMaterial_cifxd")
 position = Vector2(-334, 1123)
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -1,5 +1,7 @@
 extends BubbleHumorState
 
-func update(_delta: float) -> void:
-	if bubble.corpses_seen > corpses_limit:
-		transition.emit("LessHappy")
+
+func enter() -> void:
+	super()
+	await get_tree().create_timer(1.0).timeout
+	transition.emit("Calm")

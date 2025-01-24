@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Bubble
 
+signal nearby_popped
 
 @export var max_health: float = 0.5
 @export var min_health: float = 0.1
@@ -21,6 +22,7 @@ var health: float = 1													# Health of the bubble
 var speed: float = 10.00											# Speed of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
 var corpses_seen: int = 0: set = _set_corpses_seen					# Tracks the number of nearby bubbles that have popped
+
 # Atomic modification of corpses_seen
 func _set_corpses_seen(value: int) -> void:
 	corpses_seen = value
@@ -68,8 +70,8 @@ func pop() -> void:
 
 
 func nearby_bubble_popped(bubble_position: Vector2) -> void:
-	print("Bubble exploded at distance: " + str(global_position.distance_squared_to(bubble_position)))
 	corpses_seen = corpses_seen + 1
+	nearby_popped.emit(bubble_position)
 
 
 func change_color(color: Color) -> void:

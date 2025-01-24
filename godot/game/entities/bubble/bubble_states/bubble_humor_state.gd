@@ -6,5 +6,5 @@ class_name BubbleHumorState
 @export var corpses_limit: int
 
 
-func on_enter() -> void:
+func enter() -> void:
 	bubble.change_color(state_color)

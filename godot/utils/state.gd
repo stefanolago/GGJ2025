@@ -6,10 +6,10 @@ class_name State
 signal transition(new_state_name: StringName)
 
 func enter() -> void:
-	print("%s enter" % self.name)
+	pass
 
 func exit() -> void:
-	print("%s exit" % self.name)
+	pass
 
 func update(_delta: float) -> void:
 	pass

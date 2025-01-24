@@ -207,6 +207,7 @@ corpses_limit = 5
 [node name="Scared" type="Node" parent="StateMachine"]
 script = ExtResource("6_8pe0x")
 state_color = Color(0.741176, 0.176471, 0, 1)
+corpses_limit = null
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
