@@ -89,12 +89,6 @@ func _end_relation() -> void:
 		bubble2.is_in_routine = false
 	self.queue_free()
 
-func _end_relation() -> void:
-	if bubble1 != null:
-		bubble1.is_in_routine = false
-	if bubble2 != null:
-		bubble2.is_in_routine = false
-	self.queue_free()
 
 
 #_________________________________________________________________________________________________________________________________________
