@@ -37,6 +37,8 @@ func set_face_mood(mood: String) -> void:
 	if mood != "pressed":
 		last_mood_registered = mood 
 	
+	if mood == "attack":
+		print("FACE SPRITE PLAY: " + mood)
 	face_sprite.play(mood)
 
 

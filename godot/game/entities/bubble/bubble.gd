@@ -96,6 +96,13 @@ func hit_bubble(weapon: Node2D, damage: float) -> void:
 		pressed = true
 
 
+func attack(damage_reducer_value: float) -> void:
+	show_attack_marker()
+	GameStats.take_damage(level * damage_reducer_value, global_position)
+	print("ATTACK")
+	sprite.set_face_mood("attack")
+	
+
 func squishy_tween() -> void:
 	var tween: Tween = get_tree().create_tween()
 

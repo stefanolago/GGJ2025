@@ -9,7 +9,7 @@ var max_time_before_revolt: float = 4.0
 
 func enter() -> void:
 	super()
-	bubble.sprite.set_face_mood("dead")
+	bubble.sprite.set_face_mood("angry")
 
 	# add a collision layer to the bubble so that it is detected as an unattached bubble
 	bubble.set_collision_with_unattached_bubbles(true)
