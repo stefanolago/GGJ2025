@@ -21,7 +21,7 @@ signal nearby_popped
 @onready var face_anim_player: AnimationPlayer = $FaceAnimationPlayer
 @onready var pop_warning_area: Area2D = %PopWarningArea
 @onready var nearby_unattached_bubble_area: Area2D = %NearbyUnattachedBubbleDetectArea
-@onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
+@onready var attack_marker: AttackMarker = %AttackMarker
 
 
 var playing_idle_break: bool = false
@@ -29,13 +29,14 @@ var glance_anims: Array = ["Glance_1", "Glance_2", "Glance_3"]		# Array of anima
 var pressed: bool = false
 var health: float = 1												# Health of the bubble
 var last_collision: KinematicCollision2D = null						# Last collision with another bubble
-var corpses_seen: int = 0					# Tracks the number of nearby bubbles that have popped
+var corpses_seen: int = 0											# Tracks the number of nearby bubbles that have popped
 var last_corpse_seen_position: Vector2 = Vector2.ZERO
 var level:int = 1
 var is_group_leader: bool = true
 var leaded_bubbles: Array = []
 var group_limit_to_start_revolting: int = 3
 var started_revolting: bool = false
+
 
 #_________________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
@@ -69,6 +70,7 @@ func pop() -> void:
 	if self in GameStats.all_bubbles:
 		var index_in_list: int = GameStats.all_bubbles.find(self)
 		GameStats.all_bubbles.pop_at(index_in_list)
+	attack_marker.queue_free()
 
 
 func nearby_bubble_popped(bubble_position: Vector2) -> void:
@@ -131,7 +133,12 @@ func glance() -> void:
 	# body_anim_player.play("Squash")
 
 
-func is_seeing_player() -> bool: return visible_on_screen_notifier.is_on_screen()
+func is_seeing_player() -> bool:
+	return attack_marker.visible_on_screen_notifier.is_on_screen()
+
+func show_attack_marker() -> void:
+	if attack_marker:
+		attack_marker.show_attack_hint(global_position)
 
 
 func _find_closest_bubble() -> Bubble:
