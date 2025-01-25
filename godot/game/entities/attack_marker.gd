@@ -19,7 +19,7 @@ func _ready() -> void:
 	if camera == null:
 		camera = get_viewport().get_camera_2d()
 	screen_size = get_viewport_rect().size / camera.zoom
-	sprite.modulate.a = initial_alpha
+	#sprite.modulate.a = initial_alpha
 
 
 
@@ -41,7 +41,7 @@ func show_attack_hint(damage_position: Vector2) -> void:
 	# get_parent().remove_child(sprite)
 	# camera.add_child(sprite)
 	sprite.show()
-	_fade_in()
+	#_fade_in()
 
 
 
@@ -76,7 +76,7 @@ func _reset() -> void:
 	# self.add_child(sprite)
 	sprite.reparent(self)
 	sprite.position = Vector2.ZERO
-	tween.stop()
+	#tween.stop()
 	sprite.hide()
 
 # Fade in and out functions
@@ -85,6 +85,9 @@ func _fade_out() -> void: _fade(true, Tween.EASE_IN, Tween.TRANS_QUINT)
 
 # Core fade function
 func _fade(is_fade_out: bool, ease_id: int, trans_id: int) -> void:
+	if not get_tree():
+		return
+
 	tween = get_tree().create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0 if is_fade_out else 1.0, fade_duration).set_ease(ease_id).set_trans(trans_id)
 	tween.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=28 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://c5nn8bljjfrjk" path="res://assets/audio/sfx/bolle preoccupate-001.wav" id="2_ypexp"]
@@ -16,8 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://d1d5o5hp7s8jy" path="res://assets/audio/sfx/Bubble_bite-001-001.wav" id="11_3bqpk"]
 [ext_resource type="AudioStream" uid="uid://bl18gr3uflxg" path="res://assets/audio/music/Bubble_song.wav" id="11_exb2y"]
 [ext_resource type="AudioStream" uid="uid://bwtu5x80cl1sk" path="res://assets/audio/music/Court_.wav" id="11_wurno"]
-[ext_resource type="AudioStream" uid="uid://btmuos8dblokr" path="res://assets/audio/sfx/Judge_hammer-001.wav" id="12_qohva"]
 [ext_resource type="AudioStream" uid="uid://b7krw34xk8q70" path="res://assets/audio/sfx/Bubble_bite-001-002.wav" id="12_7rgjd"]
+[ext_resource type="AudioStream" uid="uid://btmuos8dblokr" path="res://assets/audio/sfx/Judge_hammer-001.wav" id="12_qohva"]
 [ext_resource type="AudioStream" uid="uid://flqcmg6qxyfg" path="res://assets/audio/sfx/Bubble_bite-001-003.wav" id="13_fw7wb"]
 [ext_resource type="AudioStream" uid="uid://bjvcsrcvb8kkh" path="res://assets/audio/sfx/Bubbles_happy-001.wav" id="14_nikxq"]
 [ext_resource type="AudioStream" uid="uid://c865if0o5w081" path="res://assets/audio/sfx/Bubbles_happy-003.wav" id="15_cxugo"]
