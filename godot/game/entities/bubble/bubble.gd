@@ -68,8 +68,8 @@ func pop() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	z_index = -1
 	# create a tween that makes the alpha go from 1.0 to 0.3
-	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.3), 4.0)
+	#var tween: Tween = get_tree().create_tween()
+	#tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.3), 4.0)
 
 	# remove this bubble from the list of inital bubbles
 	if self in GameStats.all_bubbles:

@@ -14,6 +14,7 @@ var move_speed: float = 200.0
 func enter() -> void:
 	super()
 	bubble.velocity = Vector2.ZERO
+	bubble.sprite.max_distance_look_at_mouse = 0
 	bubble.sprite.set_face_mood("angry")
 	attack_timer = RuntimeTimer._init_timer(_get_attack_time(), false, false, _on_attack_timeout)
 	await get_tree().create_timer(START_ATTACKING_TIME).timeout

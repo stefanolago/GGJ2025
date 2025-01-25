@@ -9,12 +9,18 @@ class_name BubbleSprite
 
 var lookat_position: Vector2
 var last_mood_registered: String = "calm"
+var max_distance_look_at_mouse: float = 600000
+
 
 func _process(_delta: float) -> void:
 	var target: Vector2 = lookat_position
 	# Get the mouse position in global space if it's held
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		target= get_global_mouse_position() - self.global_position
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		var distance_squared: float = global_position.distance_squared_to(mouse_pos)
+		if distance_squared <= max_distance_look_at_mouse:
+			target = mouse_pos - self.global_position
+			
 	
 	# Limit the eyes movement within a circle of max_pupil_distance
 	if target.length() > max_pupil_distance:
@@ -37,8 +43,6 @@ func set_face_mood(mood: String) -> void:
 	if mood != "pressed":
 		last_mood_registered = mood 
 	
-	if mood == "attack":
-		print("FACE SPRITE PLAY: " + mood)
 	face_sprite.play(mood)
 
 
