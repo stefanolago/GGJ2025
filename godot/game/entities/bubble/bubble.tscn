@@ -319,7 +319,7 @@ tracks/0/path = NodePath("BubbleSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.106454, 0.196507, 0.253644, 0.3),
+"times": PackedFloat32Array(0, 0.106454, 0.2, 0.253644, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.504, 0.504), Vector2(0.504, 0.45), Vector2(0.504, 0.504), Vector2(0.504, 0.49), Vector2(0.504, 0.504)]

@@ -93,6 +93,17 @@ func hit_bubble(weapon: Node2D, damage: float) -> void:
 		pressed = true
 
 
+func squishy_tween() -> void:
+	var tween: Tween = get_tree().create_tween()
+
+	if randf_range(0.0, 1.0) < 0.5:
+		tween.tween_property(self, "scale", Vector2(1.1, 0.9), 0.1)
+		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+	else:
+		tween.tween_property(self, "scale", Vector2(0.9, 1.1), 0.1)
+		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+
+
 func release_bubble(weapon: Node2D) -> void:
 	
 	health = randf_range(min_health, max_health)
