@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _update_health(health: float, _damage_location: Vector2) -> void:
 	show()
-	print("danno")
 	progress_bar.value = health
 	if camera_anim_player:
 		camera_anim_player.play("camera_shake")

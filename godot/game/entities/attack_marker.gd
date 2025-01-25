@@ -1,74 +1,93 @@
 extends Node2D
+class_name AttackMarker
 
-# References to the marker and the camera
-@export var marker: Node2D
+@export var sprite: Sprite2D
 @export var camera: Camera2D
+@export var alert_margin: Vector2 = Vector2(10, 10)
+@export var fade_duration: float = 1.8				# Time for fade in/out
+@export var initial_alpha: float = 0.0 				# Initial alpha value (1.0 = fully opaque)
+
+@onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
+
+var last_damage_position: Vector2
+var screen_size: Vector2
+var tween: Tween
+
 
 func _ready() -> void:
-	hide()
-	GameStats.player_damage.connect(_on_global_position_emitted)
+	sprite.hide()
+	if camera == null:
+		camera = get_viewport().get_camera_2d()
+	screen_size = get_viewport_rect().size / camera.zoom
+	sprite.modulate.a = initial_alpha
 
 
-func _on_global_position_emitted(_damage: float, damage_position: Vector2) -> void:
-	show()
-	# Get the visible rectangle of the camera
-	var camera_rect: Rect2 = get_camera_viewport_rect()
 
-	# Check if the position is inside the visible rectangle
-	if camera_rect.has_point(damage_position):
-		marker.visible = false                                                                                              # Hide the marker if the position is visible
-	else:
-		# Calculate the intersection point and position the marker
-		var marker_position: Vector2 = _get_marker_position(damage_position, camera_rect)
-		marker.global_position = marker_position
-		marker.visible = true
+func _physics_process(_delta: float) -> void:
+	if not sprite.visible:
+		return
+	if visible_on_screen_notifier.is_on_screen():
+		_reset()
+		return
+	_set_marker(last_damage_position)
 
 
-func _get_marker_position(target_position: Vector2, camera_rect: Rect2) -> Vector2:
-	# Get the center of the camera (in global coordinates)
-	var camera_center: Vector2 = camera.global_position
+func show_attack_hint(damage_position: Vector2) -> void:
+	if visible_on_screen_notifier.is_on_screen():
+		sprite.hide()
+		return
+	last_damage_position = damage_position
+	get_parent().remove_child(sprite)
+	camera.add_child(sprite)
+	sprite.show()
+	_fade_in()
 
-	# Calculate the limits of the visible rectangle (in global coordinates)
-	var top_left: Vector2 = camera_rect.position
-	var bottom_right: Vector2 = camera_rect.position + camera_rect.size
 
-	# Calculate the direction from the camera center to the target position
-	var direction: Vector2 = (target_position - camera_center).normalized()
 
-	# Find the intersection point with each side of the rectangle
-	var intersections: Array[Vector2] = [
-		_get_line_intersection(camera_center, direction, top_left, Vector2(bottom_right.x, top_left.y)),                    # Top
-		_get_line_intersection(camera_center, direction, Vector2(bottom_right.x, top_left.y), bottom_right),                # Right
-		_get_line_intersection(camera_center, direction, Vector2(top_left.x, bottom_right.y), bottom_right),                # Bottom
-		_get_line_intersection(camera_center, direction, top_left, Vector2(top_left.x, bottom_right.y))                     # Left
+func _set_marker(damage_position: Vector2) -> void:
+	var screen_center: Vector2 = camera.global_position
+
+	# Calculate the position of the screen edges with a margin
+	var half_size: Vector2 = screen_size / 2 - alert_margin
+	var min_x: float = screen_center.x - half_size.x
+	var max_x: float = screen_center.x + half_size.x
+	var min_y: float = screen_center.y - half_size.y
+	var max_y: float = screen_center.y + half_size.y
+
+	# Define the four screen edges as segments
+	var edges: Array = [
+		[Vector2(min_x, min_y), Vector2(max_x, min_y)],  # Top edge
+		[Vector2(min_x, min_y), Vector2(min_x, max_y)],  # Left edge
+		[Vector2(max_x, min_y), Vector2(max_x, max_y)],  # Right edge
+		[Vector2(min_x, max_y), Vector2(max_x, max_y)]   # Bottom edge
 	]
 
-	# Return the first valid intersection point
-	for intersection: Vector2 in intersections:
-		if intersection != null:
-			return intersection
-	return camera_center  # Fallback to camera center if no intersection is found
+	# Check intersections with the screen edges
+	for edge: Array in edges:
+		var intersection = Geometry2D.segment_intersects_segment(screen_center, damage_position, edge[0], edge[1])
+		if intersection:
+			sprite.global_position = intersection
+			return  # Exit early once the intersection is found
 
 
-func _get_line_intersection(origin: Vector2, direction: Vector2, line_start: Vector2, line_end: Vector2) -> Vector2:
-	# Calculate the intersection between a ray and a line segment
-	var line_dir: Vector2 = line_end - line_start
-	var det: float = direction.x * line_dir.y - direction.y * line_dir.x
-	if abs(det) < 0.0001:
-		return origin  # Lines are parallel, return the ray origin as fallback
+func _reset() -> void:
+	camera.get_parent().remove_child(sprite)
+	self.add_child(sprite)
+	sprite.position = Vector2.ZERO
+	tween.stop()
+	sprite.hide()
 
-	var t: float = ((line_start.x - origin.x) * line_dir.y - (line_start.y - origin.y) * line_dir.x) / det
-	var u: float = ((line_start.x - origin.x) * direction.y - (line_start.y - origin.y) * direction.x) / det
+# Fade in and out functions
+func _fade_in() -> void: _fade(false, Tween.EASE_OUT, Tween.TRANS_QUINT)
+func _fade_out() -> void: _fade(true, Tween.EASE_IN, Tween.TRANS_QUINT)
 
-	if t >= 0 and u >= 0 and u <= 1:
-		return origin + direction * t  # Intersection point
-
-	# If no valid intersection, return the ray origin as fallback
-	return origin
-
-
-
-func get_camera_viewport_rect() -> Rect2:
-	var pos: Vector2 = camera.global_position
-	var half_size: Vector2 = camera.get_viewport_rect().size * 0.5
-	return Rect2(pos - half_size, pos + half_size)
+# Core fade function
+func _fade(is_fade_out: bool, ease_id: int, trans_id: int) -> void:
+	tween = get_tree().create_tween()
+	tween.tween_property(sprite, "modulate:a", 0.0 if is_fade_out else 1.0, fade_duration).set_ease(ease_id).set_trans(trans_id)
+	tween.play()
+	await tween.finished
+	if is_fade_out:
+		hide()
+	else:
+		_fade_out()
