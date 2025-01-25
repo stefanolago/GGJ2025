@@ -38,11 +38,13 @@ func _ready() -> void:
 	health = max_health
 	path_follow.progress = 0
 	attack_timer.wait_time = attack_cooldown
+	GameStats.game_phase = GameStats.GamePhase.BOSS_FIGHT
+	GameStats.player_killed_bossfight.connect(_player_second_phase)
 	Dialogic.timeline_ended.connect(_dialogue_ended)
 	Dialogic.signal_event.connect(_hammer_hit)
 	GlobalAudio.fade_in("court_music", 0.1)
-	# Dialogic.start("bossfight")
-	_start_bossfight()   # DEBUG
+	Dialogic.start("bossfight")
+	#_start_bossfight()   # DEBUG
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -81,11 +83,18 @@ func _check_health() -> void:
 	elif health_percentage <= 60:
 		speed = 300
 		bomb_attack_timer = 0.4
+		attack_cooldown = 1
 		return
 	elif health_percentage <= 80:
 		speed = 200
 		bomb_attack_timer = 0.6
+		attack_cooldown = 2
 
+func _player_second_phase() -> void:
+	print("PLAYER SECOND PHASE")
+	finger_weapon.active = false
+	machinegun_weapon.active = true
+	
 ### DIALOGUE STUFF ###
 func _dialogue_ended() -> void:
 	await get_tree().create_timer(1).timeout

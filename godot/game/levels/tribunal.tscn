@@ -71,5 +71,7 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MachineGunBossfight" parent="." instance=ExtResource("5_rwbgs")]
+hit_cooldown = 0.06
+hit_damage = 0.1
 
 [node name="BossfightFinger" parent="." instance=ExtResource("6_oy07i")]

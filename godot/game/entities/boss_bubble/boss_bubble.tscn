@@ -507,7 +507,6 @@ autoplay = "default"
 frame_progress = 0.476749
 
 [node name="TribunalDesk" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.612037, 0.612037)
 texture = ExtResource("7_fuxa4")
 

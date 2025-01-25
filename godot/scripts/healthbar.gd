@@ -8,7 +8,10 @@ func _ready() -> void:
 	hide()
 	progress_bar.max_value = GameStats.HEALT
 	GameStats.player_damage.connect(_update_health)
+	GameStats.player_killed_bossfight.connect(_hide_healthbar)
 
+func _hide_healthbar() -> void:
+	hide()
 
 func _update_health(health: float, _damage_location: Vector2) -> void:
 	show()
