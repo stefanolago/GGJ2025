@@ -25,7 +25,6 @@ GameStats="*res://autoloads/game_stats.gd"
 GlobalAudio="*res://autoloads/global_audio.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PreloadedMaterials="*res://autoloads/preloaded_materials.gd"
-RoutineManager="*res://game/entities/bubble/bubble_routines/routine_manager.gd"
 
 [debug]
 
@@ -114,6 +113,10 @@ settings/fmod_debug_flags=7
 settings/banks_flags=0
 settings/fmod_output_type=0
 settings/fmod_debug_mode=1
+
+[global_group]
+
+group_up_zones=""
 
 [gui]
 
@@ -250,6 +253,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_3="BubbleDetect"
 2d_physics/layer_4="WeaponHit"
 2d_physics/layer_5="DeadBubble"
+2d_physics/layer_6="UnattachedBubbleBody"
 
 [rendering]
 
