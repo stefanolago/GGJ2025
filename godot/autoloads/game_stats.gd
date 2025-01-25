@@ -35,14 +35,14 @@ func take_damage(damage: float, damage_location: Vector2) -> void:
 	match game_phase:
 		GamePhase.PHASE_ONE:
 			player_health_phase_one -= damage
-			_healt_changed(player_health_phase_one, damage_location, _end_phase_one)
+			_health_changed(player_health_phase_one, damage_location, _end_phase_one)
 
 		GamePhase.BOSS_FIGHT:
 			player_health_bossfight -= damage
-			_healt_changed(player_health_bossfight, damage_location, _game_over)
+			_health_changed(player_health_bossfight, damage_location, _game_over)
 
 
-func _healt_changed(healt: float, damage_location: Vector2, death_callable: Callable) -> void: 
+func _health_changed(healt: float, damage_location: Vector2, death_callable: Callable) -> void: 
 	player_damage.emit(healt, damage_location)
 	if healt <= 0:
 		death_callable.call()

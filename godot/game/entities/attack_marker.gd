@@ -37,8 +37,9 @@ func show_attack_hint(damage_position: Vector2) -> void:
 		sprite.hide()
 		return
 	last_damage_position = damage_position
-	get_parent().remove_child(sprite)
-	camera.add_child(sprite)
+	sprite.reparent(camera)
+	# get_parent().remove_child(sprite)
+	# camera.add_child(sprite)
 	sprite.show()
 	_fade_in()
 
@@ -71,8 +72,9 @@ func _set_marker(damage_position: Vector2) -> void:
 
 
 func _reset() -> void:
-	camera.get_parent().remove_child(sprite)
-	self.add_child(sprite)
+	# camera.get_parent().remove_child(sprite)
+	# self.add_child(sprite)
+	sprite.reparent(self)
 	sprite.position = Vector2.ZERO
 	tween.stop()
 	sprite.hide()
