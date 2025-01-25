@@ -15,10 +15,15 @@ zoom = Vector2(0.33, 0.33)
 script = ExtResource("3_6y3wj")
 
 [node name="Healthbar" parent="Camera2D" instance=ExtResource("4_gaccn")]
-offset_left = 24.0
-offset_top = 471.0
-offset_right = 24.0
-offset_bottom = 471.0
+z_index = 1000
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_top = 850.0
+offset_bottom = 850.0
+grow_vertical = 0
+scale = Vector2(2, 2)
 
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 

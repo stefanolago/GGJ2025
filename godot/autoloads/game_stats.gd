@@ -1,16 +1,22 @@
 extends Node
 
-signal player_damage_bossfight
-signal player_damage_phase_one
+const HEALT: float = 10.0
+
+
+signal player_damage(health: float, damage_location: Vector2)
 
 var ending_scene: PackedScene = preload("res://game/levels/ending.tscn")
 var game_over_playing: bool = false
 var all_bubbles: Array = []
 
-var player_health_bossfight: float:
-	set(value):
-		player_health_bossfight = value
-		player_damage_bossfight.emit()
+enum GamePhase{
+	PHASE_ONE,
+	BOSS_FIGHT
+}
+
+var game_phase: GamePhase
+var player_health_phase_one: float
+var player_health_bossfight: float
 
 
 ## usare GameSettings.difficulty_mult come multiplicatore della difficolta, default 1
@@ -22,29 +28,44 @@ var player_health_bossfight: float:
 ## or
 # if GameSettings.difficulty_setting = "Hard":
 #     boss_health = 75
+func take_damage(damage: float, damage_location: Vector2) -> void:
+	match game_phase:
+		GamePhase.PHASE_ONE:
+			player_health_phase_one -= damage
+			_healt_changed(player_health_phase_one, damage_location, _end_phase_one)
 
-func take_damage_phase_one(damage: float, bubble: Bubble) -> void:
-	player_damage_phase_one.emit()
+		GamePhase.BOSS_FIGHT:
+			player_health_bossfight -= damage
+			_healt_changed(player_health_bossfight, damage_location, _game_over)
 
 
-func take_damage_bossfight(damage: float) -> void:
-	player_health_bossfight -= damage
-	if player_health_bossfight <= 0:
-		_game_over()
+func _healt_changed(healt: float, damage_location: Vector2, death_callable: Callable) -> void: 
+	player_damage.emit(healt, damage_location)
+	if healt <= 0:
+		death_callable.call()
+
 
 func _ready() -> void:
 	reset_stats()
+
+func _end_phase_one() -> void:
+	game_phase = GamePhase.BOSS_FIGHT
+	#TODO
 
 func _game_over() -> void:
 	if not game_over_playing:
 		game_over_playing = true
 		TransitionLayer.change_scene(ending_scene)
 
-# settare qui i valori iniziali
-func reset_stats() -> void:
-	player_health_bossfight = 10
 
-# save the game settings into a config file, saved locally
+# Set here all the game stats
+func reset_stats() -> void:
+	game_phase = GamePhase.PHASE_ONE
+	player_health_phase_one = HEALT
+	player_health_bossfight = HEALT
+
+
+# Save the game settings into a config file, saved locally
 func save_stats() -> void:
 	print ("SAVING STATS")
 	var stats:ConfigFile = ConfigFile.new()
@@ -54,7 +75,7 @@ func save_stats() -> void:
 	stats.save("user://stats_data.cfg")
 
 
-# load the game stats from the local config file
+# Load the game stats from the local config file
 func load_stats() -> void:
 	print ("LOADING SETTINGS")
 	var stats:ConfigFile = ConfigFile.new()

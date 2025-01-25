@@ -452,5 +452,9 @@ libraries = {
 }
 autoplay = "Idle_0"
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true
+rect = Rect2(-100, -100, 200, 200)
+
 [connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
 [connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]

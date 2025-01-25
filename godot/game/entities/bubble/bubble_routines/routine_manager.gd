@@ -6,7 +6,7 @@ const FAMILY_MEETING_DISTANCE: float = 250.0
 const FAMILY_PROCREATING_TIME: float = 5.0      							# Time required to form a child
 
 const AGGREGATION_MEETING_DISTANCE: float = 20.0
-const AGGREGATION_TIME: float = 3.0      									# Time required for the aggregation
+const AGGREGATION_TIME: float = 1.5      									# Time required for the aggregation
 
 #const FOUNDATION_MEETING_DISTANCE: float = 300.0
 #const FOUNDING_TIME: float = 4.0      										# Time required for found a city

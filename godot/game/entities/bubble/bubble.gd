@@ -21,6 +21,7 @@ signal nearby_popped
 @onready var face_anim_player: AnimationPlayer = $FaceAnimationPlayer
 @onready var pop_warning_area: Area2D = %PopWarningArea
 @onready var nearby_unattached_bubble_area: Area2D = %NearbyUnattachedBubbleDetectArea
+@onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
 
 var playing_idle_break: bool = false
@@ -128,7 +129,10 @@ func glance() -> void:
 	var random_glance_anim: String = glance_anims.pick_random()
 	face_anim_player.play(random_glance_anim)
 	# body_anim_player.play("Squash")
-			
+
+
+func is_seeing_player() -> bool: return visible_on_screen_notifier.is_on_screen()
+
 
 func _find_closest_bubble() -> Bubble:
 	var closest_bubble: Bubble = null
