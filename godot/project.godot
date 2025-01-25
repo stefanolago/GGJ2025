@@ -11,10 +11,9 @@ config_version=5
 [application]
 
 config/name="GGJ 2025 - Bubbles"
-run/main_scene="res://menu_and_options/_start/start_screen.tscn"
+run/main_scene="res://menu_and_options/_start/start_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-boot_splash/image="res://assets/art/splash/GWJ-Full-Logo-tag-Orange2.png"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -26,8 +25,6 @@ GameStats="*res://autoloads/game_stats.gd"
 GlobalAudio="*res://autoloads/global_audio.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PreloadedMaterials="*res://autoloads/preloaded_materials.gd"
-DefaultCamera2d="*res://autoloads/default_camera_2D.gd"
-RoutineManager="*res://game/entities/bubble/bubble_routines/routine_manager.gd"
 
 [debug]
 
@@ -41,7 +38,11 @@ gdscript/warnings/unsafe_call_argument=1
 [dialogic]
 
 directories/dch_directory={}
-directories/dtl_directory={}
+directories/dtl_directory={
+"boss_dialogue_1": "res://dialogic/boss_dialogue_1.dtl",
+"bossfight": "res://dialogic/bossfight.dtl",
+"ending": "res://dialogic/ending.dtl"
+}
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -63,8 +64,8 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={}
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://dialogic/style.tres"]
+layout/default_style="res://dialogic/style.tres"
 glossary/default_case_sensitive=true
 
 [display]
@@ -112,6 +113,10 @@ settings/fmod_debug_flags=7
 settings/banks_flags=0
 settings/fmod_output_type=0
 settings/fmod_debug_mode=1
+
+[global_group]
+
+group_up_zones=""
 
 [gui]
 
@@ -237,6 +242,10 @@ fire={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="BubbleBody"
@@ -244,7 +253,10 @@ fire={
 2d_physics/layer_3="BubbleDetect"
 2d_physics/layer_4="WeaponHit"
 2d_physics/layer_5="DeadBubble"
+2d_physics/layer_6="UnattachedBubbleBody"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

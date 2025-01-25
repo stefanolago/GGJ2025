@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6hjfdnh1tu2a"]
+
+[ext_resource type="Texture2D" uid="uid://3ryos0dpw2c4" path="res://assets/art/table/plant.png" id="1_8v1uq"]
+
+[node name="Plant" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8v1uq")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-7, 1)
+polygon = PackedVector2Array(-191, -172, -29, -232, 140, -114, 242, 44, 236, 145, 158, 213, -37, 223, -222, 148, -267, 2)

@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://0ffl710v77pg"]
+
+[ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_extf4"]
+[ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_xwdry"]
+[ext_resource type="Texture2D" uid="uid://dvlx3vyo5m1uh" path="res://assets/art/table/table_background.png" id="3_w4f6e"]
+[ext_resource type="PackedScene" uid="uid://d38s6r87kokgl" path="res://game/obstacles/coffee_cup.tscn" id="4_f0071"]
+[ext_resource type="PackedScene" uid="uid://qdy5o0u0caw1" path="res://game/obstacles/diary.tscn" id="5_omhy1"]
+[ext_resource type="PackedScene" uid="uid://b7o1trqijni0o" path="res://game/obstacles/glasses.tscn" id="6_x7tn8"]
+[ext_resource type="PackedScene" uid="uid://bs7se5dslg4fp" path="res://game/obstacles/keyboard.tscn" id="7_sr0ob"]
+[ext_resource type="PackedScene" uid="uid://bu8vt3opmsewu" path="res://game/obstacles/meter.tscn" id="8_edggi"]
+[ext_resource type="PackedScene" uid="uid://b6hjfdnh1tu2a" path="res://game/obstacles/plant.tscn" id="9_l15nv"]
+[ext_resource type="PackedScene" uid="uid://bksodfrlobk8y" path="res://game/obstacles/scissors.tscn" id="10_q8gxe"]
+[ext_resource type="PackedScene" uid="uid://cvlotfft4nhve" path="res://game/obstacles/tape.tscn" id="11_phc6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohqqf"]
+size = Vector2(13840, 722)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b17o"]
+size = Vector2(6963, 722)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr62j"]
+size = Vector2(7048, 722)
+
+[node name="DeskLevel" type="Node2D"]
+
+[node name="BubblewrapTilemap" parent="." instance=ExtResource("1_extf4")]
+
+[node name="Finger" parent="." instance=ExtResource("2_xwdry")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.1, 0.1)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(6.52042, 6.52042)
+texture = ExtResource("3_w4f6e")
+
+[node name="CoffeeCup" parent="." instance=ExtResource("4_f0071")]
+position = Vector2(4193, -1775)
+
+[node name="Diary" parent="." instance=ExtResource("5_omhy1")]
+position = Vector2(-5112, 1631)
+
+[node name="Glasses" parent="." instance=ExtResource("6_x7tn8")]
+position = Vector2(5223, 2297)
+
+[node name="Keyboard" parent="." instance=ExtResource("7_sr0ob")]
+position = Vector2(2239, 2220)
+rotation = 0.111019
+
+[node name="Meter" parent="." instance=ExtResource("8_edggi")]
+position = Vector2(-3674, -776)
+
+[node name="Meter2" parent="." instance=ExtResource("8_edggi")]
+position = Vector2(5197, -122)
+rotation = -2.13589
+
+[node name="Plant" parent="." instance=ExtResource("9_l15nv")]
+position = Vector2(-5489, -2055)
+
+[node name="Scissors" parent="." instance=ExtResource("10_q8gxe")]
+position = Vector2(-6022, -400)
+
+[node name="Tape" parent="." instance=ExtResource("11_phc6v")]
+position = Vector2(442, -2212)
+
+[node name="Plant2" parent="." instance=ExtResource("9_l15nv")]
+position = Vector2(-1962, 2090)
+
+[node name="Wall_1" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_1"]
+position = Vector2(-67, 3149)
+shape = SubResource("RectangleShape2D_ohqqf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall_1"]
+position = Vector2(-67, -3151)
+shape = SubResource("RectangleShape2D_ohqqf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wall_1"]
+position = Vector2(-7037, 49.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_4b17o")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Wall_1"]
+position = Vector2(7041, 28)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_nr62j")
+
+[node name="GroupUpZones" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(-1778, 1321)
+
+[node name="Marker2D2" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(1867, -1473)
+
+[node name="Marker2D3" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(2019, 1295)
+
+[node name="Marker2D4" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(-1638, -1384)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=12 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
-[ext_resource type="AudioStream" uid="uid://bxvstvsary0fk" path="res://assets/audio/music/cat music.wav" id="2_xdjur"]
 [ext_resource type="AudioStream" uid="uid://1brkdt5xfiha" path="res://assets/audio/sfx/Bubble_pop-001.wav" id="3_p5y7u"]
 [ext_resource type="AudioStream" uid="uid://b33b6rme60w6a" path="res://assets/audio/sfx/Bubble_pop-002.wav" id="4_6j807"]
 [ext_resource type="AudioStream" uid="uid://datby6y1x4csk" path="res://assets/audio/sfx/Bubble_pop-003.wav" id="5_05ymw"]
@@ -28,7 +27,7 @@ process_mode = 3
 script = ExtResource("1_mbenn")
 
 [node name="music_menu_main" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_xdjur")
+stream = ExtResource("11_exb2y")
 volume_db = -10.0
 bus = &"Music"
 

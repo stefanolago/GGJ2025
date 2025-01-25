@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://borkwi8sak2ay"]
+[gd_scene load_steps=4 format=3 uid="uid://borkwi8sak2ay"]
 
-[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_be34r"]
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_tlpsv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ih37f"]
@@ -11,10 +10,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-576, -325, 575, -325, 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8mpm"]
 radius = 40.05
 
-[node name="Level1" type="CanvasLayer" node_paths=PackedStringArray("tile_map")]
+[node name="Level1" type="CanvasLayer"]
 follow_viewport_enabled = true
-script = ExtResource("1_be34r")
-tile_map = NodePath("BubblewrapTilemap")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

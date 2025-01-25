@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs7se5dslg4fp"]
+
+[ext_resource type="Texture2D" uid="uid://dxik6ckcj5du7" path="res://assets/art/table/keyboard.png" id="1_543j4"]
+
+[node name="Keyboard" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_543j4")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-7, 1)
+polygon = PackedVector2Array(-617, -308, 658, -313, 660, 290, -610, 295)

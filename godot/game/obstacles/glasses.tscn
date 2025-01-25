@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7o1trqijni0o"]
+
+[ext_resource type="Texture2D" uid="uid://c4xsonvv7ncf4" path="res://assets/art/table/glasses.png" id="1_cqntq"]
+
+[node name="Glasses" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cqntq")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-7, 1)
+polygon = PackedVector2Array(-462, -35, -374, -188, 457, -64, 499, 110, 283, 205, -274, 121)
