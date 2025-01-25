@@ -4,13 +4,14 @@ signal player_damage_bossfight
 signal player_damage_phase_one
 signal boss_killed
 signal player_damage(health: float, damage_location: Vector2)
+signal player_killed_bossfight
 
 const HEALT: float = 10.0
 
-var game_over_scene: PackedScene = preload("res://game/levels/ending_gameover.tscn")
-var game_over_playing: bool = false
+var player_revived_bossfight: bool = false
 var all_bubbles: Array = []
 var bubbles_popped: int = 0
+var boss_instance: BossBubble
 
 enum GamePhase{
 	PHASE_ONE,
@@ -38,8 +39,9 @@ func take_damage(damage: float, damage_location: Vector2) -> void:
 			_health_changed(player_health_phase_one, damage_location, _end_phase_one)
 
 		GamePhase.BOSS_FIGHT:
-			player_health_bossfight -= damage
-			_health_changed(player_health_bossfight, damage_location, _game_over)
+			if not player_revived_bossfight:
+				player_health_bossfight -= damage
+				_health_changed(player_health_bossfight, damage_location, _game_over_bossfight)
 
 
 func _health_changed(healt: float, damage_location: Vector2, death_callable: Callable) -> void: 
@@ -55,11 +57,11 @@ func _end_phase_one() -> void:
 	game_phase = GamePhase.BOSS_FIGHT
 	#TODO
 
-func _game_over() -> void:
-	if not game_over_playing:
-		game_over_playing = true
-		TransitionLayer.change_scene(game_over_scene)
-
+func _game_over_bossfight() -> void:
+	if not player_revived_bossfight:
+		player_revived_bossfight = true
+		player_health_bossfight = HEALT
+		player_killed_bossfight.emit()
 
 # Set here all the game stats
 func reset_stats() -> void:
