@@ -289,7 +289,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_4wwkk"]
@@ -325,7 +325,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.13, 0.26, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 0.99), Vector2(0.99, 1.1), Vector2(1, 1)]
+"values": [Vector2(0.5, 0.5), Vector2(0.52, 0.48), Vector2(0.48, 0.52), Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tvy3c"]
@@ -399,6 +399,7 @@ script = ExtResource("14_2j2oh")
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
 material = SubResource("ShaderMaterial_m81it")
+scale = Vector2(0.5, 0.5)
 texture = SubResource("AnimatedTexture_iw68p")
 script = ExtResource("9_6kqpo")
 max_pupil_distance = 60.0
