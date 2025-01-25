@@ -27,7 +27,7 @@ var state: MenuState = MenuState.MAIN_VISIBLE:
 				enable_options_screen(false)
 				enable_credits_screen(true)
 
-@onready var play_button: Button = $Control/Buttons/PlayButton
+@onready var play_button: Button = %PlayButton
 @onready var options_menu: OptionsMenu = $Control/OptionsMenu
 @onready var credits_screen: Credits = $Control/Credits
 @onready var quit_button: Button = $Control/Buttons/QuitButton
@@ -72,7 +72,7 @@ func _on_credits_button_pressed() -> void:
 
 
 func _on_credits_back_button_pressed() -> void:
-	GlobalAudio.play_one_shot("sfx_UI_button_back")
+	# GlobalAudio.play_one_shot("sfx_UI_button_back")
 	state = MenuState.MAIN_VISIBLE
 
 

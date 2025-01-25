@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://b8i4dav4givqf"]
+[gd_scene load_steps=16 format=4 uid="uid://b8i4dav4givqf"]
 
 [ext_resource type="Script" path="res://menu_and_options/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://menu_and_options/_options_menu/options_menu.tscn" id="1_q0fgv"]
+[ext_resource type="PackedScene" uid="uid://4en56y3s25ri" path="res://game/levels/test_level_finger_attack.tscn" id="2_b5dp8"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://menu_and_options/_credits/credits.tscn" id="3_drggk"]
 [ext_resource type="Script" path="res://menu_and_options/_utils/button_with_sound.gd" id="3_o8bey"]
 [ext_resource type="Texture2D" uid="uid://dvxsqq82jiq28" path="res://assets/placeholders/flatLight29.png" id="4_bje8e"]
@@ -9,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://d2a4brukyo0ml" path="res://assets/placeholders/bubble_placeholder.png" id="6_egls3"]
 [ext_resource type="Texture2D" uid="uid://c65v678xn074s" path="res://assets/placeholders/flatLight33.png" id="6_pwbps"]
 [ext_resource type="Texture2D" uid="uid://bt6bmv0xk7rub" path="res://assets/art/splash/controller_icon.png" id="6_r4t5b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bbia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1aee2"]
 texture = ExtResource("6_egls3")
@@ -30,6 +33,7 @@ sources/0 = SubResource("TileSetAtlasSource_fuesb")
 
 [node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
+start_game_scene = ExtResource("2_b5dp8")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -47,6 +51,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.597056, 0.749569, 0.979078, 1)
+
+[node name="PlayButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 306.0
+offset_top = 340.0
+offset_right = 860.0
+offset_bottom = 511.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8bbia")
+flat = true
+script = ExtResource("3_o8bey")
 
 [node name="Controller" type="TextureRect" parent="Control"]
 visible = false
@@ -88,12 +103,6 @@ theme_override_constants/separation = 15
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="Control/Buttons"]
-visible = false
-layout_mode = 2
-text = "Play"
-script = ExtResource("3_o8bey")
-
 [node name="OptionsButton" type="Button" parent="Control/Buttons"]
 layout_mode = 2
 icon = ExtResource("4_bje8e")
@@ -134,7 +143,7 @@ scale = Vector2(0.0571842, 0.0571842)
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AAAAAAAAAAACAPv/AAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAAJAP//AAAAAAAAAAAJAPz/AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAAMAPv/AAAAAAAAAAAMAPz/AAAAAAAAAAAMAP3/AAAAAAAAAAAMAP7/AAAAAAAAAAAMAP//AAAAAAAAAAAKAP7/AAAAAAAAAAALAP7/AAAAAAAAAAAOAPv/AAAAAAAAAAAOAPz/AAAAAAAAAAARAPv/AAAAAAAAAAARAPz/AAAAAAAAAAAPAP3/AAAAAAAAAAAQAP3/AAAAAAAAAAARAP3/AAAAAAAAAAARAP7/AAAAAAAAAAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_xbypp")
 
-[connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
