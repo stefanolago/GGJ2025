@@ -79,7 +79,7 @@ func _grow_child() -> void:
 	# Assign a new routine to the child and detach it from the family
 	if child == null:
 		return
-	child.assigned_routine = RoutineManager.get_random_routine()
+	#child.assigned_routine = RoutineManager.get_random_routine()
 	child.is_in_routine = false
 	child.scale = Vector2(1, 1)
 	child = null
@@ -95,7 +95,7 @@ func _on_family_wandering_timeout() -> void:
 
 
 func _set_family_velocity() -> void:
-	family_wandering_velocity = RoutineManager.get_walking_velocity()
+	#family_wandering_velocity = RoutineManager.get_walking_velocity()
 	bubble1.velocity = family_wandering_velocity
 	bubble2.velocity = family_wandering_velocity
 	if child != null:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3340t836yuev"]
+[gd_scene load_steps=15 format=3 uid="uid://0ffl710v77pg"]
 
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_extf4"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_xwdry"]
@@ -87,3 +87,17 @@ shape = SubResource("RectangleShape2D_4b17o")
 position = Vector2(7041, 28)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_nr62j")
+
+[node name="GroupUpZones" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(-1778, 1321)
+
+[node name="Marker2D2" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(1867, -1473)
+
+[node name="Marker2D3" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(2019, 1295)
+
+[node name="Marker2D4" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(-1638, -1384)

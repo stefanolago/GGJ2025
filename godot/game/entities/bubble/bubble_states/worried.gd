@@ -8,7 +8,10 @@ func enter() -> void:
 
 func exit() -> void:
 	super()
-	bubble.nearby_popped.disconnect(_on_nearby_popped)
+	if bubble.nearby_popped.is_connected(_on_nearby_popped):
+		bubble.nearby_popped.disconnect(_on_nearby_popped)
+	else:
+		push_warning("bubble.nearby_popped is not connected to _on_nearby_popped")
 
 
 func _on_nearby_popped(_position: Vector2) -> void:
