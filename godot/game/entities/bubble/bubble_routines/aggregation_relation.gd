@@ -18,7 +18,6 @@ func _init(first_bubble: Bubble, second_bubble: Bubble, bubbles_meeting_distance
 		bubble1.z_index = bubble2.z_index + 1
 
 
-
 func _start_doing() -> void:
 	# Check if the two bubbles are close enough to aggregate
 	if bubble1.global_position.distance_to(bubble2.global_position) > meeting_distance:
@@ -31,17 +30,20 @@ func _start_doing() -> void:
 	bubble1.level += bubble2.level
 	bubble1.health += bubble2.health
 
+	# Remove the defeated bubble
+	bubble2.queue_free()
+
 	# Visually resize the surviving bubble
 	tweenGrowing = get_tree().create_tween()
 	var newSize: float = bubble1.level * SCALE_INCREASE
 	tweenGrowing.tween_property(bubble1, "scale", Vector2(newSize, newSize), task_waiting_time)
 	tweenGrowing.play()
 
-	# Remove the defeated bubble
-	bubble2.queue_free()
-
-
 
 func _done() -> void:
-	bubble1.exit_from_routine()
+	#bubble1.exit_from_routine()
 	self.queue_free()
+
+
+func _check_end_condition() -> bool:
+	return bubble1 == null

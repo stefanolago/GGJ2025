@@ -5,6 +5,8 @@ var timer_to_calm: float = 1.0
 func enter() -> void:
 	super()
 	bubble.sprite.set_face_mood("super_happy")
+	bubble.squishy_tween()
+	GlobalAudio.play_one_shot("bubble_happy")
 	bubble.nearby_popped.connect(_on_nearby_popped)
 	timer_to_calm = 1.0
 

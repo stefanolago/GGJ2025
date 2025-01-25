@@ -31,10 +31,11 @@ func _start_doing() -> void:
 
 
 func _done() -> void:
+	if child == null:
+		return
 	bubble1.move_and_collide(family_wandering_velocity)
 	bubble2.move_and_collide(family_wandering_velocity)
-	if child != null:
-		child.move_and_collide(family_wandering_velocity)	
+	child.move_and_collide(family_wandering_velocity)	
 
 
 
@@ -55,7 +56,7 @@ func _on_task_timer_timeout() -> void:
 	child.global_position = midpoint + perpendicular_offset
 
 	child.scale = Vector2(0.5, 0.5)
-	child.is_in_routine = true
+	#child.is_in_routine = true
 
 	# Ensure the child is visually above the parents
 	child.z_index = max(bubble1.z_index, bubble2.z_index) + 1
@@ -80,7 +81,7 @@ func _grow_child() -> void:
 	if child == null:
 		return
 	#child.assigned_routine = RoutineManager.get_random_routine()
-	child.is_in_routine = false
+	#child.is_in_routine = false
 	child.scale = Vector2(1, 1)
 	child = null
 	current_state = BubblesRelation.RelationState.APPROCHING

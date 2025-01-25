@@ -44,16 +44,16 @@ func _set_relation_state(value: RelationState) -> void:
 func _init(first_bubble: Bubble, second_bubble: Bubble, bubbles_meeting_distance: float, doing_time: float) -> void:
 	bubble1 = first_bubble
 	bubble2 = second_bubble
-	first_bubble.is_in_routine = true
-	second_bubble.is_in_routine = true
+	# first_bubble.is_in_routine = true
+	# second_bubble.is_in_routine = true
 
 	_set_relation_param(bubbles_meeting_distance, doing_time)
 
 
 func _process(_delta: float) -> void:
-	#if bubble1 == null or bubble2 == null:
-	#	_end_relation()
-	#	return
+	if _check_end_condition():
+		_end_relation()
+		return
 	match current_state:
 		BubblesRelation.RelationState.APPROCHING:
 			if not _are_bubbles_distant(meeting_distance):
@@ -82,11 +82,16 @@ func _start_doing() -> void:
 func _done() -> void:
 	pass
 
+
+func _check_end_condition() -> bool:
+	return false
+
+
 func _end_relation() -> void:
-	if bubble1 != null:
-		bubble1.is_in_routine = false
-	if bubble2 != null:
-		bubble2.is_in_routine = false
+	# if bubble1 != null:
+	# 	bubble1.is_in_routine = false
+	# if bubble2 != null:
+	# 	bubble2.is_in_routine = false
 	self.queue_free()
 
 
@@ -94,12 +99,18 @@ func _end_relation() -> void:
 #_________________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
 func _approch_bubbles() -> void:
+	if bubble1 == null or bubble2 == null:
+		return
 	direction1 = (bubble2.global_position - bubble1.global_position).normalized()
 	direction2 = (bubble1.global_position - bubble2.global_position).normalized()
 	bubble1.velocity = direction1 * APPROCHING_SPEED
 	bubble2.velocity = direction2 * APPROCHING_SPEED
-	bubble1.move_and_slide()
-	bubble2.move_and_slide()
+
+
+	if bubble1 != null:
+		bubble1.move_and_slide()
+	if bubble2 != null:
+		bubble2.move_and_slide()
 
 
 func _are_bubbles_distant(distance: float) -> bool:

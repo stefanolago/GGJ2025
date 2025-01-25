@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=51 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://dvw6ix2d0f48f" path="res://assets/art/bubble/faccina-spaventata.png" id="16_w77yh"]
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
+[ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
+[ext_resource type="PackedScene" uid="uid://cqmrjpn6exf8o" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
@@ -46,13 +48,72 @@ frame_2/duration = 1.0
 frame_3/texture = ExtResource("10_8hyo1")
 frame_3/duration = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7am8"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(0, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_his07"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(496, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g6dv"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(992, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbfd5"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(1488, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukfud"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(1984, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oukks"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(2480, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aje1"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(0, 0, 496, 500)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hgi52"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_e7am8")
+}],
+"loop": false,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_his07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g6dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbfd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukfud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oukks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aje1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("10_00hlv")
 }],
-"loop": true,
+"loop": false,
 "name": &"calm",
 "speed": 5.0
 }, {
@@ -60,7 +121,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_5oeb3")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -68,7 +129,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_6oneh")
 }],
-"loop": true,
+"loop": false,
 "name": &"happy",
 "speed": 5.0
 }, {
@@ -76,7 +137,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_pve6u")
 }],
-"loop": true,
+"loop": false,
 "name": &"pressed",
 "speed": 5.0
 }, {
@@ -84,7 +145,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_w77yh")
 }],
-"loop": true,
+"loop": false,
 "name": &"scared",
 "speed": 5.0
 }, {
@@ -92,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17_q3kfc")
 }],
-"loop": true,
+"loop": false,
 "name": &"super_happy",
 "speed": 5.0
 }, {
@@ -100,7 +161,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_4iu74")
 }],
-"loop": true,
+"loop": false,
 "name": &"worried",
 "speed": 5.0
 }]
@@ -259,7 +320,7 @@ tracks/0/path = NodePath("BubbleSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.106454, 0.196507, 0.253644, 0.3),
+"times": PackedFloat32Array(0, 0.106454, 0.2, 0.253644, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.504, 0.504), Vector2(0.504, 0.45), Vector2(0.504, 0.504), Vector2(0.504, 0.49), Vector2(0.504, 0.504)]
@@ -344,7 +405,7 @@ max_pupil_distance = 60.0
 [node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hgi52")
-animation = &"dead"
+animation = &"happy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")
@@ -391,6 +452,10 @@ libraries = {
 "": SubResource("AnimationLibrary_tvy3c")
 }
 autoplay = "Idle_0"
+
+[node name="AttackMarker" parent="." instance=ExtResource("29_og2x4")]
+unique_name_in_owner = true
+z_index = 100
 
 [connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
 [connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]

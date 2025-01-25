@@ -1,7 +1,7 @@
 extends BubbleHumorState
 
 @export var run_away_duration: float = 1.5
-@export var run_away_speed: float = 20.0
+@export var run_away_speed: float = 1500.0
 
 func enter() -> void:
 	super()

@@ -6,12 +6,13 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
-	GameStats.player_damage_bossfight.connect(_take_damage)
+	progress_bar.max_value = GameStats.HEALT
+	GameStats.player_damage.connect(_update_health)
 
 
-func _take_damage() -> void:
+func _update_health(health: float, _damage_location: Vector2) -> void:
 	show()
-	progress_bar.value = GameStats.player_health_bossfight
+	progress_bar.value = health
 	if camera_anim_player:
 		camera_anim_player.play("camera_shake")
 	

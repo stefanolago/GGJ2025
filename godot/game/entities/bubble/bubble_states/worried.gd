@@ -3,6 +3,9 @@ extends BubbleHumorState
 func enter() -> void:
 	super()
 	bubble.sprite.set_face_mood("worried")
+	bubble.squishy_tween()
+
+	GlobalAudio.play_one_shot("bubble_worried")
 	bubble.nearby_popped.connect(_on_nearby_popped)
 
 
