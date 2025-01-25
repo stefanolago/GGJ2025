@@ -4,25 +4,25 @@ var going_towards_bubble: Bubble = null
 var going_towards_zone: Marker2D = null
 var movement_speed: float = 20.0
 var start_merge_distance_squared: float = 160000.0
-var group_limit_to_start_revolting: int = 4
 
 func enter() -> void:
 	super()
 
 	# add a collision layer to the bubble so that it is detected as an unattached bubble
-	bubble.set_collision_layer_value(6, true)
+	bubble.set_collision_with_unattached_bubbles(true)
+	bubble.start_revolting.connect(_on_start_revolting)
 
-	# enable the detect nearby unattached bubbles area
-	bubble.nearby_unattached_bubble_area.monitoring = true
+
+func _on_start_revolting() -> void:
+	print("START REVOLTING!")
 
 
 func physics_update(delta: float) -> void:
 	super(delta)
 
-	if not bubble.is_group_leader or bubble.group_count >= group_limit_to_start_revolting:
-		bubble.velocity = Vector2.ZERO
-		transition.emit("Revolting")
+	if not bubble.is_group_leader:
 		return
+
 
 	if going_towards_bubble:
 		# check if the bubble is near enough to start a 

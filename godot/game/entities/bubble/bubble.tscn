@@ -106,7 +106,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
-radius = 75.326
+radius = 114.158
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
 radius = 815.383
@@ -277,15 +277,8 @@ _data = {
 }
 
 [node name="Bubble" type="CharacterBody2D"]
-collision_mask = 42
+collision_mask = 10
 script = ExtResource("1_udmfy")
-max_health = null
-min_health = null
-min_wander_timer = null
-max_wander_timer = null
-happy_limit = null
-less_happy_limit = null
-worried_limit = null
 
 [node name="PlayerInteractionStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
