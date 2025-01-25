@@ -31,3 +31,7 @@ func fade_out(stream_name:String, transition_duration:float) -> void:
 	await fade_tween.finished
 	stream_player.stop()
 	stream_player.volume_db = store_volume
+
+func pause_stream(stream_name:String, pause: bool) -> void:
+	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
+	stream_player.stream_paused = pause

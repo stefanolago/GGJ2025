@@ -67,6 +67,7 @@ func pop() -> void:
 	if self in GameStats.all_bubbles:
 		var index_in_list: int = GameStats.all_bubbles.find(self)
 		GameStats.all_bubbles.pop_at(index_in_list)
+	GameStats.bubbles_popped += 1
 
 
 func nearby_bubble_popped(bubble_position: Vector2) -> void:

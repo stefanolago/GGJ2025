@@ -16,8 +16,8 @@ func _physics_process(_delta: float) -> void:
 		if hit_cooldown_timer.is_stopped():
 			hit_cooldown_timer.start(hit_cooldown)
 			for body: Node2D in hit_detect_area.get_overlapping_bodies():
-				if body is Bubble:
-					(body as Bubble).hit_bubble(self, hit_damage)
+				if body is BossBubble:
+					(body as BossBubble).hit_bubble(self, hit_damage)
 	
 
 func _input(event: InputEvent) -> void:

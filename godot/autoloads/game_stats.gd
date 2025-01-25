@@ -2,10 +2,12 @@ extends Node
 
 signal player_damage_bossfight
 signal player_damage_phase_one
+signal boss_killed
 
-var ending_scene: PackedScene = preload("res://game/levels/ending.tscn")
+var game_over_scene: PackedScene = preload("res://game/levels/ending_gameover.tscn")
 var game_over_playing: bool = false
 var all_bubbles: Array = []
+var bubbles_popped: int = 0
 
 var player_health_bossfight: float:
 	set(value):
@@ -38,7 +40,7 @@ func _ready() -> void:
 func _game_over() -> void:
 	if not game_over_playing:
 		game_over_playing = true
-		TransitionLayer.change_scene(ending_scene)
+		TransitionLayer.change_scene(game_over_scene)
 
 # settare qui i valori iniziali
 func reset_stats() -> void:

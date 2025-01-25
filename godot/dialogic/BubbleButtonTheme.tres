@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bl3867wgdi28w"]
+
+[ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="1_xskkf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aysdy"]
+texture = ExtResource("1_xskkf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1q2ve"]
+texture = ExtResource("1_xskkf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8d3m"]
+texture = ExtResource("1_xskkf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p34y2"]
+texture = ExtResource("1_xskkf")
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 24
+Button/styles/focus = SubResource("StyleBoxTexture_aysdy")
+Button/styles/hover = SubResource("StyleBoxTexture_1q2ve")
+Button/styles/normal = SubResource("StyleBoxTexture_e8d3m")
+Button/styles/pressed = SubResource("StyleBoxTexture_p34y2")

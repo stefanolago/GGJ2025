@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://8fhfs3tna7x6"]
+[gd_scene load_steps=9 format=3 uid="uid://8fhfs3tna7x6"]
 
 [ext_resource type="PackedScene" uid="uid://ddstvahxhigau" path="res://game/entities/boss_bubble/boss_bubble.tscn" id="3_1bbmi"]
-[ext_resource type="PackedScene" uid="uid://cepjbyvtj5ffy" path="res://game/weapons/bossfight_finger.tscn" id="3_dc8v7"]
+[ext_resource type="PackedScene" uid="uid://dlbu3pfumok6b" path="res://game/levels/ending_gameover.tscn" id="3_ksch6"]
 [ext_resource type="PackedScene" uid="uid://ehufqxg7kt1l" path="res://game/entities/player/healthbar.tscn" id="4_160ym"]
+[ext_resource type="PackedScene" uid="uid://b48vi0ck2xhdu" path="res://game/levels/ending_win.tscn" id="4_ci33n"]
+[ext_resource type="PackedScene" uid="uid://cuti4e0fx4401" path="res://game/weapons/machine_gun_bossfight.tscn" id="5_rwbgs"]
 
 [sub_resource type="Animation" id="Animation_vinpt"]
 length = 0.001
@@ -43,10 +45,10 @@ _data = {
 
 [node name="Tribunal" type="Node2D"]
 
-[node name="BossfightFinger" parent="." instance=ExtResource("3_dc8v7")]
-
 [node name="BossBubble" parent="." instance=ExtResource("3_1bbmi")]
 position = Vector2(-4, -3)
+ending_gameover = ExtResource("3_ksch6")
+ending_win = ExtResource("4_ci33n")
 
 [node name="Healthbar" parent="." node_paths=PackedStringArray("camera_anim_player") instance=ExtResource("4_160ym")]
 anchors_preset = 7
@@ -64,3 +66,5 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MachineGunBossfight" parent="." instance=ExtResource("5_rwbgs")]

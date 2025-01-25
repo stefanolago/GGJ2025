@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://cphcrupbejq3h"]
+
+[ext_resource type="Script" path="res://dialogic/CenteredChoices/vn_choice_layer.gd" id="1_kurgw"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_choice_button.gd" id="1_w632k"]
+[ext_resource type="Theme" uid="uid://bl3867wgdi28w" path="res://dialogic/BubbleButtonTheme.tres" id="2_hdsb2"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_button_sound.gd" id="2_mgko6"]
+[ext_resource type="AudioStream" uid="uid://b6c1p14bc20p1" path="res://addons/dialogic/Example Assets/sound-effects/typing1.wav" id="3_mql8i"]
+[ext_resource type="AudioStream" uid="uid://c2viukvbub6v6" path="res://addons/dialogic/Example Assets/sound-effects/typing4.wav" id="4_420fr"]
+
+[sub_resource type="AudioStream" id="AudioStream_pe27w"]
+
+[sub_resource type="Animation" id="Animation_aybai"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Choices/DialogicNode_ChoiceButton9:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_mhqtt"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Choices/DialogicNode_ChoiceButton9:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0.175159, 0.2, -0.175159, -0.2, -0.3, -0.00318427, 0.3, 0.00318427, 0.2, -0.3, 4.94272e-05, 0.3, -4.94272e-05, 0, -0.1, 0.0846152, 0.1, -0.0846152),
+"times": PackedFloat32Array(0, 0.6, 1.5, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Choices/DialogicNode_ChoiceButton10:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0.175159, 0.2, -0.175159, -0.2, -0.3, -0.00318427, 0.3, 0.00318427, 0.2, -0.3, 4.94272e-05, 0.3, -4.94272e-05, 0, -0.1, 0.0846152, 0.1, -0.0846152),
+"times": PackedFloat32Array(0, 0.6, 1.5, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Choices/DialogicNode_ChoiceButton11:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0.175159, 0.2, -0.175159, -0.2, -0.3, -0.00318427, 0.3, 0.00318427, 0.2, -0.3, 4.94272e-05, 0.3, -4.94272e-05, 0, -0.1, 0.0846152, 0.1, -0.0846152),
+"times": PackedFloat32Array(0, 0.6, 1.5, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m7q6l"]
+_data = {
+"RESET": SubResource("Animation_aybai"),
+"loop": SubResource("Animation_mhqtt")
+}
+
+[node name="VN_ChoiceLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_kurgw")
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="Choices" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -47.0
+offset_right = 51.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_layout_mode = 1
+
+[node name="DialogicNode_ChoiceButton9" type="Button" parent="Choices"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+anchor_left = 0.425
+anchor_top = 0.409
+anchor_right = 0.425
+anchor_bottom = 0.409
+offset_left = 166.9
+offset_top = 123.554
+offset_right = 292.9
+offset_bottom = 243.554
+pivot_offset = Vector2(63, 60)
+focus_mode = 0
+theme = ExtResource("2_hdsb2")
+text = "Some text"
+script = ExtResource("1_w632k")
+
+[node name="DialogicNode_ChoiceButton10" type="Button" parent="Choices"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+anchor_left = 0.446
+anchor_top = 0.372
+anchor_right = 0.446
+anchor_bottom = 0.372
+offset_left = -63.032
+offset_top = -110.968
+offset_right = 62.968
+offset_bottom = 9.032
+pivot_offset = Vector2(65, 60)
+focus_mode = 0
+theme = ExtResource("2_hdsb2")
+text = "Some text"
+script = ExtResource("1_w632k")
+
+[node name="DialogicNode_ChoiceButton11" type="Button" parent="Choices"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+anchor_left = 0.418
+anchor_top = 0.402
+anchor_right = 0.418
+anchor_bottom = 0.402
+offset_left = -288.456
+offset_top = 125.212
+offset_right = -162.456
+offset_bottom = 245.212
+pivot_offset = Vector2(65, 59)
+focus_mode = 0
+theme = ExtResource("2_hdsb2")
+text = "Some text"
+script = ExtResource("1_w632k")
+
+[node name="DialogicNode_ButtonSound" type="AudioStreamPlayer" parent="Choices"]
+unique_name_in_owner = true
+script = ExtResource("2_mgko6")
+sound_pressed = ExtResource("3_mql8i")
+sound_hover = ExtResource("4_420fr")
+sound_focus = SubResource("AudioStream_pe27w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m7q6l")
+}
+autoplay = "loop"

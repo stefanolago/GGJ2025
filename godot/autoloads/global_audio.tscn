@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=14 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://1brkdt5xfiha" path="res://assets/audio/sfx/Bubble_pop-001.wav" id="3_p5y7u"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://byr3w7sdy3w8c" path="res://assets/audio/sfx/Bubble_pop-007.wav" id="9_l2r73"]
 [ext_resource type="AudioStream" uid="uid://cl4w01x7r74mg" path="res://assets/audio/sfx/Bubble_pop-008.wav" id="10_s1fpu"]
 [ext_resource type="AudioStream" uid="uid://bl18gr3uflxg" path="res://assets/audio/music/Bubble_song.wav" id="11_exb2y"]
+[ext_resource type="AudioStream" uid="uid://bwtu5x80cl1sk" path="res://assets/audio/music/Court_.wav" id="11_wurno"]
+[ext_resource type="AudioStream" uid="uid://btmuos8dblokr" path="res://assets/audio/sfx/Judge_hammer-001.wav" id="12_qohva"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x57kt"]
 streams_count = 8
@@ -38,3 +40,16 @@ bus = &"SFX"
 [node name="phase_one_song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_exb2y")
 bus = &"Music"
+
+[node name="court_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wurno")
+bus = &"Music"
+
+[node name="boss_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wurno")
+bus = &"Music"
+
+[node name="boss_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qohva")
+volume_db = -10.0
+bus = &"SFX"

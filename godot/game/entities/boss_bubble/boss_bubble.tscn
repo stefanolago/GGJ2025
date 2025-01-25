@@ -1,17 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddstvahxhigau"]
+[gd_scene load_steps=28 format=3 uid="uid://ddstvahxhigau"]
 
 [ext_resource type="Script" path="res://scripts/boss_bubble.gd" id="1_5bua7"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="1_xax12"]
 [ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="2_fy3y1"]
 [ext_resource type="PackedScene" uid="uid://b30tid116mumg" path="res://game/entities/boss_bubble/bubble_mine.tscn" id="2_n041y"]
 [ext_resource type="Texture2D" uid="uid://bqtqo5gjodhdc" path="res://assets/art/tribunal/tribunal_background.png" id="3_62e6d"]
-[ext_resource type="PackedScene" uid="uid://dlbu3pfumok6b" path="res://game/levels/ending.tscn" id="3_uc6jx"]
 [ext_resource type="Texture2D" uid="uid://yvemr4l6awhj" path="res://assets/art/tribunal/tribunal_chair.png" id="4_ixiw2"]
 [ext_resource type="Texture2D" uid="uid://dc75xqaqn586w" path="res://assets/art/tribunal/hammer_1.png" id="5_n45tf"]
 [ext_resource type="Texture2D" uid="uid://cvwfqnghhkjeo" path="res://assets/art/tribunal/hammer_2.png" id="6_efey5"]
 [ext_resource type="Texture2D" uid="uid://wclt2j6lnkbv" path="res://assets/art/tribunal/bubble_wig.png" id="6_f1vc6"]
 [ext_resource type="Texture2D" uid="uid://b26p7xlsq7fob" path="res://assets/art/tribunal/tribunal_desk.png" id="7_fuxa4"]
 [ext_resource type="Texture2D" uid="uid://pl4dms2t7ro0" path="res://assets/art/bubble/bolla-rotta-1.png" id="8_7iv5l"]
+[ext_resource type="AudioStream" uid="uid://btmuos8dblokr" path="res://assets/audio/sfx/Judge_hammer-001.wav" id="9_20dan"]
+[ext_resource type="Texture2D" uid="uid://fk756e0q7uv5" path="res://assets/art/bossfight/teleport_effect.png" id="13_44nqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1d8u2"]
 radius = 159.531
@@ -153,7 +154,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_jc2bl"]
 resource_name = "begin_fight"
-length = 3.0
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -162,7 +163,7 @@ tracks/0/path = NodePath("Path2D/PathFollow2D/Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.3, 3),
+"times": PackedFloat32Array(1.3, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.5, 0.5), Vector2(0.7, 0.7)]
@@ -174,10 +175,10 @@ tracks/1/path = NodePath("Path2D/PathFollow2D/Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.04, 0.1, 0.15, 0.2, 2.3, 2.6, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.3, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 180), Vector2(10, 180), Vector2(-10, 180), Vector2(5, 180), Vector2(-5, 180), Vector2(0, 180), Vector2(0, 180), Vector2(0, -50), Vector2(0, 0)]
+"values": [Vector2(0, 180), Vector2(0, -50), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -186,10 +187,10 @@ tracks/2/path = NodePath("Path2D/PathFollow2D/Body:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.13, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Color(1, 0.533612, 0.468613, 1), Color(1, 1, 1, 1), Color(1, 0.533333, 0.466667, 1), Color(1, 1, 1, 1)]
+"values": []
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -198,7 +199,7 @@ tracks/3/path = NodePath("TribunalChair:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1, 1.4),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, 197), Vector2(-1000, 197)]
@@ -210,7 +211,7 @@ tracks/4/path = NodePath("TribunalDesk:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.4, 1.8),
+"times": PackedFloat32Array(0.4, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1300, 0)]
@@ -222,7 +223,7 @@ tracks/5/path = NodePath("CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.3, 3),
+"times": PackedFloat32Array(0, 1.3, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 182), Vector2(0, 182), Vector2(0, 0)]
@@ -241,6 +242,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_kh0ps"]
+resource_name = "first_hit"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 180), Vector2(0, 180), Vector2(0, 180), Vector2(0, 180), Vector2(0, 180), Vector2(0, 180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Body:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.13, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.533612, 0.468613, 1), Color(1, 1, 1, 1), Color(1, 0.533333, 0.466667, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_a8hdf"]
@@ -271,6 +301,29 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HammerHit")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_20dan")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_20dan")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_20dan")
+}],
+"times": PackedFloat32Array(0.15, 0.45, 0.75)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_lqyk3"]
 resource_name = "hit"
@@ -359,6 +412,7 @@ _data = {
 "RESET": SubResource("Animation_sdckh"),
 "begin_fight": SubResource("Animation_jc2bl"),
 "default": SubResource("Animation_h2a3b"),
+"first_hit": SubResource("Animation_kh0ps"),
 "hammer": SubResource("Animation_a8hdf"),
 "hit": SubResource("Animation_lqyk3"),
 "pop_boss": SubResource("Animation_q5kxa")
@@ -366,14 +420,42 @@ _data = {
 
 [sub_resource type="Curve2D" id="Curve2D_n8cwd"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 64.4272, -1.49831, -64.4272, 1.49831, -212, 159, 2.38419e-06, 139.342, -2.38419e-06, -139.342, -405, 4, -94.3929, -61.4306, 94.3929, 61.4306, -122, -122, -82.4072, 3.8147e-06, 82.4072, -3.8147e-06, 204, 159, 3.8147e-06, 130.353, -3.8147e-06, -130.353, 398, 1, 80.9085, -67.4238, -80.9085, 67.4238, 123, -116, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 64.4272, -1.49831, -64.4272, 1.49831, -212, 159, 2.38419e-06, 139.342, -2.38419e-06, -139.342, -366, 6, -94.3929, -61.4306, 94.3929, 61.4306, -122, -122, -82.4072, 3.8147e-06, 82.4072, -3.8147e-06, 204, 159, 3.8147e-06, 130.353, -3.8147e-06, -130.353, 363, -1, 80.9085, -67.4238, -80.9085, 67.4238, 123, -116, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwoop"]
+atlas = ExtResource("13_44nqr")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54c06"]
+atlas = ExtResource("13_44nqr")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fyrd"]
+atlas = ExtResource("13_44nqr")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfj67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwoop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54c06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fyrd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="BossBubble" type="StaticBody2D"]
 script = ExtResource("1_5bua7")
 attack_mine_scene = ExtResource("2_n041y")
-ending_scene = ExtResource("3_uc6jx")
 
 [node name="TribunalBackground" type="Sprite2D" parent="."]
 scale = Vector2(0.611111, 0.611111)
@@ -414,18 +496,32 @@ position = Vector2(-28.8125, -34.9309)
 scale = Vector2(0.999342, 0.999343)
 texture = ExtResource("6_f1vc6")
 
+[node name="Teleport" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Body"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.65098)
+position = Vector2(-4.81, -24.81)
+scale = Vector2(2.7481, 2.7481)
+sprite_frames = SubResource("SpriteFrames_kfj67")
+autoplay = "default"
+frame_progress = 0.476749
+
 [node name="TribunalDesk" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.612037, 0.612037)
 texture = ExtResource("7_fuxa4")
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="Hammer" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(174, 177)
 scale = Vector2(0.4081, 0.4081)
 texture = ExtResource("5_n45tf")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="HammerHit" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
