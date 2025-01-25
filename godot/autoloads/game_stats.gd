@@ -1,6 +1,7 @@
 extends Node
 
 signal player_damage_bossfight
+signal player_damage_phase_one
 
 var ending_scene: PackedScene = preload("res://game/levels/ending.tscn")
 var game_over_playing: bool = false
@@ -10,7 +11,6 @@ var player_health_bossfight: float:
 	set(value):
 		player_health_bossfight = value
 		player_damage_bossfight.emit()
-var cazzi_vari: String
 
 
 ## usare GameSettings.difficulty_mult come multiplicatore della difficolta, default 1
@@ -22,6 +22,10 @@ var cazzi_vari: String
 ## or
 # if GameSettings.difficulty_setting = "Hard":
 #     boss_health = 75
+
+func take_damage_phase_one(damage: float, bubble: Bubble) -> void:
+	player_damage_phase_one.emit()
+
 
 func take_damage_bossfight(damage: float) -> void:
 	player_health_bossfight -= damage
@@ -39,7 +43,6 @@ func _game_over() -> void:
 # settare qui i valori iniziali
 func reset_stats() -> void:
 	player_health_bossfight = 10
-	cazzi_vari = "cazzi vari"
 
 # save the game settings into a config file, saved locally
 func save_stats() -> void:
@@ -47,7 +50,6 @@ func save_stats() -> void:
 	var stats:ConfigFile = ConfigFile.new()
 	
 	stats.set_value("Stats", "player_health", player_health_bossfight)
-	stats.set_value("Stats", "cazzi_vari", cazzi_vari)
 	
 	stats.save("user://stats_data.cfg")
 
@@ -64,4 +66,3 @@ func load_stats() -> void:
 
 	# set all the saved variables
 	player_health_bossfight = stats.get_value("Stats", "player_health")
-	cazzi_vari = stats.get_value("Stats", "cazzi_vari")

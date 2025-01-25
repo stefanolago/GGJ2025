@@ -3,7 +3,7 @@ extends BubbleHumorState
 var going_towards_bubble: Bubble = null
 var going_towards_zone: Marker2D = null
 var movement_speed: float = 20.0
-var start_merge_distance_squared: float = 30000.0
+var start_merge_distance_squared: float = 160000.0
 var group_limit_to_start_revolting: int = 4
 
 func enter() -> void:
