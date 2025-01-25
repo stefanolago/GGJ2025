@@ -2,10 +2,11 @@ judge: Silence in court, please.
 [signal arg="hammer"]
 judge: I SAID SILENCE!
 The defendant here present is accused of MASS MURDER.
-We take accusations of BUBBLECIDE very seriously here.\
+BUBBLECIDE is unforgivable.\
 {GameStats.bubbles_popped} bubbles have been killed today.
 Defendant, how do you plead?
 label QUESTIONS
+[signal arg="boss_talk_stop"]
 if {show_choice_1}  ==  false and {show_choice_2}  ==  false and {show_choice_3}  ==  false:
 	[end_timeline]
 [style name="ChoicesStyle"]
@@ -13,17 +14,20 @@ if {show_choice_1}  ==  false and {show_choice_2}  ==  false and {show_choice_3}
 	set {show_choice_1} = false
 	player: You can't judge me.\
 You're just a bubble and I am a man.
+	[signal arg="boss_talk_start"]
 	judge: What is a man?\
 A miserable little pile of secrets!
 	jump QUESTIONS
 - DENY | [if {show_choice_2} == true] [else="hide"]
 	set {show_choice_2} = false
 	player: It wasn't me, I was framed.
+	[signal arg="boss_talk_start"]
 	judge: No excuses!
 	judge: Because of your actions the POPulation of Bubbletown has suffered greatly!
 	jump QUESTIONS
 - REBUFF | [if {show_choice_3} == true] [else="hide"]
 	set {show_choice_3} = false
 	player: I did nothing wrong, you will pay for this!
+	[signal arg="boss_talk_start"]
 	judge: And you'll get the electric chAIR, BUBBLE murderer!
 	jump QUESTIONS

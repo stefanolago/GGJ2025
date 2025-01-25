@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddstvahxhigau"]
+[gd_scene load_steps=32 format=3 uid="uid://ddstvahxhigau"]
 
 [ext_resource type="Script" path="res://scripts/boss_bubble.gd" id="1_5bua7"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="1_xax12"]
-[ext_resource type="Texture2D" uid="uid://bhh2s77l3k2qt" path="res://assets/art/bubble/faccina.png" id="2_fy3y1"]
 [ext_resource type="PackedScene" uid="uid://b30tid116mumg" path="res://game/entities/boss_bubble/bubble_mine.tscn" id="2_n041y"]
 [ext_resource type="Texture2D" uid="uid://bqtqo5gjodhdc" path="res://assets/art/tribunal/tribunal_background.png" id="3_62e6d"]
 [ext_resource type="Texture2D" uid="uid://yvemr4l6awhj" path="res://assets/art/tribunal/tribunal_chair.png" id="4_ixiw2"]
@@ -12,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b26p7xlsq7fob" path="res://assets/art/tribunal/tribunal_desk.png" id="7_fuxa4"]
 [ext_resource type="Texture2D" uid="uid://pl4dms2t7ro0" path="res://assets/art/bubble/bolla-rotta-1.png" id="8_7iv5l"]
 [ext_resource type="AudioStream" uid="uid://btmuos8dblokr" path="res://assets/audio/sfx/Judge_hammer-001.wav" id="9_20dan"]
+[ext_resource type="Texture2D" uid="uid://c5sc4unsttdh6" path="res://assets/art/bubble/giudice-che-parla-sheet.png" id="10_3afn1"]
 [ext_resource type="Texture2D" uid="uid://fk756e0q7uv5" path="res://assets/art/bossfight/teleport_effect.png" id="13_44nqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1d8u2"]
@@ -424,6 +424,40 @@ _data = {
 }
 point_count = 8
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx4qs"]
+atlas = ExtResource("10_3afn1")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i7d6"]
+atlas = ExtResource("10_3afn1")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8f5t"]
+atlas = ExtResource("10_3afn1")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uow3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx4qs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i7d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8f5t")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwoop"]
 atlas = ExtResource("13_44nqr")
 region = Rect2(0, 0, 200, 200)
@@ -487,9 +521,12 @@ position = Vector2(0, 180)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_xax12")
 
-[node name="Face" type="Sprite2D" parent="Path2D/PathFollow2D/Body"]
+[node name="Face" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Body"]
+unique_name_in_owner = true
 position = Vector2(20, 0)
-texture = ExtResource("2_fy3y1")
+sprite_frames = SubResource("SpriteFrames_uow3l")
+autoplay = "default"
+frame_progress = 0.919023
 
 [node name="BubbleWig" type="Sprite2D" parent="Path2D/PathFollow2D/Body"]
 position = Vector2(-28.8125, -34.9309)

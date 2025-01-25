@@ -11,6 +11,7 @@ const teleport_attacks: int = 5
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var teleport_sprite: AnimatedSprite2D = %Teleport
+@onready var boss_face: AnimatedSprite2D = %Face
 
 @export var attack_mine_scene: PackedScene
 @export var ending_gameover: PackedScene
@@ -41,9 +42,10 @@ func _ready() -> void:
 	GameStats.game_phase = GameStats.GamePhase.BOSS_FIGHT
 	GameStats.player_killed_bossfight.connect(_player_second_phase)
 	Dialogic.timeline_ended.connect(_dialogue_ended)
-	Dialogic.signal_event.connect(_hammer_hit)
+	Dialogic.signal_event.connect(_dialogic_signal)
 	GlobalAudio.fade_in("court_music", 0.1)
 	Dialogic.start("bossfight")
+	boss_face.play("talk")
 	#_start_bossfight()   # DEBUG
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,12 +66,12 @@ func hit_bubble(_weapon: Node2D, damage: float) -> void:
 		await get_tree().create_timer(1).timeout
 		Dialogic.timeline_ended.connect(_second_dialogue_ended)
 		Dialogic.start("attack")
+		boss_face.play("talk")
 	if boss_started:
 		GlobalAudio.play_one_shot("boss_hit")
 		health -= damage
 		anim_player.play("hit")
 		_check_health()
-
 
 func _check_health() -> void:
 	var health_percentage: float = 100 * float(health)/float(max_health)
@@ -97,14 +99,17 @@ func _player_second_phase() -> void:
 	
 ### DIALOGUE STUFF ###
 func _dialogue_ended() -> void:
+	boss_face.play("default")
 	await get_tree().create_timer(1).timeout
 	dialogic_playing = false
 
 func _second_dialogue_ended() -> void:
+	boss_face.play("default")
 	dialogic_playing = false
 	anim_player.play("begin_fight")
 
 func _start_bossfight() -> void:
+	boss_face.play("default")
 	boss_started = true
 	attack_timer.start()
 	GlobalAudio.fade_in("boss_music", 0.1)
@@ -118,7 +123,7 @@ func _stop_bossfight() -> void:
 	GlobalAudio.pause_stream("boss_music", true)
 	GlobalAudio.play_one_shot("bubble_pop")
 
-func _hammer_hit(_event:String) -> void:
+func _hammer_hit() -> void:
 	anim_player.play("hammer")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -187,3 +192,12 @@ func _attack_completed() -> void:
 func _on_attack_timer_timeout() -> void:
 	if boss_is_alive:
 		_choose_attack()
+
+func _dialogic_signal(event:String) -> void:
+	match event:
+		"hammer":
+			_hammer_hit()
+		"boss_talk_start":
+			boss_face.play("talk")
+		"boss_talk_stop":
+			boss_face.play("default")

@@ -13,6 +13,7 @@ func enter() -> void:
 
 	# add a collision layer to the bubble so that it is detected as an unattached bubble
 	bubble.set_collision_with_unattached_bubbles(true)
+	bubble.body_anim_player.play("Squash")
 
 
 func physics_update(delta: float) -> void:
@@ -89,5 +90,3 @@ func physics_update(delta: float) -> void:
 					going_towards_zone = Marker2D.new()
 					going_towards_zone.global_position = Vector2(0, 0)
 					
-
-

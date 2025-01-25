@@ -1,10 +1,46 @@
-[gd_scene load_steps=11 format=3 uid="uid://b30tid116mumg"]
+[gd_scene load_steps=16 format=3 uid="uid://b30tid116mumg"]
 
-[ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="1_guym5"]
 [ext_resource type="Script" path="res://scripts/bubble_mine.gd" id="1_utv31"]
+[ext_resource type="Texture2D" uid="uid://ddglgn7ulqeds" path="res://assets/art/bubble/bomba-sprite-sheet-trasparenza.png" id="2_ihyop"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmqul"]
 radius = 55.0091
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seocg"]
+atlas = ExtResource("2_ihyop")
+region = Rect2(0, 0, 560, 560)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2cku"]
+atlas = ExtResource("2_ihyop")
+region = Rect2(560, 0, 560, 560)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p8k2"]
+atlas = ExtResource("2_ihyop")
+region = Rect2(1120, 0, 560, 560)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqlm5"]
+atlas = ExtResource("2_ihyop")
+region = Rect2(1680, 0, 560, 560)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ub8xe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seocg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2cku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p8k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqlm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_lflco"]
 length = 0.001
@@ -182,9 +218,11 @@ shape = SubResource("CircleShape2D_kmqul")
 
 [node name="MineControl" type="Node2D" parent="."]
 
-[node name="Mine" type="Sprite2D" parent="MineControl"]
+[node name="Mine" type="AnimatedSprite2D" parent="MineControl"]
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("1_guym5")
+sprite_frames = SubResource("SpriteFrames_ub8xe")
+autoplay = "default"
+frame_progress = 0.198633
 
 [node name="MineAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
