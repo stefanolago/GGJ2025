@@ -2,29 +2,35 @@ extends BubbleHumorState
 
 var going_towards_bubble: Bubble = null
 var going_towards_zone: Marker2D = null
-var movement_speed: float = 20.0
-var start_merge_distance_squared: float = 160000.0
+var movement_speed: float = 1200.0
+var start_merge_distance_squared: float = 53000.0
 
 func enter() -> void:
 	super()
 
 	# add a collision layer to the bubble so that it is detected as an unattached bubble
 	bubble.set_collision_with_unattached_bubbles(true)
-	bubble.start_revolting.connect(_on_start_revolting)
-
-
-func _on_start_revolting() -> void:
-	print("START REVOLTING!")
 
 
 func physics_update(delta: float) -> void:
 	super(delta)
 
+	if bubble.started_revolting:
+		transition.emit("Revolting")
+
 	if not bubble.is_group_leader:
 		return
+	
+	# check if the last collision was with an already revolting bubble
+	var last_slide_collision: KinematicCollision2D = bubble.get_last_slide_collision()
+	if last_slide_collision:
+		var last_collision_collider: Object = last_slide_collision.get_collider()
+		if last_collision_collider is Bubble and (last_collision_collider as Bubble).started_revolting:
+			bubble.started_revolting = true
+			return
 
 
-	if going_towards_bubble:
+	if going_towards_bubble and going_towards_bubble.is_group_leader:
 		# check if the bubble is near enough to start a 
 		# merge procedure
 		var distance: float = bubble.global_position.distance_squared_to(going_towards_bubble.global_position)

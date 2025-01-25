@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=50 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://dvw6ix2d0f48f" path="res://assets/art/bubble/faccina-spaventata.png" id="16_w77yh"]
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
+[ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
@@ -46,13 +47,72 @@ frame_2/duration = 1.0
 frame_3/texture = ExtResource("10_8hyo1")
 frame_3/duration = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7am8"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(0, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_his07"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(496, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g6dv"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(992, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbfd5"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(1488, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukfud"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(1984, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oukks"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(2480, 0, 496, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aje1"]
+atlas = ExtResource("21_5k6pg")
+region = Rect2(0, 0, 496, 500)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hgi52"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_e7am8")
+}],
+"loop": false,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_his07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g6dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbfd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukfud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oukks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aje1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("10_00hlv")
 }],
-"loop": true,
+"loop": false,
 "name": &"calm",
 "speed": 5.0
 }, {
@@ -60,7 +120,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_5oeb3")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -68,7 +128,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_6oneh")
 }],
-"loop": true,
+"loop": false,
 "name": &"happy",
 "speed": 5.0
 }, {
@@ -76,7 +136,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_pve6u")
 }],
-"loop": true,
+"loop": false,
 "name": &"pressed",
 "speed": 5.0
 }, {
@@ -84,7 +144,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_w77yh")
 }],
-"loop": true,
+"loop": false,
 "name": &"scared",
 "speed": 5.0
 }, {
@@ -92,7 +152,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17_q3kfc")
 }],
-"loop": true,
+"loop": false,
 "name": &"super_happy",
 "speed": 5.0
 }, {
@@ -100,7 +160,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_4iu74")
 }],
-"loop": true,
+"loop": false,
 "name": &"worried",
 "speed": 5.0
 }]
@@ -344,7 +404,7 @@ max_pupil_distance = 60.0
 [node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hgi52")
-animation = &"dead"
+animation = &"angry"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")

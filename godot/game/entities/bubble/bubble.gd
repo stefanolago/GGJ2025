@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Bubble
 
 signal nearby_popped
-signal start_revolting
 
 @export var max_health: float = 0.5
 @export var min_health: float = 0.1
@@ -34,7 +33,8 @@ var last_corpse_seen_position: Vector2 = Vector2.ZERO
 var level:int = 1
 var is_group_leader: bool = true
 var leaded_bubbles: Array = []
-var group_limit_to_start_revolting: int = 4
+var group_limit_to_start_revolting: int = 3
+var started_revolting: bool = false
 
 #_________________________________________________________________________________________________________________________________________
 #_________________________________________________________________________________________________________________________________________
@@ -48,7 +48,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	last_collision = move_and_collide(velocity)
+	#last_collision = move_and_collide(velocity)
+	move_and_slide()
 	for bubble: Bubble in leaded_bubbles:
 		bubble.velocity = velocity
 
@@ -98,15 +99,21 @@ func release_bubble(weapon: Node2D) -> void:
 
 
 func merge_with_bubble(other_bubble: Bubble) -> void:
+	# invert the merge verse if this bubble is not revolting
+	# and the other one is
+	if not started_revolting and other_bubble.started_revolting:
+		other_bubble.merge_with_bubble(self)
+		return
+
+
 	other_bubble.is_group_leader = false
 	leaded_bubbles.append(other_bubble)
 	leaded_bubbles.append_array(other_bubble.leaded_bubbles)
-	
-	if leaded_bubbles.size() >= group_limit_to_start_revolting:
-		start_revolting.emit()
-		for bubble: Bubble in leaded_bubbles:
-			bubble.start_revolting.emit()
 
+	if leaded_bubbles.size() + 1 >= group_limit_to_start_revolting:
+		started_revolting = true
+		for bubble: Bubble in leaded_bubbles:
+			bubble.started_revolting = true
 
 
 func set_collision_with_unattached_bubbles(value: bool) -> void:
