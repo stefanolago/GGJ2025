@@ -14,6 +14,7 @@ config/name="GGJ 2025 - Bubbles"
 run/main_scene="res://menu_and_options/_start/start_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/image="res://assets/art/splash/GWJ-Full-Logo-tag-Orange2.png"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -25,6 +26,9 @@ GameStats="*res://autoloads/game_stats.gd"
 GlobalAudio="*res://autoloads/global_audio.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PreloadedMaterials="*res://autoloads/preloaded_materials.gd"
+DefaultCamera2d="*res://autoloads/default_camera_2D.gd"
+RoutineManager="*res://game/entities/bubble/bubble_routines/routine_manager.gd"
+RuntimeTimer="*res://utils/runtime_timer.gd"
 
 [debug]
 

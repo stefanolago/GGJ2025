@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://8fhfs3tna7x6"]
+[gd_scene load_steps=7 format=3 uid="uid://dbvru54sl4sgk"]
 
 [ext_resource type="PackedScene" uid="uid://ddstvahxhigau" path="res://game/entities/boss_bubble/boss_bubble.tscn" id="3_1bbmi"]
-[ext_resource type="PackedScene" uid="uid://cepjbyvtj5ffy" path="res://game/weapons/bossfight_finger.tscn" id="3_dc8v7"]
+[ext_resource type="PackedScene" path="res://game/weapons/bossfight_finger.tscn" id="3_dc8v7"]
 [ext_resource type="PackedScene" uid="uid://ehufqxg7kt1l" path="res://game/entities/player/healthbar.tscn" id="4_160ym"]
 
 [sub_resource type="Animation" id="Animation_vinpt"]

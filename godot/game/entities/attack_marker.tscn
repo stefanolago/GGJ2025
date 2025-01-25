@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqmrjpn6exf8o"]
+
+[ext_resource type="Script" path="res://game/entities/attack_marker.gd" id="1_r7bwk"]
+[ext_resource type="Texture2D" uid="uid://cmrsuyhjkndle" path="res://assets/art/circle_example.png" id="2_d6x62"]
+
+[node name="AttackMarker" type="Node2D" node_paths=PackedStringArray("marker")]
+script = ExtResource("1_r7bwk")
+marker = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.592328, 0.154399, 0, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_d6x62")

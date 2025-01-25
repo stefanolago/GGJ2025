@@ -21,12 +21,8 @@ signal nearby_popped
 @onready var face_anim_player: AnimationPlayer = $FaceAnimationPlayer
 @onready var pop_warning_area: Area2D = %PopWarningArea
 @onready var nearby_unattached_bubble_area: Area2D = %NearbyUnattachedBubbleDetectArea
+@onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
-# enum Behavior{
-# 	ATTACHED,
-# 	WANDERING,
-# 	ESCAPING
-# }
 
 # var behavior: Behavior = Behavior.ATTACHED: set = _set_behavior
 var playing_idle_break: bool = false
@@ -141,6 +137,9 @@ func glance() -> void:
 func exit_from_routine() -> void:
 	#velocity = RoutineManager.get_roaming_velocity()
 	is_in_routine = false
+
+
+func is_seeing_player() -> bool: return visible_on_screen_notifier.is_on_screen()
 
 
 

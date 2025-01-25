@@ -279,13 +279,6 @@ _data = {
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 42
 script = ExtResource("1_udmfy")
-max_health = null
-min_health = null
-min_wander_timer = null
-max_wander_timer = null
-happy_limit = null
-less_happy_limit = null
-worried_limit = null
 
 [node name="PlayerInteractionStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_aabyq")
@@ -398,6 +391,10 @@ libraries = {
 "": SubResource("AnimationLibrary_tvy3c")
 }
 autoplay = "Idle_0"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true
+rect = Rect2(-100, -100, 200, 200)
 
 [connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
 [connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]
