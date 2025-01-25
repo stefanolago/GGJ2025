@@ -11,7 +11,7 @@ signal nearby_popped
 @export_group("Bubble worry limit")
 @export var happy_limit: int = 2
 @export var less_happy_limit: int = 4
-@export var worried_limit: int = 6
+@export var worried_limit: int = 5
 
 
 @onready var sprite: BubbleSprite = $BubbleSprite
@@ -68,8 +68,8 @@ func pop() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	z_index = -1
 	# create a tween that makes the alpha go from 1.0 to 0.3
-	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.3), 4.0)
+	#var tween: Tween = get_tree().create_tween()
+	#tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.3), 4.0)
 
 	# remove this bubble from the list of inital bubbles
 	if self in GameStats.all_bubbles:
@@ -99,7 +99,7 @@ func hit_bubble(weapon: Node2D, damage: float) -> void:
 func attack(damage_reducer_value: float) -> void:
 	show_attack_marker()
 	GameStats.take_damage(level * damage_reducer_value, global_position)
-	print("ATTACK")
+	GlobalAudio.play_one_shot("bubble_bite")
 	sprite.set_face_mood("attack")
 	
 
