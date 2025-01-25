@@ -6,7 +6,7 @@ class_name Finger
 @onready var hit_detect_area: Area2D = $HitDetectArea
 
 @export var hit_cooldown: float = 0.1
-@export var hit_damage: float = 0.1
+@export var hit_damage: float = 5.0
 
 func _ready() -> void:	
 	set_physics_process(false)
@@ -28,6 +28,8 @@ func _input(event: InputEvent) -> void:
 		# horrible workaround but I wasted too much time on this
 		await get_tree().physics_frame
 		await get_tree().physics_frame
+
+
 		firing = true
 		# start the physics processing
 		set_physics_process(true)
