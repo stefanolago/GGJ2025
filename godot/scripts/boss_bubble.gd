@@ -16,6 +16,8 @@ const teleport_attacks: int = 5
 @export var ending_gameover: PackedScene
 @export var ending_win: PackedScene
 @export var attack_cooldown: float = 3.0
+@export var finger_weapon: Weapon
+@export var machinegun_weapon: Weapon
 
 var health: float
 var speed: float = 100.0
