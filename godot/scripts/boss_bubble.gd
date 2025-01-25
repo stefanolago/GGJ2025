@@ -2,32 +2,47 @@ extends Node2D
 
 class_name BossBubble
 
-const max_health: float = 2.0
+const max_health: float = 10.0
+const mines_to_spawn: int = 4
+const teleport_attacks: int = 5
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var attack_timer: Timer = $AttackTimer
+@onready var teleport_sprite: AnimatedSprite2D = %Teleport
 
 @export var attack_mine_scene: PackedScene
-@export var ending_scene: PackedScene
+@export var ending_gameover: PackedScene
+@export var ending_win: PackedScene
+@export var attack_cooldown: float = 3.0
+@export var finger_weapon: Weapon
+@export var machinegun_weapon: Weapon
 
 var health: float
 var speed: float = 100.0
 var boss_started: bool = false
 var first_hit: bool = true
 var dialogic_playing: bool = true
+var boss_is_alive: bool = true
+var bomb_attack_timer: float = 0.8
+var round_attack_pattern: Array= [Vector2(0, 150),
+								Vector2(0, -150),
+								Vector2(130, 75),
+								Vector2(130, -75),
+								Vector2(-130, 75),
+								Vector2(-130, -75)]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = max_health
 	path_follow.progress = 0
+	attack_timer.wait_time = attack_cooldown
 	Dialogic.timeline_ended.connect(_dialogue_ended)
 	Dialogic.signal_event.connect(_hammer_hit)
-	Dialogic.start("bossfight")
-
-func start_boss() -> void:
-	anim_player.play("begin_fight")
+	GlobalAudio.fade_in("court_music", 0.1)
+	# Dialogic.start("bossfight")
+	_start_bossfight()   # DEBUG
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,37 +50,64 @@ func _process(delta: float) -> void:
 		path_follow.progress += speed * delta
 		collision_shape.global_position = path_follow.global_position
 
+
 func hit_bubble(_weapon: Node2D, damage: float) -> void:
 	if first_hit and boss_started == false and dialogic_playing == false:
+		GlobalAudio.play_one_shot("boss_hit")
+		GlobalAudio.pause_stream("court_music", true)
 		first_hit = false
-		anim_player.play("begin_fight")
+		dialogic_playing = true
+		anim_player.play("first_hit")
+		Dialogic.timeline_ended.disconnect(_dialogue_ended)
+		await get_tree().create_timer(1).timeout
+		Dialogic.timeline_ended.connect(_second_dialogue_ended)
+		Dialogic.start("attack")
 	if boss_started:
+		GlobalAudio.play_one_shot("boss_hit")
 		health -= damage
 		anim_player.play("hit")
-		if health <= 0:
-			_stop_bossfight()
+		_check_health()
 
+
+func _check_health() -> void:
+	var health_percentage: float = 100 * float(health)/float(max_health)
+	if health_percentage <= 0:
+		_stop_bossfight()
+		return
+	elif health_percentage <= 30:
+		speed = 400
+		bomb_attack_timer = 0.2
+		return
+	elif health_percentage <= 60:
+		speed = 300
+		bomb_attack_timer = 0.4
+		return
+	elif health_percentage <= 80:
+		speed = 200
+		bomb_attack_timer = 0.6
+
+### DIALOGUE STUFF ###
 func _dialogue_ended() -> void:
 	await get_tree().create_timer(1).timeout
 	dialogic_playing = false
 
+func _second_dialogue_ended() -> void:
+	dialogic_playing = false
+	anim_player.play("begin_fight")
+
 func _start_bossfight() -> void:
 	boss_started = true
 	attack_timer.start()
+	GlobalAudio.fade_in("boss_music", 0.1)
 
 func _stop_bossfight() -> void:
+	boss_is_alive = false
 	boss_started = false
 	attack_timer.stop()
 	anim_player.play("pop_boss")
-
-func _load_ending() -> void:
-	TransitionLayer.change_scene(ending_scene)
-
-func _attack() -> void:
-	var boss_position: Vector2 = path_follow.global_position
-	var mine_instance: StaticBody2D = attack_mine_scene.instantiate()
-	mine_instance.global_position = boss_position
-	get_tree().root.add_child(mine_instance)
+	GameStats.boss_killed.emit()
+	GlobalAudio.pause_stream("boss_music", true)
+	GlobalAudio.play_one_shot("bubble_pop")
 
 func _hammer_hit(_event:String) -> void:
 	anim_player.play("hammer")
@@ -74,7 +116,65 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "begin_fight":
 		_start_bossfight()
 	if anim_name == "pop_boss":
-		_load_ending()
+		TransitionLayer.change_scene(ending_win)
+
+### COMBAT ###
+func _spawn_bomb(bomb_position: Vector2, bomb_health: float) -> void:
+	var bomb_instance: BossAttack = attack_mine_scene.instantiate()
+	bomb_instance.global_position = bomb_position
+	get_tree().root.add_child(bomb_instance)
+	bomb_instance.health = bomb_health
+
+func _bomb_attack() -> void:
+	for mine_index: int in range(mines_to_spawn):
+		if not boss_is_alive:
+			return
+		var boss_position: Vector2 = path_follow.global_position
+		await get_tree().create_timer(bomb_attack_timer).timeout
+		_spawn_bomb(boss_position, 0.3)
+	_attack_completed()
+
+func _teleport_attack() -> void:
+	teleport_sprite.show()
+	for teleport_index: int in range(teleport_attacks):
+		if not boss_is_alive:
+			return
+		var random_path_ratio: float = randf_range(0.0, 1.0)
+		path_follow.progress_ratio = random_path_ratio
+		var boss_position: Vector2 = path_follow.global_position
+		_spawn_bomb(boss_position, 0.2)
+		await get_tree().create_timer(0.3).timeout
+	teleport_sprite.hide()
+	_attack_completed()
+
+func _circle_attack() -> void:
+	var boss_position: Vector2 = path_follow.global_position
+	round_attack_pattern.shuffle()
+	for pattern_position: Vector2 in round_attack_pattern:
+		if not boss_is_alive:
+			return
+		var spawn_position: Vector2 = boss_position + pattern_position
+		_spawn_bomb(spawn_position, 0.1)
+		await get_tree().create_timer(0.05).timeout
+	_attack_completed()
+
+func _choose_attack() -> void:
+	attack_timer.stop()
+	var random_attack: int = randi_range(0,2)
+	match random_attack:
+		0:
+			_bomb_attack()
+		1: 
+			_teleport_attack()
+		2:
+			_circle_attack()
+		_:
+			_bomb_attack()
+
+func _attack_completed() -> void:
+	if boss_is_alive:
+		attack_timer.start()
 
 func _on_attack_timer_timeout() -> void:
-	_attack()
+	if boss_is_alive:
+		_choose_attack()

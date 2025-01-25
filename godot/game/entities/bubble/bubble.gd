@@ -75,6 +75,7 @@ func pop() -> void:
 	if self in GameStats.all_bubbles:
 		var index_in_list: int = GameStats.all_bubbles.find(self)
 		GameStats.all_bubbles.pop_at(index_in_list)
+	GameStats.bubbles_popped += 1
 	attack_marker.queue_free()
 
 

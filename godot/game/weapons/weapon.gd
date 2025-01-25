@@ -9,6 +9,3 @@ var active: bool = false
 var firing: bool = false:
 	set(value):
 		firing = value
-
-
-

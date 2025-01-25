@@ -1,5 +1,29 @@
-Silence please!
+judge: Silence in court, please.
 [signal arg="hammer"]
-I SAID SILENCE!
-The defendant is being accused of MASS MURDER.
+judge: I SAID SILENCE!
+The defendant here present is accused of MASS MURDER.
+We take accusations of BUBBLECIDE very seriously here.\
+{GameStats.bubbles_popped} bubbles have been killed today.
 Defendant, how do you plead?
+label QUESTIONS
+if {show_choice_1}  ==  false and {show_choice_2}  ==  false and {show_choice_3}  ==  false:
+	[end_timeline]
+[style name="ChoicesStyle"]
+- TAUNT | [if {show_choice_1} == true] [else="hide"]
+	set {show_choice_1} = false
+	player: You can't judge me.\
+You're just a bubble and I am a man.
+	judge: What is a man?\
+A miserable little pile of secrets!
+	jump QUESTIONS
+- DENY | [if {show_choice_2} == true] [else="hide"]
+	set {show_choice_2} = false
+	player: It wasn't me, I was framed.
+	judge: No excuses!
+	judge: Because of your actions the POPulation of Bubbletown has suffered greatly!
+	jump QUESTIONS
+- REBUFF | [if {show_choice_3} == true] [else="hide"]
+	set {show_choice_3} = false
+	player: I did nothing wrong, you will pay for this!
+	judge: And you'll get the electric chAIR, BUBBLE murderer!
+	jump QUESTIONS

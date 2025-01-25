@@ -41,8 +41,12 @@ gdscript/warnings/unsafe_call_argument=1
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"judge": "res://dialogic/judge.dch",
+"player": "res://dialogic/player.dch"
+}
 directories/dtl_directory={
+"attack": "res://dialogic/attack.dtl",
 "boss_dialogue_1": "res://dialogic/boss_dialogue_1.dtl",
 "bossfight": "res://dialogic/bossfight.dtl",
 "ending": "res://dialogic/ending.dtl"
@@ -67,8 +71,12 @@ choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
-variables={}
-layout/style_list=["res://dialogic/style.tres"]
+variables={
+"show_choice_1": true,
+"show_choice_2": true,
+"show_choice_3": true
+}
+layout/style_list=["res://dialogic/style.tres", "res://dialogic/PlayerStyle.tres", "res://dialogic/ChoicesStyle.tres", "res://dialogic/BossStyle.tres"]
 layout/default_style="res://dialogic/style.tres"
 glossary/default_case_sensitive=true
 
