@@ -404,7 +404,7 @@ max_pupil_distance = 60.0
 [node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hgi52")
-animation = &"angry"
+animation = &"happy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")

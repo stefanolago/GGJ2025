@@ -7,8 +7,8 @@ const CAMERA_SPEED: float = 600.0   # Velocità di movimento della telecamera (p
 # Process function
 func _process(delta: float) -> void:
 	# Ottieni la posizione del mouse rispetto alla finestra
-	var mouse_position = get_viewport().get_mouse_position()
-	var viewport_size = get_viewport().get_visible_rect().size
+	var mouse_position: Vector2 = get_viewport().get_mouse_position()
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	
 	# Variabile per accumulare il movimento della telecamera
 	var camera_motion: Vector2 = Vector2.ZERO

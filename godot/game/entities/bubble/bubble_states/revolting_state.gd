@@ -8,7 +8,7 @@ const DAMAGE_REDUCER_VALUE: float = 0.02
 
 var first_attack_timer: Timer
 var attack_timer: Timer
-var move_speed: float = 100.0
+var move_speed: float = 200.0
 
 
 func enter() -> void:
@@ -26,6 +26,7 @@ func exit() -> void:
 
 func physics_update(delta: float) -> void:
 	super(delta)
+	bubble.sprite.set_face_mood("angry")
 	# move the bubble toward the camera position
 	if not bubble.is_seeing_player():
 		var target_position: Vector2 = get_viewport().get_camera_2d().global_position
