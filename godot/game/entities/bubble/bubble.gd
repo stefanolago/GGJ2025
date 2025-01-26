@@ -9,9 +9,9 @@ signal nearby_popped
 @export var max_wander_timer: float = 7.0
 
 @export_group("Bubble worry limit")
-@export var happy_limit: int = 2
-@export var less_happy_limit: int = 4
-@export var worried_limit: int = 5
+@export var happy_limit: int = 3
+@export var less_happy_limit: int = 5
+@export var worried_limit: int = 7
 
 
 @onready var sprite: BubbleSprite = $BubbleSprite
