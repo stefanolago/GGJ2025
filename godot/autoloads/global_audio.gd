@@ -15,6 +15,11 @@ func play_one_shot(stream_name:String) -> void:
 	stream_player.play()
 
 
+func switch_to_clip(stream_name: String, clip_name: String) -> void:
+	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
+	stream_player.set("parameters/switch_to_clip", clip_name)
+
+
 func fade_in(stream_name:String, transition_duration:float) -> void:
 	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
 	var target_db:float = stream_player.volume_db
