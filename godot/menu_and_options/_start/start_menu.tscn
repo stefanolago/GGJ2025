@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menu_and_options/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://menu_and_options/_options_menu/options_menu.tscn" id="1_q0fgv"]
-[ext_resource type="PackedScene" uid="uid://4en56y3s25ri" path="res://game/levels/test_level_finger_attack.tscn" id="2_b5dp8"]
+[ext_resource type="PackedScene" uid="uid://bed6f2vx3oqj1" path="res://game/levels/desk_level.tscn" id="2_7aofp"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://menu_and_options/_credits/credits.tscn" id="3_drggk"]
 [ext_resource type="Script" path="res://menu_and_options/_utils/button_with_sound.gd" id="3_o8bey"]
 [ext_resource type="Texture2D" uid="uid://dvxsqq82jiq28" path="res://assets/placeholders/flatLight29.png" id="4_bje8e"]
@@ -33,7 +33,7 @@ sources/0 = SubResource("TileSetAtlasSource_fuesb")
 
 [node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
-start_game_scene = ExtResource("2_b5dp8")
+start_game_scene = ExtResource("2_7aofp")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

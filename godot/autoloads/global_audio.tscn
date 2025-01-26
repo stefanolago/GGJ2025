@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=41 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=43 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://c5nn8bljjfrjk" path="res://assets/audio/sfx/bolle preoccupate-001.wav" id="2_ypexp"]
@@ -26,16 +25,16 @@
 [ext_resource type="AudioStream" uid="uid://m0riytfr0hho" path="res://assets/audio/sfx/Bubbles_happy-005.wav" id="17_54k1x"]
 [ext_resource type="AudioStream" uid="uid://xw7g2is4t4vu" path="res://assets/audio/music/Bubble_song_2.wav" id="22_cfgn0"]
 [ext_resource type="AudioStream" uid="uid://cc1ilu2u0v74u" path="res://assets/audio/music/The Judge.wav" id="23_b8we4"]
-[ext_resource type="AudioStream" uid="uid://bdt2sdg7n7q8m" path="res://assets/audio/sfx/Thompson Shot-002.wav" id="25_iieaj"]
+[ext_resource type="AudioStream" uid="uid://djsg0rmwk6vyh" path="res://assets/audio/sfx/Thompson Shot-002.wav" id="25_iieaj"]
 [ext_resource type="AudioStream" uid="uid://bky3rejbdj6a7" path="res://assets/audio/sfx/bomb-001.wav" id="25_oucq0"]
 [ext_resource type="AudioStream" uid="uid://cv2behkap43w6" path="res://assets/audio/sfx/bomb-002.wav" id="26_in1si"]
-[ext_resource type="AudioStream" uid="uid://sbyy1jswfea2" path="res://assets/audio/sfx/Thompson Shot-003.wav" id="26_vyr4l"]
+[ext_resource type="AudioStream" uid="uid://cvi7aeex8tlp6" path="res://assets/audio/sfx/Thompson Shot-003.wav" id="26_vyr4l"]
 [ext_resource type="AudioStream" uid="uid://c7mesfqc2pgjv" path="res://assets/audio/sfx/bomb-003.wav" id="27_tojeu"]
-[ext_resource type="AudioStream" uid="uid://c6rop3oa1f31i" path="res://assets/audio/sfx/Thompson Shot-004.wav" id="27_x2vk1"]
-[ext_resource type="AudioStream" uid="uid://btctutvwl30vl" path="res://assets/audio/sfx/Thompson Shot-005.wav" id="28_shhcj"]
-[ext_resource type="AudioStream" uid="uid://ghb6isvieqxl" path="res://assets/audio/sfx/Thompson Shot-006.wav" id="29_a3qlq"]
-[ext_resource type="AudioStream" uid="uid://c808wu4enbuas" path="res://assets/audio/sfx/Thompson Shot-001.wav" id="30_on4nx"]
-[ext_resource type="AudioStream" uid="uid://dx8if2xxwene3" path="res://assets/audio/sfx/Thompson Draw.wav" id="31_14dq1"]
+[ext_resource type="AudioStream" uid="uid://clrwdysq284gy" path="res://assets/audio/sfx/Thompson Shot-004.wav" id="27_x2vk1"]
+[ext_resource type="AudioStream" uid="uid://vg0btkl0jwyf" path="res://assets/audio/sfx/Thompson Shot-005.wav" id="28_shhcj"]
+[ext_resource type="AudioStream" uid="uid://bcguoa8kb7i0c" path="res://assets/audio/sfx/Thompson Shot-006.wav" id="29_a3qlq"]
+[ext_resource type="AudioStream" uid="uid://d1yiw4locsc11" path="res://assets/audio/sfx/Thompson Shot-001.wav" id="30_on4nx"]
+[ext_resource type="AudioStream" uid="uid://muhk4f83lioc" path="res://assets/audio/sfx/Thompson Draw.wav" id="31_14dq1"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l60rq"]
 streams_count = 4
@@ -127,7 +126,6 @@ bus = &"Music"
 
 [node name="phase_one_song" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_docgp")
-stream_paused = true
 bus = &"Music"
 
 [node name="court_music" type="AudioStreamPlayer" parent="."]
