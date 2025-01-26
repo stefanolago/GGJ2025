@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfjcqlubqfg2q"
+path="res://.godot/imported/Judge hit-002.wav-04b8d7bfc0ff4bc893e77b924f7ac6ab.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Judge hit-002.wav"
+dest_files=["res://.godot/imported/Judge hit-002.wav-04b8d7bfc0ff4bc893e77b924f7ac6ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

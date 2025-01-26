@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2sp3axfw0ec7"
+path="res://.godot/imported/teleport judge-001.wav-9e205b8bbdaf60ad8074e2381a445aa2.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/teleport judge-001.wav"
+dest_files=["res://.godot/imported/teleport judge-001.wav-9e205b8bbdaf60ad8074e2381a445aa2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
