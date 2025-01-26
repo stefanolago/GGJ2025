@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cuti4e0fx4401"]
 
 [ext_resource type="Script" path="res://game/weapons/machine_gun_bossfight.gd" id="1_nlmmx"]
-[ext_resource type="Texture2D" uid="uid://cwoy30do1jipi" path="res://assets/art/bossfight/machinegun.png" id="2_gvn14"]
+[ext_resource type="Texture2D" uid="uid://c1r4vlmr516cg" path="res://assets/art/bubble/thompson-gun.png" id="2_2koah"]
 [ext_resource type="Texture2D" uid="uid://b7l1f822fr1ft" path="res://assets/art/bossfight/hold_fire_red.png" id="3_vy5pw"]
 [ext_resource type="Texture2D" uid="uid://b4iepdfmna6b2" path="res://assets/art/bossfight/hold_fire_white.png" id="4_5oj86"]
 
@@ -24,19 +24,19 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_84v6g"]
 resource_name = "load_weapon"
-length = 0.5
+length = 0.7
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("MachineGunControl/MachineGunSprite:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(200, 507), Vector2(200, 210), Vector2(200, 230)]
+"values": [Vector2(100, 427), Vector2(100, 138)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c1rj8"]
@@ -75,8 +75,8 @@ one_shot = true
 
 [node name="MachineGunSprite" type="Sprite2D" parent="MachineGunControl"]
 position = Vector2(0, 507)
-scale = Vector2(0.754304, 0.754304)
-texture = ExtResource("2_gvn14")
+scale = Vector2(0.346596, 0.346596)
+texture = ExtResource("2_2koah")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -85,7 +85,9 @@ libraries = {
 
 [node name="HoldToFire" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 10
 position = Vector2(0, -275)
+scale = Vector2(1.47368, 1.47368)
 sprite_frames = SubResource("SpriteFrames_k0rom")
 autoplay = "default"
 frame_progress = 0.0127402

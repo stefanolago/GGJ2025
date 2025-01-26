@@ -19,6 +19,7 @@ func enter() -> void:
 	attack_timer = RuntimeTimer._init_timer(_get_attack_time(), false, false, _on_attack_timeout)
 	await get_tree().create_timer(START_ATTACKING_TIME).timeout
 	_on_first_attack_timeout()
+	bubble.body_anim_player.play("Squash")
 
 	#first_attack_timer = RuntimeTimer._init_timer(START_ATTACKING_TIME, true, false, _on_first_attack_timeout)
 
@@ -34,7 +35,6 @@ func physics_update(delta: float) -> void:
 	if not bubble.is_seeing_player():
 		var target_position: Vector2 = get_viewport().get_camera_2d().global_position
 		bubble.global_position = bubble.global_position.move_toward(target_position, move_speed * delta)
-
 
 
 func _on_first_attack_timeout() -> void:

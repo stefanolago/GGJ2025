@@ -1,7 +1,10 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal player_damage_bossfight
+@warning_ignore("unused_signal")
 signal player_damage_phase_one
+@warning_ignore("unused_signal")
 signal boss_killed
 signal player_damage(health: float, damage_location: Vector2)
 signal player_killed_bossfight
