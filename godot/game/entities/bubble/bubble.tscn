@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
 [ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
-[ext_resource type="PackedScene" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
+[ext_resource type="PackedScene" uid="uid://cqmrjpn6exf8o" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
@@ -246,50 +246,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleSprite:scale")
+tracks/0/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.504, 0.504)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleSprite/BubbleFaceSprite:position")
+tracks/1/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BubbleSprite/BubbleFaceSprite:scale")
+tracks/2/path = NodePath("BubbleSprite:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BubbleSprite:rotation")
+tracks/3/path = NodePath("BubbleSprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_4wwkk"]
@@ -312,18 +312,20 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_q1api"]
 resource_name = "Squash"
-length = 0.3
+length = 0.4
+loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("BubbleSprite:scale")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.106454, 0.2, 0.253644, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13, 0.26, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.504, 0.504), Vector2(0.504, 0.45), Vector2(0.504, 0.504), Vector2(0.504, 0.49), Vector2(0.504, 0.504)]
+"values": [Vector2(0.5, 0.5), Vector2(0.52, 0.48), Vector2(0.48, 0.52), Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tvy3c"]
@@ -397,7 +399,7 @@ script = ExtResource("14_2j2oh")
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
 material = SubResource("ShaderMaterial_m81it")
-scale = Vector2(0.504, 0.504)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("AnimatedTexture_iw68p")
 script = ExtResource("9_6kqpo")
 max_pupil_distance = 60.0

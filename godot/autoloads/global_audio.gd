@@ -12,8 +12,7 @@ func _ready() -> void:
 
 func play_one_shot(stream_name:String) -> void:
 	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
-	if stream_player.playing == false:
-		stream_player.play()
+	stream_player.play()
 
 
 func fade_in(stream_name:String, transition_duration:float) -> void:

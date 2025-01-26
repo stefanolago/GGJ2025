@@ -25,6 +25,7 @@ func hit_bubble(_weapon: Node2D, damage: float) -> void:
 
 func _explode() -> void:
 	GameStats.take_damage(damage_dealt, global_position)
+	GlobalAudio.play_one_shot("bomb")
 	queue_free()
 
 func _delete_bubble() -> void:

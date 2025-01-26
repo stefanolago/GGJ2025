@@ -131,7 +131,7 @@ group_up_zones=""
 
 [gui]
 
-theme/custom_font="res://assets/fonts/04B_03__.TTF"
+theme/custom_font="res://assets/fonts/Comic Sans MS.ttf"
 
 [input]
 
