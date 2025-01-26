@@ -31,6 +31,15 @@
 [ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
 [ext_resource type="PackedScene" uid="uid://exfrtkbxge5q" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
+radius = 114.158
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
+radius = 388.321
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jkg7u"]
+radius = 1319.13
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
 shader = ExtResource("1_3omog")
@@ -187,15 +196,6 @@ animations = [{
 "name": &"worried",
 "speed": 5.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e0h07"]
-radius = 114.158
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 388.321
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jkg7u"]
-radius = 1319.13
 
 [sub_resource type="Animation" id="Animation_de82r"]
 resource_name = "Glance_1"
@@ -418,23 +418,6 @@ script = ExtResource("13_36ui5")
 [node name="Revolting" type="Node" parent="MoodStateMachine"]
 script = ExtResource("14_2j2oh")
 
-[node name="BubbleSprite" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.784314, 1, 1)
-material = SubResource("ShaderMaterial_m81it")
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_84kn1")
-autoplay = "default"
-frame_progress = 0.201586
-script = ExtResource("9_6kqpo")
-max_pupil_distance = 60.0
-
-[node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
-unique_name_in_owner = true
-sprite_frames = SubResource("SpriteFrames_hgi52")
-animation = &"attack"
-frame = 5
-frame_progress = 1.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")
 debug_color = Color(0.866667, 0.101961, 0.815686, 0.145098)
@@ -468,6 +451,23 @@ one_shot = true
 [node name="WanderingTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 wait_time = 5.0
+
+[node name="BubbleSprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.784314, 1, 1)
+material = SubResource("ShaderMaterial_m81it")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_84kn1")
+autoplay = "default"
+frame_progress = 0.201586
+script = ExtResource("9_6kqpo")
+max_pupil_distance = 60.0
+
+[node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_hgi52")
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
 
 [node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

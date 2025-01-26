@@ -21,16 +21,16 @@ func enter() -> void:
 	await get_tree().create_timer(START_ATTACKING_TIME).timeout
 	_on_first_attack_timeout()
 	bubble.body_anim_player.play("Squash")
+	bubble.sprite.modulate = Color("#ff5e1d")
 
 	if not GameStats.revolt_started:
 		GameStats.revolt_started = true
-
-
 	#first_attack_timer = RuntimeTimer._init_timer(START_ATTACKING_TIME, true, false, _on_first_attack_timeout)
 
 
 func exit() -> void:
 	super()
+	bubble.sprite.modulate = Color("#ffc8ff")
 	attack_timer.queue_free()
 
 
