@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=49 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://c5nn8bljjfrjk" path="res://assets/audio/sfx/bolle preoccupate-001.wav" id="2_ypexp"]
@@ -35,6 +35,11 @@
 [ext_resource type="AudioStream" uid="uid://bcguoa8kb7i0c" path="res://assets/audio/sfx/Thompson Shot-006.wav" id="29_a3qlq"]
 [ext_resource type="AudioStream" uid="uid://d1yiw4locsc11" path="res://assets/audio/sfx/Thompson Shot-001.wav" id="30_on4nx"]
 [ext_resource type="AudioStream" uid="uid://muhk4f83lioc" path="res://assets/audio/sfx/Thompson Draw.wav" id="31_14dq1"]
+[ext_resource type="AudioStream" uid="uid://c2sp3axfw0ec7" path="res://assets/audio/sfx/teleport judge-001.wav" id="36_ymty0"]
+[ext_resource type="AudioStream" uid="uid://b6oq4gaqlx08i" path="res://assets/audio/sfx/teleport judge-002.wav" id="37_hyvar"]
+[ext_resource type="AudioStream" uid="uid://ba8lb7cu3yi2y" path="res://assets/audio/sfx/teleport judge-003.wav" id="38_kl147"]
+[ext_resource type="AudioStream" uid="uid://ckldisuu2mr7b" path="res://assets/audio/sfx/teleport judge-004.wav" id="39_0845v"]
+[ext_resource type="AudioStream" uid="uid://cneqs665mr04b" path="res://assets/audio/sfx/teleport judge-005.wav" id="40_23gr7"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l60rq"]
 streams_count = 4
@@ -99,6 +104,14 @@ stream_0/stream = ExtResource("25_oucq0")
 stream_1/stream = ExtResource("26_in1si")
 stream_2/stream = ExtResource("27_tojeu")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6d6ui"]
+streams_count = 5
+stream_0/stream = ExtResource("36_ymty0")
+stream_1/stream = ExtResource("37_hyvar")
+stream_2/stream = ExtResource("38_kl147")
+stream_3/stream = ExtResource("39_0845v")
+stream_4/stream = ExtResource("40_23gr7")
+
 [node name="GlobalAudio" type="Node"]
 process_mode = 3
 script = ExtResource("1_mbenn")
@@ -126,7 +139,6 @@ bus = &"Music"
 
 [node name="phase_one_song" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_docgp")
-stream_paused = true
 bus = &"Music"
 
 [node name="court_music" type="AudioStreamPlayer" parent="."]
@@ -153,4 +165,8 @@ bus = &"SFX"
 
 [node name="bomb" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_tg48l")
+bus = &"SFX"
+
+[node name="teleport" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_6d6ui")
 bus = &"SFX"
