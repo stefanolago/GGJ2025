@@ -83,19 +83,19 @@ func _check_health() -> void:
 	elif health_percentage <= 45:
 		speed = 400
 		bomb_attack_timer = 0.2
-		bomb_speed_multiplier = 2.4
+		bomb_speed_multiplier = 2.5
 		return
 	elif health_percentage <= 75:
 		speed = 300
 		bomb_attack_timer = 0.4
 		attack_cooldown = 1
-		bomb_speed_multiplier = 1.8
+		bomb_speed_multiplier = 1.85
 		return
 	elif health_percentage <= 90:
 		speed = 200
 		bomb_attack_timer = 0.6
 		attack_cooldown = 2
-		bomb_speed_multiplier = 1.4
+		bomb_speed_multiplier = 1.45
 
 func _player_second_phase() -> void:
 	print("PLAYER SECOND PHASE")

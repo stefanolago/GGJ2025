@@ -45,5 +45,4 @@ theme_override_styles/background = SubResource("StyleBoxTexture_ni2gq")
 theme_override_styles/fill = SubResource("StyleBoxTexture_l8g1a")
 max_value = 10.0
 value = 5.0
-rounded = true
 show_percentage = false
