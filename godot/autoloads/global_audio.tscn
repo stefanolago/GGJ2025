@@ -126,6 +126,7 @@ bus = &"Music"
 
 [node name="phase_one_song" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_docgp")
+stream_paused = true
 bus = &"Music"
 
 [node name="court_music" type="AudioStreamPlayer" parent="."]

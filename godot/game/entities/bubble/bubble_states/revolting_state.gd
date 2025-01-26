@@ -5,6 +5,7 @@ const START_ATTACKING_TIME: float = 2.0
 const ATTACK_TIME_MIN: float = 1.0
 const ATTACK_TIME_MAX: float = 3.0
 const DAMAGE_REDUCER_VALUE: float = 0.03
+const MAX_ATTACK_RANGE_SQUARED: float = 6000000.0
 
 var first_attack_timer: Timer
 var attack_timer: Timer
@@ -21,6 +22,10 @@ func enter() -> void:
 	_on_first_attack_timeout()
 	bubble.body_anim_player.play("Squash")
 
+	if not GameStats.revolt_started:
+		GameStats.revolt_started = true
+
+
 	#first_attack_timer = RuntimeTimer._init_timer(START_ATTACKING_TIME, true, false, _on_first_attack_timeout)
 
 
@@ -34,7 +39,9 @@ func physics_update(delta: float) -> void:
 	# move the bubble toward the camera position
 	if not bubble.is_seeing_player():
 		var target_position: Vector2 = get_viewport().get_camera_2d().global_position
-		bubble.global_position = bubble.global_position.move_toward(target_position, move_speed * delta)
+		bubble.velocity = bubble.global_position.direction_to(target_position) * move_speed
+	else:
+		bubble.velocity = lerp(bubble.velocity, Vector2.ZERO, 0.3)
 
 
 func _on_first_attack_timeout() -> void:
@@ -44,7 +51,11 @@ func _on_first_attack_timeout() -> void:
 func _on_attack_timeout() -> void:
 	if bubble.process_mode == Node.PROCESS_MODE_DISABLED:
 		return
-	#if bubble.is_seeing_player():
+
+	# attack only if the bubble is in range
+	if bubble.global_position.distance_squared_to(get_viewport().get_camera_2d().global_position) > MAX_ATTACK_RANGE_SQUARED:
+		return
+
 	bubble.attack(DAMAGE_REDUCER_VALUE)
 	
 	attack_timer.wait_time = _get_attack_time()

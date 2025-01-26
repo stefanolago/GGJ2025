@@ -26,6 +26,13 @@ enum GamePhase{
 var game_phase: GamePhase
 var player_health_phase_one: float
 var player_health_bossfight: float
+var revolt_started: bool = false:
+	set(value):
+		revolt_started = value
+		if revolt_started:	
+			(GlobalAudio as AudioWrapper).switch_to_clip("phase_one_song", "bubble_song_2")
+
+
 
 
 ## usare GameSettings.difficulty_mult come multiplicatore della difficolta, default 1
