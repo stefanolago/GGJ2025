@@ -7,6 +7,3 @@ func _ready() -> void:
 	await get_tree().create_timer(10.0).timeout
 	print("SWITCH CLIP")
 	(GlobalAudio as AudioWrapper).switch_to_clip("phase_one_song", "bubble_song_2")
-
-
-
