@@ -1,9 +1,22 @@
 extends Camera2D
 
+var viewport_size: Vector2
+var viewport_size_half_x: float
+var viewport_size_half_y: float
+var new_position: Vector2
+
+
+func _ready() -> void:
+	viewport_size = get_viewport().get_visible_rect().size
+	viewport_size_half_x = viewport_size.x / (2 * zoom.x)
+	viewport_size_half_y = viewport_size.y /  (2 * zoom.y)
+
+
+
 # MOUSE INPUT__________________________________________________________________________________________________
 # Configurable constants
 const EDGE_THRESHOLD: int = 10       # Distanza dal bordo dello schermo per attivare il movimento
-const CAMERA_SPEED: float = 600.0   # Velocità di movimento della telecamera (pixel al secondo)
+const CAMERA_SPEED: float = 700.0   # Velocità di movimento della telecamera (pixel al secondo)
 const TOUCH_SENSITIVITY: float = 1.5 # Sensibilità del movimento sul touch
 
 # Process function
@@ -15,7 +28,6 @@ func _process(delta: float) -> void:
 func _process_windows(delta: float) -> void:
 	# Ottieni la posizione del mouse rispetto alla finestra
 	var mouse_position: Vector2 = get_viewport().get_mouse_position()
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	
 	# Variabile per accumulare il movimento della telecamera
 	var camera_motion: Vector2 = Vector2.ZERO
@@ -31,8 +43,18 @@ func _process_windows(delta: float) -> void:
 	elif mouse_position.y >= viewport_size.y - EDGE_THRESHOLD:
 		camera_motion.y += CAMERA_SPEED * delta
 	
+	# Calcola la nuova posizione globale
+	new_position = global_position + camera_motion
+	
+	# Applica i limiti
+	new_position.x = clamp(new_position.x, limit_left + viewport_size_half_x, limit_right - viewport_size_half_x)
+	new_position.y = clamp(new_position.y, limit_top + viewport_size_half_y, limit_bottom - viewport_size_half_y)
+	
 	# Aggiorna la posizione della telecamera
-	global_position += camera_motion
+	print(new_position)
+	global_position = new_position
+
+
 
 
 # TOUCH INPUT__________________________________________________________________________________________________
@@ -43,29 +65,17 @@ var start_distance: float
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		handle_touch(event as InputEventScreenTouch)
-	elif event is InputEventScreenDrag:
-		handle_drag(event as InputEventScreenDrag)
+	if OS.get_name() == "Android":
+		if event is InputEventScreenDrag:
+			handle_drag(event as InputEventScreenDrag)
 
-		
-func handle_touch(event: InputEventScreenTouch) -> void:
-	if event.pressed:
-		touch_points[event.index] = event.position
-	else:
-		touch_points.erase(event.index)
-	
-	if touch_points.size() == 2:
-		var touch_point_positions: Array = touch_points.values()
-		start_distance = (touch_point_positions[0] - touch_point_positions[1]).length
-	elif touch_points.size() < 2:
-		start_distance = 0
 		
 
 func handle_drag(event: InputEventScreenDrag) -> void:
 	touch_points[event.index] = event.position
 	
 	if touch_points.size() == 1:
-		global_position -= event.relative * pan_speed
-
-
+		new_position = global_position - event.relative * pan_speed
+		new_position.x = clamp(new_position.x, limit_left + viewport_size_half_x, limit_right - viewport_size_half_x)
+		new_position.y = clamp(new_position.y, limit_top + viewport_size_half_y, limit_bottom - viewport_size_half_y)
+		global_position = new_position
