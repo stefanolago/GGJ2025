@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
 [ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
-[ext_resource type="PackedScene" uid="uid://cqmrjpn6exf8o" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
+[ext_resource type="PackedScene" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true

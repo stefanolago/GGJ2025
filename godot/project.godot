@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GGJ 2025 - Bubbles"
-run/main_scene="res://game/levels/test_level_finger_attack.tscn"
+run/main_scene="res://menu_and_options/_start/start_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"

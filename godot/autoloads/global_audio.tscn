@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=35 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://c5nn8bljjfrjk" path="res://assets/audio/sfx/bolle preoccupate-001.wav" id="2_ypexp"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://c865if0o5w081" path="res://assets/audio/sfx/Bubbles_happy-003.wav" id="15_cxugo"]
 [ext_resource type="AudioStream" uid="uid://d082qf61dc074" path="res://assets/audio/sfx/Bubbles_happy-004.wav" id="16_or3tn"]
 [ext_resource type="AudioStream" uid="uid://m0riytfr0hho" path="res://assets/audio/sfx/Bubbles_happy-005.wav" id="17_54k1x"]
+[ext_resource type="AudioStream" uid="uid://xw7g2is4t4vu" path="res://assets/audio/music/Bubble_song_2.wav" id="22_cfgn0"]
 [ext_resource type="AudioStream" uid="uid://cc1ilu2u0v74u" path="res://assets/audio/music/The Judge.wav" id="23_b8we4"]
 [ext_resource type="AudioStream" uid="uid://bky3rejbdj6a7" path="res://assets/audio/sfx/bomb-001.wav" id="25_oucq0"]
 [ext_resource type="AudioStream" uid="uid://cv2behkap43w6" path="res://assets/audio/sfx/bomb-002.wav" id="26_in1si"]
@@ -59,6 +60,23 @@ stream_1/stream = ExtResource("15_cxugo")
 stream_2/stream = ExtResource("16_or3tn")
 stream_3/stream = ExtResource("17_54k1x")
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_docgp"]
+clip_count = 2
+clip_0/name = &"bubble_song"
+clip_0/stream = ExtResource("11_exb2y")
+clip_0/auto_advance = 0
+clip_1/name = &"bubble_song_2"
+clip_1/stream = ExtResource("22_cfgn0")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tg48l"]
 streams_count = 3
 stream_0/stream = ExtResource("25_oucq0")
@@ -91,7 +109,8 @@ volume_db = -10.0
 bus = &"Music"
 
 [node name="phase_one_song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_exb2y")
+stream = SubResource("AudioStreamInteractive_docgp")
+stream_paused = true
 bus = &"Music"
 
 [node name="court_music" type="AudioStreamPlayer" parent="."]
