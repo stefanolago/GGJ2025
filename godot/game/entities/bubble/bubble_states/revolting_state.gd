@@ -2,9 +2,9 @@ extends BubbleHumorState
 
 
 const START_ATTACKING_TIME: float = 3.5
-const ATTACK_TIME_MIN: float = 0.8
-const ATTACK_TIME_MAX: float = 5.2
-const DAMAGE_REDUCER_VALUE: float = 0.125
+const ATTACK_TIME_MIN: float = 0.6
+const ATTACK_TIME_MAX: float = 5.0
+const DAMAGE_REDUCER_VALUE: float = 0.14
 const MAX_ATTACK_RANGE_SQUARED: float = 6000000.0
 
 var first_attack_timer: Timer

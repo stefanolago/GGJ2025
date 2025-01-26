@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BossBubble
 
-const max_health: float = 20.0
+const max_health: float = 16.0
 const mines_to_spawn: int = 4
 const teleport_attacks: int = 5
 
@@ -45,6 +45,7 @@ func _ready() -> void:
 	GameStats.player_killed_bossfight.connect(_player_second_phase)
 	Dialogic.timeline_ended.connect(_dialogue_ended)
 	Dialogic.signal_event.connect(_dialogic_signal)
+	(GlobalAudio as AudioWrapper).fade_out("phase_one_song", 0.1)
 	(GlobalAudio as AudioWrapper).fade_in("court_music", 0.1)
 	Dialogic.start("bossfight")
 	boss_face.play("talk")
