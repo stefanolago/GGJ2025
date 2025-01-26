@@ -9,9 +9,9 @@ signal nearby_popped
 @export var max_wander_timer: float = 7.0
 
 @export_group("Bubble worry limit")
-@export var happy_limit: int = 2
-@export var less_happy_limit: int = 4
-@export var worried_limit: int = 5
+@export var happy_limit: int = 3
+@export var less_happy_limit: int = 5
+@export var worried_limit: int = 7
 
 
 @onready var sprite: BubbleSprite = $BubbleSprite
@@ -69,8 +69,8 @@ func pop() -> void:
 	sprite.z_index = -1
 	process_mode = Node.PROCESS_MODE_DISABLED
 	# create a tween that makes the alpha go from 1.0 to 0.3
-	#var tween: Tween = get_tree().create_tween()
-	#tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.3), 4.0)
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.45), 1.6)
 
 	# remove this bubble from the list of inital bubbles
 	GameStats.all_bubbles.erase(self)

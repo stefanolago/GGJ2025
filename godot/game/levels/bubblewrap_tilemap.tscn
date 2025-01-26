@@ -20,6 +20,7 @@ tile_set = SubResource("TileSet_kctfc")
 script = ExtResource("1_macf7")
 
 [node name="Sfondo-bubble-wrap" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
 z_index = 1
 position = Vector2(24.0002, -60.0001)
 scale = Vector2(2.67396, 3.23333)

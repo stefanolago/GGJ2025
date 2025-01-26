@@ -5,6 +5,7 @@ class_name AttackMarker
 @export var camera: Camera2D
 @export var alert_margin: Vector2 = Vector2(10, 10)
 @export var fade_duration: float = 1.8				# Time for fade in/out
+@export var margin: float = 9
 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
@@ -66,7 +67,7 @@ func _set_marker(damage_position: Vector2) -> void:
 		@warning_ignore("unsafe_cast")
 		var intersection: Variant = Geometry2D.segment_intersects_segment(screen_center, damage_position, (edge[0] as Vector2), (edge[1] as Vector2))
 		if intersection is Vector2:
-			sprite.global_position = intersection
+			sprite.global_position = intersection + (screen_center - intersection).normalized() * alert_margin.x * margin
 			return  # Exit early once the intersection is found
 
 

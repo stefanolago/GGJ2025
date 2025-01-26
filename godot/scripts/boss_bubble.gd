@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BossBubble
 
-const max_health: float = 10.0
+const max_health: float = 20.0
 const mines_to_spawn: int = 4
 const teleport_attacks: int = 5
 
@@ -28,6 +28,7 @@ var first_hit: bool = true
 var dialogic_playing: bool = true
 var boss_is_alive: bool = true
 var bomb_attack_timer: float = 0.8
+var bomb_speed_multiplier: float = 1
 var round_attack_pattern: Array= [Vector2(0, 150),
 								Vector2(0, -150),
 								Vector2(130, 75),
@@ -79,19 +80,22 @@ func _check_health() -> void:
 	if health_percentage <= 0:
 		_stop_bossfight()
 		return
-	elif health_percentage <= 30:
+	elif health_percentage <= 45:
 		speed = 400
 		bomb_attack_timer = 0.2
+		bomb_speed_multiplier = 2.4
 		return
-	elif health_percentage <= 60:
+	elif health_percentage <= 75:
 		speed = 300
 		bomb_attack_timer = 0.4
 		attack_cooldown = 1
+		bomb_speed_multiplier = 1.8
 		return
-	elif health_percentage <= 80:
+	elif health_percentage <= 90:
 		speed = 200
 		bomb_attack_timer = 0.6
 		attack_cooldown = 2
+		bomb_speed_multiplier = 1.4
 
 func _player_second_phase() -> void:
 	print("PLAYER SECOND PHASE")
@@ -137,6 +141,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _spawn_bomb(bomb_position: Vector2, bomb_health: float) -> void:
 	var bomb_instance: BossAttack = attack_mine_scene.instantiate()
 	bomb_instance.global_position = bomb_position
+	bomb_instance.speed_anim = BossAttack.INITIAL_SPEED_ANIM * bomb_speed_multiplier
 	get_tree().root.add_child(bomb_instance)
 	bomb_instance.health = bomb_health
 
@@ -146,7 +151,7 @@ func _bomb_attack() -> void:
 			return
 		var boss_position: Vector2 = path_follow.global_position
 		await get_tree().create_timer(bomb_attack_timer).timeout
-		_spawn_bomb(boss_position, 0.3)
+		_spawn_bomb(boss_position, 0.1)
 	_attack_completed()
 
 func _teleport_attack() -> void:
@@ -159,7 +164,7 @@ func _teleport_attack() -> void:
 		var random_path_ratio: float = randf_range(0.0, 1.0)
 		path_follow.progress_ratio = random_path_ratio
 		var boss_position: Vector2 = path_follow.global_position
-		_spawn_bomb(boss_position, 0.2)
+		_spawn_bomb(boss_position, 0.1)
 		await get_tree().create_timer(0.3).timeout
 	teleport_sprite.hide()
 	judge_wig.show()

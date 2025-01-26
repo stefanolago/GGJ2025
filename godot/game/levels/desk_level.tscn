@@ -41,8 +41,8 @@ script = ExtResource("3_r2wxm")
 
 [node name="Healthbar" parent="Camera2D" instance=ExtResource("3_u2dob")]
 z_index = 1000
-offset_top = 716.0
-offset_bottom = 716.0
+offset_top = 690.0
+offset_bottom = 690.0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5
