@@ -9,6 +9,8 @@ signal boss_killed
 signal player_damage(health: float, damage_location: Vector2)
 signal player_killed_bossfight
 
+var boss_scene: PackedScene = preload("res://game/levels/tribunal.tscn")
+
 const HEALT: float = 10.0
 
 var player_revived_bossfight: bool = false
@@ -57,8 +59,8 @@ func _ready() -> void:
 	reset_stats()
 
 func _end_phase_one() -> void:
+	TransitionLayer.change_scene(boss_scene)
 	game_phase = GamePhase.BOSS_FIGHT
-	#TODO
 
 func _game_over_bossfight() -> void:
 	if not player_revived_bossfight:
