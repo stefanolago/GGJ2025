@@ -73,9 +73,11 @@ func pop() -> void:
 	#tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.3), 4.0)
 
 	# remove this bubble from the list of inital bubbles
-	if self in GameStats.all_bubbles:
-		var index_in_list: int = GameStats.all_bubbles.find(self)
-		GameStats.all_bubbles.pop_at(index_in_list)
+	GameStats.all_bubbles.erase(self)
+	GameStats.check_for_next_phase()
+	# if self in GameStats.all_bubbles:
+	# 	var index_in_list: int = GameStats.all_bubbles.find(self)
+	# 	GameStats.all_bubbles.pop_at(index_in_list)
 	GameStats.bubbles_popped += 1
 	attack_marker.queue_free()
 

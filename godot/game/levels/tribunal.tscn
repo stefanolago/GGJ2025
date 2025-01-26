@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dbvru54sl4sgk"]
 
 [ext_resource type="PackedScene" uid="uid://ddstvahxhigau" path="res://game/entities/boss_bubble/boss_bubble.tscn" id="3_1bbmi"]
-[ext_resource type="PackedScene" uid="uid://dlbu3pfumok6b" path="res://game/levels/ending_gameover.tscn" id="3_ksch6"]
+[ext_resource type="PackedScene" uid="uid://nrwt6ky07j46" path="res://game/levels/ending_gameover.tscn" id="3_ksch6"]
 [ext_resource type="PackedScene" uid="uid://ehufqxg7kt1l" path="res://game/entities/player/healthbar.tscn" id="4_160ym"]
 [ext_resource type="PackedScene" uid="uid://b48vi0ck2xhdu" path="res://game/levels/ending_win.tscn" id="4_ci33n"]
 [ext_resource type="PackedScene" uid="uid://cuti4e0fx4401" path="res://game/weapons/machine_gun_bossfight.tscn" id="5_rwbgs"]

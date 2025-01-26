@@ -32,7 +32,9 @@ var revolt_started: bool = false:
 		if revolt_started:	
 			(GlobalAudio as AudioWrapper).switch_to_clip("phase_one_song", "bubble_song_2")
 
-
+func check_for_next_phase() -> void:
+	if all_bubbles.size() <= 5:
+		_end_phase_one()
 
 
 ## usare GameSettings.difficulty_mult come multiplicatore della difficolta, default 1
