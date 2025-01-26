@@ -2,8 +2,12 @@ extends StaticBody2D
 
 class_name BossAttack
 
-static var max_health: float = 0.3
-static var damage_dealt: float = 1.0
+static var max_health: float = 0.1
+static var damage_dealt: float = 1.4
+
+const INITIAL_SPEED_ANIM : float = 1
+
+var speed_anim: float = INITIAL_SPEED_ANIM
 
 @onready var mine_anim_player: AnimationPlayer = $MineAnimationPlayer
 @onready var control_anim_player: AnimationPlayer = $ControlAnimationPlayer
@@ -34,5 +38,6 @@ func _delete_bubble() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "spawn":
 		mine_anim_player.play("charging")
+		mine_anim_player.speed_scale = speed_anim
 	if anim_name == "charging":
 		_explode()
