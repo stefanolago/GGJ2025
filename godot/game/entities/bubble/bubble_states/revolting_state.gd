@@ -30,7 +30,6 @@ func enter() -> void:
 
 func exit() -> void:
 	super()
-	bubble.sprite.modulate = Color("#ffc8ff")
 	attack_timer.queue_free()
 
 
