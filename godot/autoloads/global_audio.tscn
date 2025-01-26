@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dd58v3atird8b"]
+[gd_scene load_steps=33 format=3 uid="uid://dd58v3atird8b"]
 
 [ext_resource type="Script" path="res://autoloads/global_audio.gd" id="1_mbenn"]
 [ext_resource type="AudioStream" uid="uid://c5nn8bljjfrjk" path="res://assets/audio/sfx/bolle preoccupate-001.wav" id="2_ypexp"]
@@ -23,6 +23,10 @@
 [ext_resource type="AudioStream" uid="uid://c865if0o5w081" path="res://assets/audio/sfx/Bubbles_happy-003.wav" id="15_cxugo"]
 [ext_resource type="AudioStream" uid="uid://d082qf61dc074" path="res://assets/audio/sfx/Bubbles_happy-004.wav" id="16_or3tn"]
 [ext_resource type="AudioStream" uid="uid://m0riytfr0hho" path="res://assets/audio/sfx/Bubbles_happy-005.wav" id="17_54k1x"]
+[ext_resource type="AudioStream" uid="uid://cc1ilu2u0v74u" path="res://assets/audio/music/The Judge.wav" id="23_b8we4"]
+[ext_resource type="AudioStream" uid="uid://bky3rejbdj6a7" path="res://assets/audio/sfx/bomb-001.wav" id="25_oucq0"]
+[ext_resource type="AudioStream" uid="uid://cv2behkap43w6" path="res://assets/audio/sfx/bomb-002.wav" id="26_in1si"]
+[ext_resource type="AudioStream" uid="uid://c7mesfqc2pgjv" path="res://assets/audio/sfx/bomb-003.wav" id="27_tojeu"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l60rq"]
 streams_count = 4
@@ -54,6 +58,12 @@ stream_0/stream = ExtResource("14_nikxq")
 stream_1/stream = ExtResource("15_cxugo")
 stream_2/stream = ExtResource("16_or3tn")
 stream_3/stream = ExtResource("17_54k1x")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tg48l"]
+streams_count = 3
+stream_0/stream = ExtResource("25_oucq0")
+stream_1/stream = ExtResource("26_in1si")
+stream_2/stream = ExtResource("27_tojeu")
 
 [node name="GlobalAudio" type="Node"]
 process_mode = 3
@@ -89,10 +99,14 @@ stream = ExtResource("11_wurno")
 bus = &"Music"
 
 [node name="boss_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_wurno")
+stream = ExtResource("23_b8we4")
 bus = &"Music"
 
 [node name="boss_hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_qohva")
 volume_db = -10.0
+bus = &"SFX"
+
+[node name="bomb" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tg48l")
 bus = &"SFX"

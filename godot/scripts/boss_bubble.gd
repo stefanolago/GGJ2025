@@ -107,12 +107,12 @@ func _second_dialogue_ended() -> void:
 	boss_face.play("default")
 	dialogic_playing = false
 	anim_player.play("begin_fight")
+	GlobalAudio.fade_in("boss_music", 0.0)
 
 func _start_bossfight() -> void:
 	boss_face.play("default")
 	boss_started = true
 	attack_timer.start()
-	GlobalAudio.fade_in("boss_music", 0.1)
 
 func _stop_bossfight() -> void:
 	boss_is_alive = false
