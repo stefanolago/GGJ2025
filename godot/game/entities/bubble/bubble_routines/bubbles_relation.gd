@@ -44,8 +44,8 @@ func _set_relation_state(value: RelationState) -> void:
 func _init(first_bubble: Bubble, second_bubble: Bubble, bubbles_meeting_distance: float, doing_time: float) -> void:
 	bubble1 = first_bubble
 	bubble2 = second_bubble
-	first_bubble.is_in_routine = true
-	second_bubble.is_in_routine = true
+	# first_bubble.is_in_routine = true
+	# second_bubble.is_in_routine = true
 
 	_set_relation_param(bubbles_meeting_distance, doing_time)
 
@@ -88,10 +88,10 @@ func _check_end_condition() -> bool:
 
 
 func _end_relation() -> void:
-	if bubble1 != null:
-		bubble1.is_in_routine = false
-	if bubble2 != null:
-		bubble2.is_in_routine = false
+	# if bubble1 != null:
+	# 	bubble1.is_in_routine = false
+	# if bubble2 != null:
+	# 	bubble2.is_in_routine = false
 	self.queue_free()
 
 

@@ -36,3 +36,17 @@ texture = ExtResource("4_yxpnr")
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 
 [node name="BubblewrapTilemap" parent="." instance=ExtResource("2_s3iys")]
+
+[node name="GroupUpZones" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(-1904, 1312)
+
+[node name="Marker2D2" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(1867, -1473)
+
+[node name="Marker2D3" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(2019, 1295)
+
+[node name="Marker2D4" type="Marker2D" parent="GroupUpZones" groups=["group_up_zones"]]
+position = Vector2(-1638, -1384)

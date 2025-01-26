@@ -52,16 +52,16 @@ func get_walking_velocity() -> Vector2:
 
 func form_family(bubble1: Bubble, bubble2: Bubble) -> void:
 	# Create a family with two bubbles
-	if bubble1.is_in_routine or bubble2.is_in_routine:
-		return
+	# if bubble1.is_in_routine or bubble2.is_in_routine:
+	# 	return
 	var family: Family = Family.new(bubble1, bubble2, FAMILY_MEETING_DISTANCE, FAMILY_PROCREATING_TIME)
 	add_child(family)
 	families.append(family)
 
 
 func aggregate(bubble1: Bubble, bubble2: Bubble) -> void:
-	if bubble1.is_in_routine or bubble2.is_in_routine:
-		return
+	# if bubble1.is_in_routine or bubble2.is_in_routine:
+	# 	return
 	var aggregator: Aggregation = Aggregation.new(bubble1, bubble2, AGGREGATION_MEETING_DISTANCE, AGGREGATION_TIME)
 	add_child(aggregator)
 

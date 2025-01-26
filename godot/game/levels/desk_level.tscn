@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bed6f2vx3oqj1"]
+[gd_scene load_steps=17 format=3 uid="uid://0ffl710v77pg"]
 
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_extf4"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_xwdry"]
+[ext_resource type="Script" path="res://game/levels/camera_2d.gd" id="3_r2wxm"]
+[ext_resource type="PackedScene" uid="uid://ehufqxg7kt1l" path="res://game/entities/player/healthbar.tscn" id="3_u2dob"]
 [ext_resource type="Texture2D" uid="uid://dvlx3vyo5m1uh" path="res://assets/art/table/table_background.png" id="3_w4f6e"]
 [ext_resource type="PackedScene" uid="uid://d38s6r87kokgl" path="res://game/obstacles/coffee_cup.tscn" id="4_f0071"]
 [ext_resource type="PackedScene" uid="uid://qdy5o0u0caw1" path="res://game/obstacles/diary.tscn" id="5_omhy1"]
@@ -28,10 +30,15 @@ size = Vector2(7048, 722)
 [node name="Finger" parent="." instance=ExtResource("2_xwdry")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.4, 0.4)
+script = ExtResource("3_r2wxm")
+
+[node name="Healthbar" parent="Camera2D" instance=ExtResource("3_u2dob")]
+offset_top = 716.0
+offset_bottom = 716.0
 
 [node name="Background" type="Sprite2D" parent="."]
-z_index = -1
+z_index = -5
 scale = Vector2(6.52042, 6.52042)
 texture = ExtResource("3_w4f6e")
 

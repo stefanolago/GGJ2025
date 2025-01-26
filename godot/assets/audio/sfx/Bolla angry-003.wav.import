@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bg5xafiug1x4d"
+path="res://.godot/imported/Bolla angry-003.wav-27d53932a29a1b6c851aa1b149b7e5ac.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Bolla angry-003.wav"
+dest_files=["res://.godot/imported/Bolla angry-003.wav-27d53932a29a1b6c851aa1b149b7e5ac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

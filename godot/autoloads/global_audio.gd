@@ -9,9 +9,12 @@ func _ready() -> void:
 		if stream_player.bus == "Master":
 			push_warning("Audio player %s in global audio is set on Master bus" %stream_player.name)
 
+
 func play_one_shot(stream_name:String) -> void:
 	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
-	stream_player.play()
+	if stream_player.playing == false:
+		stream_player.play()
+
 
 func fade_in(stream_name:String, transition_duration:float) -> void:
 	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
@@ -22,6 +25,7 @@ func fade_in(stream_name:String, transition_duration:float) -> void:
 	fade_tween.play()
 	stream_player.play()
 
+
 func fade_out(stream_name:String, transition_duration:float) -> void:
 	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
 	var fade_tween:Tween = create_tween()
@@ -31,3 +35,7 @@ func fade_out(stream_name:String, transition_duration:float) -> void:
 	await fade_tween.finished
 	stream_player.stop()
 	stream_player.volume_db = store_volume
+
+func pause_stream(stream_name:String, pause: bool) -> void:
+	var stream_player:AudioStreamPlayer = audio_streams[stream_name]
+	stream_player.stream_paused = pause

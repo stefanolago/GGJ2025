@@ -4,9 +4,12 @@ var going_towards_bubble: Bubble = null
 var going_towards_zone: Marker2D = null
 var movement_speed: float = 1200.0
 var start_merge_distance_squared: float = 53000.0
+# max time before the bubble starts to revolt alone
+var max_time_before_revolt: float = 4.0
 
 func enter() -> void:
 	super()
+	bubble.sprite.set_face_mood("angry")
 
 	# add a collision layer to the bubble so that it is detected as an unattached bubble
 	bubble.set_collision_with_unattached_bubbles(true)
@@ -15,7 +18,9 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	super(delta)
 
-	if bubble.started_revolting:
+	max_time_before_revolt -= delta
+	if bubble.started_revolting or max_time_before_revolt < 0.0:
+		bubble.started_revolting = true
 		transition.emit("Revolting")
 
 	if not bubble.is_group_leader:

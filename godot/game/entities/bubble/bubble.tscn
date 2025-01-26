@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
 [ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
-[ext_resource type="PackedScene" uid="uid://cqmrjpn6exf8o" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
+[ext_resource type="PackedScene" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
@@ -320,7 +320,7 @@ tracks/0/path = NodePath("BubbleSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.106454, 0.196507, 0.253644, 0.3),
+"times": PackedFloat32Array(0, 0.106454, 0.2, 0.253644, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.504, 0.504), Vector2(0.504, 0.45), Vector2(0.504, 0.504), Vector2(0.504, 0.49), Vector2(0.504, 0.504)]
@@ -405,7 +405,9 @@ max_pupil_distance = 60.0
 [node name="BubbleFaceSprite" type="AnimatedSprite2D" parent="BubbleSprite"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hgi52")
-animation = &"angry"
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bubbles"]]
 shape = SubResource("CircleShape2D_e0h07")

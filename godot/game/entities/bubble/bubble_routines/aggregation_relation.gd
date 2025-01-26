@@ -41,7 +41,7 @@ func _start_doing() -> void:
 
 
 func _done() -> void:
-	bubble1.exit_from_routine()
+	#bubble1.exit_from_routine()
 	self.queue_free()
 
 

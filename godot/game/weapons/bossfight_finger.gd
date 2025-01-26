@@ -7,10 +7,17 @@ class_name BossfightFinger
 @export var hit_cooldown: float = 0.1
 @export var hit_damage: float = 0.1
 
+func _ready() -> void:
+	active = true
+
 func _physics_process(_delta: float) -> void:
+	if not active:
+		return
 	global_position = get_global_mouse_position()
 
 func _input(event: InputEvent) -> void:
+	if not active:
+		return
 	if event.is_action_pressed("fire"):
 		# check for all of the bubbles that intersecate the area2D, and hit them
 		var overlapping_bodies: Array = hit_detect_area.get_overlapping_bodies()

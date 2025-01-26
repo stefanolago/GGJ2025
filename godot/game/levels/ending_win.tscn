@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b48vi0ck2xhdu"]
+
+[ext_resource type="Script" path="res://scripts/ending.gd" id="1_b78dg"]
+[ext_resource type="Texture2D" uid="uid://dtfa0cjebxgsb" path="res://assets/art/final_scene.png" id="2_sj7me"]
+
+[node name="Ending" type="CanvasLayer"]
+script = ExtResource("1_b78dg")
+good_ending = true
+
+[node name="ColorRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sj7me")
+expand_mode = 1
