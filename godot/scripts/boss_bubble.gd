@@ -10,7 +10,8 @@ const teleport_attacks: int = 5
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var attack_timer: Timer = $AttackTimer
-@onready var teleport_sprite: AnimatedSprite2D = %Teleport
+@onready var teleport_sprite: Node2D = %Teleport
+@onready var judge_wig: Sprite2D = %BubbleWig
 @onready var boss_face: AnimatedSprite2D = %Face
 
 @export var attack_mine_scene: PackedScene
@@ -155,15 +156,18 @@ func _bomb_attack() -> void:
 
 func _teleport_attack() -> void:
 	teleport_sprite.show()
+	judge_wig.hide()
 	for teleport_index: int in range(teleport_attacks):
 		if not boss_is_alive:
 			return
+		GlobalAudio.play_one_shot("teleport")
 		var random_path_ratio: float = randf_range(0.0, 1.0)
 		path_follow.progress_ratio = random_path_ratio
 		var boss_position: Vector2 = path_follow.global_position
 		_spawn_bomb(boss_position, 0.1)
 		await get_tree().create_timer(0.3).timeout
 	teleport_sprite.hide()
+	judge_wig.show()
 	_attack_completed()
 
 func _circle_attack() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ddstvahxhigau"]
+[gd_scene load_steps=34 format=3 uid="uid://ddstvahxhigau"]
 
 [ext_resource type="Script" path="res://scripts/boss_bubble.gd" id="1_5bua7"]
 [ext_resource type="Texture2D" uid="uid://bp5ixf64gyd5d" path="res://assets/art/bubble/bolla-1.png" id="1_xax12"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://pl4dms2t7ro0" path="res://assets/art/bubble/bolla-rotta-1.png" id="8_7iv5l"]
 [ext_resource type="AudioStream" uid="uid://btmuos8dblokr" path="res://assets/audio/sfx/Judge_hammer-001.wav" id="9_20dan"]
 [ext_resource type="Texture2D" uid="uid://c5sc4unsttdh6" path="res://assets/art/bubble/giudice-che-parla-sheet.png" id="10_3afn1"]
+[ext_resource type="Texture2D" uid="uid://jb8pkqqytumf" path="res://assets/art/bubble/Saiyan-hair-parrucchino.png" id="12_qht4i"]
 [ext_resource type="Texture2D" uid="uid://fk756e0q7uv5" path="res://assets/art/bossfight/teleport_effect.png" id="13_44nqr"]
+[ext_resource type="Texture2D" uid="uid://chv8ey8k4evq7" path="res://assets/art/bubble/mano.png" id="13_afeh2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1d8u2"]
 radius = 159.531
@@ -529,14 +531,24 @@ autoplay = "default"
 frame_progress = 0.919023
 
 [node name="BubbleWig" type="Sprite2D" parent="Path2D/PathFollow2D/Body"]
+unique_name_in_owner = true
 position = Vector2(-28.8125, -34.9309)
 scale = Vector2(0.999342, 0.999343)
 texture = ExtResource("6_f1vc6")
 
-[node name="Teleport" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Body"]
+[node name="Teleport" type="Node2D" parent="Path2D/PathFollow2D/Body"]
 unique_name_in_owner = true
 visible = false
-modulate = Color(1, 1, 1, 0.65098)
+
+[node name="Saiyan-hair-parrucchino" type="Sprite2D" parent="Path2D/PathFollow2D/Body/Teleport"]
+position = Vector2(-6, -216)
+texture = ExtResource("12_qht4i")
+
+[node name="Mano" type="Sprite2D" parent="Path2D/PathFollow2D/Body/Teleport"]
+position = Vector2(-126, -40)
+texture = ExtResource("13_afeh2")
+
+[node name="Effect" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Body/Teleport"]
 position = Vector2(-4.81, -24.81)
 scale = Vector2(2.7481, 2.7481)
 sprite_frames = SubResource("SpriteFrames_kfj67")
