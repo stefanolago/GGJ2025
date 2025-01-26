@@ -423,9 +423,8 @@ modulate = Color(1, 0.784314, 1, 1)
 material = SubResource("ShaderMaterial_m81it")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_84kn1")
-animation = &"popped"
 autoplay = "default"
-frame_progress = 0.286548
+frame_progress = 0.201586
 script = ExtResource("9_6kqpo")
 max_pupil_distance = 60.0
 
