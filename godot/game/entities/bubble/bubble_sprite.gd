@@ -9,25 +9,30 @@ class_name BubbleSprite
 
 var lookat_position: Vector2
 var last_mood_registered: String = "calm"
-var max_distance_look_at_mouse: float = 600000
+var max_distance_look_at_mouse: float = 300000
 
 
-func _process(_delta: float) -> void:
-	var target: Vector2 = lookat_position
-	# Get the mouse position in global space if it's held
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		var mouse_pos: Vector2 = get_global_mouse_position()
-		var distance_squared: float = global_position.distance_squared_to(mouse_pos)
-		if distance_squared <= max_distance_look_at_mouse:
-			target = mouse_pos - self.global_position
-			
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT and (event as InputEventMouseButton).pressed:
+			var mouse_pos: Vector2 = get_global_mouse_position()
+			var distance_squared: float = global_position.distance_squared_to(mouse_pos)
+			if distance_squared <= max_distance_look_at_mouse:
+				update_lookat(mouse_pos - self.global_position)
+			else:
+				reset_lookat()
+		elif (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT and not (event as InputEventMouseButton).pressed:
+			reset_lookat()
 	
-	# Limit the eyes movement within a circle of max_pupil_distance
-	if target.length() > max_pupil_distance:
-		target = target.normalized() * max_pupil_distance
+		# Limit the eyes movement within a circle of max_pupil_distance
+		
+		var target: Vector2 = lookat_position
+		if target.length() > max_pupil_distance:
+			target = target.normalized() * max_pupil_distance
+		
+		# Update the face position relative to the bubble
+		face_sprite.position = target
 
-	# Update the face position relative to the bubble
-	face_sprite.position = target
 
 func reset_lookat() -> void:
 	lookat_position = start_face_position

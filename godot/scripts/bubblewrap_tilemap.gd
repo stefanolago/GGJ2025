@@ -16,13 +16,13 @@ func _ready() -> void:
 	glance_timer.start()
 
 func _glance_bubble() -> void:
-	if GameStats.all_bubbles:
-		var founded: bool = false
-		var random
-		while not founded:
-			random = GameStats.all_bubbles.pick_random()
-			founded = random is Bubble
-		var pick_bubble: Bubble = random
+	if GameStats.all_bubbles.size() > 0:
+		# var found: bool = false
+		# var random: Variant
+		# while not found:
+		# 	random = GameStats.all_bubbles.pick_random()
+		# 	found = random is Bubble
+		var pick_bubble: Bubble = GameStats.all_bubbles.pick_random()
 		pick_bubble.glance()
 		glance_timer.wait_time = randf_range(0.5, 3)
 	else:

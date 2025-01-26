@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cuti4e0fx4401"]
 
 [ext_resource type="Script" path="res://game/weapons/machine_gun_bossfight.gd" id="1_nlmmx"]
-[ext_resource type="Texture2D" uid="uid://c1r4vlmr516cg" path="res://assets/art/bubble/thompson-gun.png" id="2_2koah"]
+[ext_resource type="Texture2D" uid="uid://dxpj1mx0acewm" path="res://assets/art/bubble/thompson-gun.png" id="2_2koah"]
 [ext_resource type="Texture2D" uid="uid://b7l1f822fr1ft" path="res://assets/art/bossfight/hold_fire_red.png" id="3_vy5pw"]
 [ext_resource type="Texture2D" uid="uid://b4iepdfmna6b2" path="res://assets/art/bossfight/hold_fire_white.png" id="4_5oj86"]
 

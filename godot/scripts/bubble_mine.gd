@@ -20,12 +20,12 @@ func hit_bubble(_weapon: Node2D, damage: float) -> void:
 	health -= damage
 	control_anim_player.play("hit")
 	if health <= 0:
-		GlobalAudio.play_one_shot("bubble_pop")
+		(GlobalAudio as AudioWrapper).play_one_shot("bubble_pop")
 		queue_free()
 
 func _explode() -> void:
 	GameStats.take_damage(damage_dealt, global_position)
-	GlobalAudio.play_one_shot("bomb")
+	(GlobalAudio as AudioWrapper).play_one_shot("bomb")
 	queue_free()
 
 func _delete_bubble() -> void:

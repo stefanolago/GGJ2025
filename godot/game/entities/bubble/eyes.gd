@@ -9,7 +9,7 @@ class_name bubble_sprite
 
 var lookat_position: Vector2
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var target: Vector2 = lookat_position
 	# Get the mouse position in global space if it's held
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -20,7 +20,12 @@ func _process(_delta: float) -> void:
 		target = target.normalized() * max_pupil_distance
 
 	# Update the face position relative to the bubble
+	print("EYES PROCESSED")
 	face_sprite.position = target
+
+
+
+
 
 func reset_lookat() -> void:
 	lookat_position = start_face_position

@@ -43,7 +43,7 @@ func _ready() -> void:
 	GameStats.player_killed_bossfight.connect(_player_second_phase)
 	Dialogic.timeline_ended.connect(_dialogue_ended)
 	Dialogic.signal_event.connect(_dialogic_signal)
-	GlobalAudio.fade_in("court_music", 0.1)
+	(GlobalAudio as AudioWrapper).fade_in("court_music", 0.1)
 	Dialogic.start("bossfight")
 	boss_face.play("talk")
 	#_start_bossfight()   # DEBUG
@@ -57,8 +57,8 @@ func _process(delta: float) -> void:
 
 func hit_bubble(_weapon: Node2D, damage: float) -> void:
 	if first_hit and boss_started == false and dialogic_playing == false:
-		GlobalAudio.play_one_shot("boss_hit")
-		GlobalAudio.pause_stream("court_music", true)
+		(GlobalAudio as AudioWrapper).play_one_shot("boss_hit")
+		(GlobalAudio as AudioWrapper).pause_stream("court_music", true)
 		first_hit = false
 		dialogic_playing = true
 		anim_player.play("first_hit")
@@ -68,7 +68,7 @@ func hit_bubble(_weapon: Node2D, damage: float) -> void:
 		Dialogic.start("attack")
 		boss_face.play("talk")
 	if boss_started:
-		GlobalAudio.play_one_shot("boss_hit")
+		(GlobalAudio as AudioWrapper).play_one_shot("boss_hit")
 		health -= damage
 		anim_player.play("hit")
 		_check_health()
@@ -107,7 +107,7 @@ func _second_dialogue_ended() -> void:
 	boss_face.play("default")
 	dialogic_playing = false
 	anim_player.play("begin_fight")
-	GlobalAudio.fade_in("boss_music", 0.0)
+	(GlobalAudio as AudioWrapper).fade_in("boss_music", 0.0)
 
 func _start_bossfight() -> void:
 	boss_face.play("default")
@@ -120,8 +120,8 @@ func _stop_bossfight() -> void:
 	attack_timer.stop()
 	anim_player.play("pop_boss")
 	GameStats.boss_killed.emit()
-	GlobalAudio.pause_stream("boss_music", true)
-	GlobalAudio.play_one_shot("bubble_pop")
+	(GlobalAudio as AudioWrapper).pause_stream("boss_music", true)
+	(GlobalAudio as AudioWrapper).play_one_shot("bubble_pop")
 
 func _hammer_hit() -> void:
 	anim_player.play("hammer")

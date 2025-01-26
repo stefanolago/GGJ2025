@@ -16,11 +16,11 @@ func _ready() -> void:
 # MOUSE INPUT__________________________________________________________________________________________________
 # Configurable constants
 const EDGE_THRESHOLD: int = 10       # Distanza dal bordo dello schermo per attivare il movimento
-const CAMERA_SPEED: float = 700.0   # Velocità di movimento della telecamera (pixel al secondo)
+const CAMERA_SPEED: float = 800.0   # Velocità di movimento della telecamera (pixel al secondo)
 const TOUCH_SENSITIVITY: float = 1.5 # Sensibilità del movimento sul touch
 
 # Process function
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if OS.get_name() == "Windows":
 		_process_windows(delta)
 
@@ -51,7 +51,6 @@ func _process_windows(delta: float) -> void:
 	new_position.y = clamp(new_position.y, limit_top + viewport_size_half_y, limit_bottom - viewport_size_half_y)
 	
 	# Aggiorna la posizione della telecamera
-	print(new_position)
 	global_position = new_position
 
 
@@ -79,3 +78,5 @@ func handle_drag(event: InputEventScreenDrag) -> void:
 		new_position.x = clamp(new_position.x, limit_left + viewport_size_half_x, limit_right - viewport_size_half_x)
 		new_position.y = clamp(new_position.y, limit_top + viewport_size_half_y, limit_bottom - viewport_size_half_y)
 		global_position = new_position
+	else:
+		touch_points.clear()

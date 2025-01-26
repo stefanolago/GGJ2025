@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 		# wait for the cooldown time before hitting again
 		if hit_cooldown_timer.is_stopped():
 			hit_cooldown_timer.start(hit_cooldown)
-			GlobalAudio.play_one_shot("shot")
+			(GlobalAudio as AudioWrapper).play_one_shot("shot")
 			for body: Node2D in hit_detect_area.get_overlapping_bodies():
 				if body is BossBubble:
 					(body as BossBubble).hit_bubble(self, hit_damage)
@@ -40,7 +40,7 @@ func _input(event: InputEvent) -> void:
 
 func _activate_weapon() -> void:
 	($AnimationPlayer as AnimationPlayer).play("load_weapon")
-	GlobalAudio.play_one_shot("gun_load")
+	(GlobalAudio as AudioWrapper).play_one_shot("gun_load")
 	hold_to_fire.show()
 	await get_tree().create_timer(10).timeout
 	hold_to_fire.hide()

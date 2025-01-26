@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ending.gd" id="1_b78dg"]
 [ext_resource type="Texture2D" uid="uid://dtfa0cjebxgsb" path="res://assets/art/final_scene.png" id="2_sj7me"]
-[ext_resource type="AudioStream" uid="uid://c2uxg3tn8ftxs" path="res://assets/audio/music/End Game.wav" id="3_pp8sq"]
+[ext_resource type="AudioStream" uid="uid://dd66xpj1c8cbh" path="res://assets/audio/music/End Game.wav" id="3_pp8sq"]
 
 [node name="Ending" type="CanvasLayer"]
 script = ExtResource("1_b78dg")

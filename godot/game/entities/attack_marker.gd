@@ -5,7 +5,6 @@ class_name AttackMarker
 @export var camera: Camera2D
 @export var alert_margin: Vector2 = Vector2(10, 10)
 @export var fade_duration: float = 1.8				# Time for fade in/out
-@export var initial_alpha: float = 0.0 				# Initial alpha value (1.0 = fully opaque)
 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
@@ -19,7 +18,6 @@ func _ready() -> void:
 	if camera == null:
 		camera = get_viewport().get_camera_2d()
 	screen_size = get_viewport_rect().size / camera.zoom
-	#sprite.modulate.a = initial_alpha
 
 
 
@@ -65,8 +63,9 @@ func _set_marker(damage_position: Vector2) -> void:
 
 	# Check intersections with the screen edges
 	for edge: Array in edges:
-		var intersection = Geometry2D.segment_intersects_segment(screen_center, damage_position, edge[0], edge[1])
-		if intersection:
+		@warning_ignore("unsafe_cast")
+		var intersection: Variant = Geometry2D.segment_intersects_segment(screen_center, damage_position, (edge[0] as Vector2), (edge[1] as Vector2))
+		if intersection is Vector2:
 			sprite.global_position = intersection
 			return  # Exit early once the intersection is found
 
@@ -92,7 +91,8 @@ func _fade(is_fade_out: bool, ease_id: int, trans_id: int) -> void:
 	tween.tween_property(sprite, "modulate:a", 0.0 if is_fade_out else 1.0, fade_duration).set_ease(ease_id).set_trans(trans_id)
 	tween.play()
 	await tween.finished
-	if is_fade_out:
-		hide()
-	else:
-		_fade_out()
+	if self != null:
+		if is_fade_out:
+			hide()
+		else:
+			_fade_out()

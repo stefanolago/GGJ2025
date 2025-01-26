@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
 [ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
-[ext_resource type="PackedScene" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
+[ext_resource type="PackedScene" uid="uid://exfrtkbxge5q" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m81it"]
 resource_local_to_scene = true
@@ -170,7 +170,7 @@ animations = [{
 radius = 114.158
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbs37"]
-radius = 815.383
+radius = 388.321
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jkg7u"]
 radius = 1319.13
@@ -459,7 +459,6 @@ autoplay = "Idle_0"
 
 [node name="AttackMarker" parent="." instance=ExtResource("29_og2x4")]
 unique_name_in_owner = true
-z_index = 100
 
 [connection signal="animation_finished" from="BodyAnimationPlayer" to="." method="_on_body_animation_player_animation_finished"]
 [connection signal="animation_finished" from="FaceAnimationPlayer" to="." method="_on_face_animation_player_animation_finished"]

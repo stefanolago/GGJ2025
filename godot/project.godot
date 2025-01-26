@@ -266,6 +266,10 @@ pointing/android/enable_pan_and_scale_gestures=true
 2d_physics/layer_5="DeadBubble"
 2d_physics/layer_6="UnattachedBubbleBody"
 
+[physics]
+
+common/physics_ticks_per_second=30
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
