@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://0ffl710v77pg"]
+[gd_scene load_steps=17 format=3 uid="uid://bed6f2vx3oqj1"]
 
 [ext_resource type="Script" path="res://game/levels/desk_level.gd" id="1_2e0ew"]
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_extf4"]
@@ -32,11 +32,16 @@ script = ExtResource("1_2e0ew")
 [node name="Finger" parent="." instance=ExtResource("2_xwdry")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(0.3, 0.3)
+limit_left = -6650
+limit_top = -2750
+limit_right = 6650
+limit_bottom = 2750
 script = ExtResource("3_r2wxm")
 
 [node name="Healthbar" parent="Camera2D" instance=ExtResource("3_u2dob")]
-top_level = true
+
+z_index = 1000
 offset_top = 716.0
 offset_bottom = 716.0
 

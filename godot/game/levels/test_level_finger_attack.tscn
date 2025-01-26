@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://4en56y3s25ri"]
+[gd_scene load_steps=6 format=3 uid="uid://4en56y3s25ri"]
 
 [ext_resource type="Script" path="res://game/levels/test_level_finger_attack.gd" id="1_7fwxd"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_gvtbi"]
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="2_s3iys"]
 [ext_resource type="Script" path="res://game/levels/camera_2d.gd" id="3_6y3wj"]
 [ext_resource type="PackedScene" uid="uid://ehufqxg7kt1l" path="res://game/entities/player/healthbar.tscn" id="4_gaccn"]
-[ext_resource type="Texture2D" uid="uid://cmrsuyhjkndle" path="res://assets/art/circle_example.png" id="4_yxpnr"]
 
 [node name="TestLevelFingerAttack" type="Node2D"]
 script = ExtResource("1_7fwxd")
@@ -25,12 +24,6 @@ offset_top = 850.0
 offset_bottom = 850.0
 grow_vertical = 0
 scale = Vector2(2, 2)
-
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
-z_index = 1000
-position = Vector2(222, -679)
-scale = Vector2(1, 0.359999)
-texture = ExtResource("4_yxpnr")
 
 [node name="Finger" parent="." instance=ExtResource("2_gvtbi")]
 
