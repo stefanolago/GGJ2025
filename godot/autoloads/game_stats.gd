@@ -33,7 +33,7 @@ var revolt_started: bool = false:
 			(GlobalAudio as AudioWrapper).switch_to_clip("phase_one_song", "bubble_song_2")
 
 func check_for_next_phase() -> void:
-	if all_bubbles.size() <= 5:
+	if all_bubbles.size() <= 5 and bubbles_popped > 15:
 		_end_phase_one()
 
 

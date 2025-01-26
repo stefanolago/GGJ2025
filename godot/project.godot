@@ -40,6 +40,8 @@ gdscript/warnings/unsafe_call_argument=1
 [dialogic]
 
 directories/dch_directory={
+"dialogic/judge": "res://Build/Windows/naked_finger/dialogic/judge.dch",
+"dialogic/player": "res://Build/Windows/naked_finger/dialogic/player.dch",
 "judge": "res://dialogic/judge.dch",
 "player": "res://dialogic/player.dch"
 }
@@ -47,6 +49,10 @@ directories/dtl_directory={
 "attack": "res://dialogic/attack.dtl",
 "boss_dialogue_1": "res://dialogic/boss_dialogue_1.dtl",
 "bossfight": "res://dialogic/bossfight.dtl",
+"dialogic/attack": "res://Build/Windows/naked_finger/dialogic/attack.dtl",
+"dialogic/boss_dialogue_1": "res://Build/Windows/naked_finger/dialogic/boss_dialogue_1.dtl",
+"dialogic/bossfight": "res://Build/Windows/naked_finger/dialogic/bossfight.dtl",
+"dialogic/ending": "res://Build/Windows/naked_finger/dialogic/ending.dtl",
 "ending": "res://dialogic/ending.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
