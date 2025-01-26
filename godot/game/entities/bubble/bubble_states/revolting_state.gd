@@ -54,6 +54,8 @@ func _on_attack_timeout() -> void:
 
 	# attack only if the bubble is in range
 	if bubble.global_position.distance_squared_to(get_viewport().get_camera_2d().global_position) > MAX_ATTACK_RANGE_SQUARED:
+		if bubble.attack_marker.visible:
+			bubble.attack_marker._fade_out()
 		return
 
 	bubble.attack(DAMAGE_REDUCER_VALUE)

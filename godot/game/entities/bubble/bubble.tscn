@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dy5b0e8fulwac"]
+[gd_scene load_steps=52 format=3 uid="uid://dy5b0e8fulwac"]
 
 [ext_resource type="Shader" path="res://game/entities/bubble/shake.gdshader" id="1_3omog"]
 [ext_resource type="Script" path="res://utils/state_machine.gd" id="1_aabyq"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://dvw6ix2d0f48f" path="res://assets/art/bubble/faccina-spaventata.png" id="16_w77yh"]
 [ext_resource type="Texture2D" uid="uid://chk2l7ojoflmb" path="res://assets/art/bubble/faccina-felicissima.png" id="17_q3kfc"]
 [ext_resource type="Texture2D" uid="uid://brlevjwmml3eu" path="res://assets/art/bubble/faccina-preoccupata.png" id="18_4iu74"]
+[ext_resource type="Texture2D" uid="uid://bpjm3doo7jw1k" path="res://assets/art/bubble/bolla-rotta-3.png" id="19_5eqja"]
 [ext_resource type="Texture2D" uid="uid://5l2yx7lixesv" path="res://assets/art/bubble/morso-sprite-sheet.png" id="21_5k6pg"]
 [ext_resource type="PackedScene" uid="uid://exfrtkbxge5q" path="res://game/entities/attack_marker.tscn" id="29_og2x4"]
 
@@ -36,17 +37,38 @@ shader = ExtResource("1_3omog")
 shader_parameter/amplitude = 20.0
 shader_parameter/frequency = 0.0
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_iw68p"]
-resource_local_to_scene = true
-frames = 4
-pause = true
-frame_0/texture = ExtResource("8_cxdc2")
-frame_1/texture = ExtResource("11_1jru2")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("9_ha83g")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("10_8hyo1")
-frame_3/duration = 1.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_84kn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cxdc2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ha83g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8hyo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_5eqja")
+}],
+"loop": true,
+"name": &"popped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_1jru2")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7am8"]
 atlas = ExtResource("21_5k6pg")
@@ -396,11 +418,14 @@ script = ExtResource("13_36ui5")
 [node name="Revolting" type="Node" parent="MoodStateMachine"]
 script = ExtResource("14_2j2oh")
 
-[node name="BubbleSprite" type="Sprite2D" parent="."]
+[node name="BubbleSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.784314, 1, 1)
 material = SubResource("ShaderMaterial_m81it")
 scale = Vector2(0.5, 0.5)
-texture = SubResource("AnimatedTexture_iw68p")
+sprite_frames = SubResource("SpriteFrames_84kn1")
+animation = &"popped"
+autoplay = "default"
+frame_progress = 0.286548
 script = ExtResource("9_6kqpo")
 max_pupil_distance = 60.0
 

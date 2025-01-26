@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 class_name BubbleSprite
 
@@ -54,8 +54,9 @@ func set_face_mood(mood: String) -> void:
 func set_body_status(status: String) -> void:
 	match status:
 		"untouched":
-			(texture as AnimatedTexture).current_frame = 0
+			play("default")
 		"pressed":
-			(texture as AnimatedTexture).current_frame = 1
+			play("pressed")
 		"popped":
-			(texture as AnimatedTexture).current_frame = randi_range(2, 3)
+			play("popped", 0.0)
+			frame = randi_range(0, 2)
