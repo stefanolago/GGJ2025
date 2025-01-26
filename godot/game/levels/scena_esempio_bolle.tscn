@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://uqefphhchit1"]
+[gd_scene load_steps=2 format=3 uid="uid://b4372pqvoewd6"]
 
 [ext_resource type="PackedScene" uid="uid://dy5b0e8fulwac" path="res://game/entities/bubble/bubble.tscn" id="1_182ac"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://0ffl710v77pg"]
+[gd_scene load_steps=15 format=3 uid="uid://bed6f2vx3oqj1"]
 
 [ext_resource type="PackedScene" uid="uid://cmxheafgo4x65" path="res://game/levels/bubblewrap_tilemap.tscn" id="1_extf4"]
 [ext_resource type="PackedScene" uid="uid://dijn7cvwes3sr" path="res://game/weapons/finger.tscn" id="2_xwdry"]

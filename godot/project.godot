@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GGJ 2025 - Bubbles"
-run/main_scene="res://menu_and_options/_start/start_menu.tscn"
+run/main_scene="res://game/levels/test_level_finger_attack.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/image="res://assets/art/splash/GWJ-Full-Logo-tag-Orange2.png"
@@ -249,6 +249,7 @@ fire={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+pointing/android/enable_pan_and_scale_gestures=true
 
 [layer_names]
 
