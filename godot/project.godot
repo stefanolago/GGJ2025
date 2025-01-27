@@ -40,6 +40,8 @@ gdscript/warnings/unsafe_call_argument=1
 [dialogic]
 
 directories/dch_directory={
+"dialogic/judge": "res://GGJ2025_Submission/source/dialogic/judge.dch",
+"dialogic/player": "res://GGJ2025_Submission/source/dialogic/player.dch",
 "judge": "res://dialogic/judge.dch",
 "player": "res://dialogic/player.dch"
 }
@@ -47,6 +49,10 @@ directories/dtl_directory={
 "attack": "res://dialogic/attack.dtl",
 "boss_dialogue_1": "res://dialogic/boss_dialogue_1.dtl",
 "bossfight": "res://dialogic/bossfight.dtl",
+"dialogic/attack": "res://GGJ2025_Submission/source/dialogic/attack.dtl",
+"dialogic/boss_dialogue_1": "res://GGJ2025_Submission/source/dialogic/boss_dialogue_1.dtl",
+"dialogic/bossfight": "res://GGJ2025_Submission/source/dialogic/bossfight.dtl",
+"dialogic/ending": "res://GGJ2025_Submission/source/dialogic/ending.dtl",
 "ending": "res://dialogic/ending.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
